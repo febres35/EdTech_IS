@@ -1,0 +1,69 @@
+@startuml "Diagrama de clases"
+
+title "Modelo del Dominio"
+
+skinparam Class{
+  BackgroundColor 2B2F7B-black
+  AttributeFontColor white
+  BorderThickness 3
+  BorderColor blue
+}
+class administrador{
+  nombre
+  apellido
+  correo
+  contraseña
+}
+class usuario{
+  nombreUsuario
+  apellidoUsuario
+  correo
+  contraseña
+  cedulaIdentidad
+  cursosUsuario
+  TiposExamenesPresentados
+  ultimasPreguntasAprobadas
+  ultimasPreguntasReprobadas
+}
+class curso{
+  nombreCurso
+  idCurso
+  participantesCurso
+}
+class examen{
+  tipo
+  instrucciones
+  preguntas
+  cantidadPreguntas
+  duracion
+  resultado
+}
+class pregunta{
+  dominio
+  enunciadoPregunta
+}
+class respuesta{
+  respuestaCorrecta
+  explicacion
+}
+class certificado{
+  participante
+  cursoParticipante
+}
+
+administrador -down-> "    1..*"examen: crea
+administrador -> "     1..*"usuario: registra
+administrador "1..*"-right-o curso: administra
+
+usuario "0..*"-->"    1..*"curso: pertenece
+usuario "1..*  "-left- "1..* "examen: presenta
+(usuario, curso) .. certificado: entrega
+
+examen *-down- "1..*"pregunta: contiene
+pregunta *-- respuesta: tiene
+
+curso o-- examen: pertenece
+
+
+
+@enduml
