@@ -8,13 +8,13 @@ skinparam Class{
   BorderThickness 3
   BorderColor blue
 }
-class administrador{
+class Administrador{
   nombre
   apellido
   correo
   contraseña
 }
-class usuario{
+class Usuario{
   nombreUsuario
   apellidoUsuario
   correo
@@ -25,44 +25,43 @@ class usuario{
   ultimasPreguntasAprobadas
   ultimasPreguntasReprobadas
 }
-class curso{
+class Curso{
   nombreCurso
   idCurso
   participantesCurso
 }
-class examen{
+class Examen{
   tipo
   instrucciones
-  preguntas
   cantidadPreguntas
   duracion
   resultado
 }
-class pregunta{
+class Pregunta{
   dominio
   enunciadoPregunta
 }
-class respuesta{
+class Respuesta{
   respuestaCorrecta
   explicacion
 }
-class certificado{
+class Certificado{
   participante
   cursoParticipante
 }
 
-administrador -down-> "    1..*"examen: crea
-administrador -> "     1..*"usuario: registra
-administrador "1..*"-right-o curso: administra
+Administrador -down-> "    1..*"Examen: crea
+Administrador -> "     1..*"Usuario: registra
+Administrador "1..*"-right-o Curso: administra
 
-usuario "0..*"-->"    1..*"curso: pertenece
-usuario "1..*  "-left- "1..* "examen: presenta
-(usuario, curso) .. certificado: entrega
+Usuario "0..*"-->"    1..*"Curso: pertenece
+Usuario "1..*  "-left- "1..* "Examen: presenta
+(Usuario, Curso) .. Certificado: entrega
 
-examen *-down- "1..*"pregunta: contiene
-pregunta *-- respuesta: tiene
+Examen *-down- "1..*"Pregunta: contiene
+Pregunta *-- Respuesta: tiene
 
-curso o-- examen: pertenece
+Curso o-- Examen: pertenece
 
 
 
