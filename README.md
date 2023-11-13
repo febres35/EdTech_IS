@@ -25,4 +25,4 @@ EdTech_IS proyecto de Ingeniería de Software
 
 
 # Modelo de Dominio
-![alt "Modelo de clases"](docs/scenariosView/modeloDeDominio/Clases Modelo de Domanio.png)
+![alt "Modelo de clases"]("docs/scenariosView/modeloDeDominio/Clases Modelo de Domanio.png")
