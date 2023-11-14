@@ -1,0 +1,117 @@
+@startuml Diagrama de Estado
+
+[*] --> autenticando
+autenticando : * <b>ident
+autenticando : * <b>passwd
+
+autenticando --> seleccionandoVista: autenticacion\nsatisfactoria
+seleccionandoVista: * <b>administrador
+seleccionandoVista: * <b>Usuario
+
+seleccionandoVista -left-> ViewAdmin: administrador
+state ViewAdmin {
+    state opcions <<fork>>
+    [*] --> mostrando
+    mostrando: <i> Desplegar Menú 
+    '<i>mostrando\n<i>datos de usuario
+    mostrando --> opcions 
+    seleccionandoCurso --> RegistrandoUsuario
+    RegistrandoUsuario: Registrar usuario
+    opcions --> RegistrandoCurso
+    opcions --> seleccionandoCurso
+    RegistrandoCurso --> RegistrandoExamen
+    seleccionandoCurso --> RegistrandoExamen
+    RegistrandoCurso --> RegistrandoUsuario
+    RegistrandoExamen --> alert
+    RegistrandoExamen: Registrar Examen
+    RegistrandoUsuario --> alert
+    alert: * <i> Mensaje de estado\n<i>Satisfactorio o\n<i>errorInesperado
+    alert --> [*]
+}
+
+seleccionandoVista -right-> ViewUser
+state ViewUser {
+    [*] --> mostrandoMenu
+    mostrandoMenu --> cursos
+    state cursos {
+        [*] --> Cargando
+        Cargando: <i>Cursos
+        Cargando --> listando
+        listando: <i>Examenes
+        listando --> seleccionando
+        seleccionando: <i>Examen
+        seleccionando --> aceptando 
+        aceptando : <i> Instrucciones
+        seleccionando --> rechazando
+        rechazando --> Cargando
+        rechazando: <i> Instrucciones
+        aceptando --> examen
+        state examen {
+            [*] --> mostrandoPregunta
+            mostrandoPregunta: <i>Inicia cronometro
+            mostrandoPregunta --> actualizando
+            actualizando --> actualizando
+            actualizando: cronometro
+            mostrandoPregunta --> repondiendoPregunta
+            repondiendoPregunta --> incrementando
+            incrementando: repondidas
+            repondiendoPregunta --> reduciendo
+            reduciendo: total de\npreguntas
+            repondiendoPregunta -left-> mostrandoPregunta: siguiente
+            anterior --> mostrandoPregunta
+            actualizando --> tiempoFinalizado
+            tiempoFinalizado --> MensajeDeTeimpoFinalizado
+            MensajeDeTeimpoFinalizado --> ListarRespuestas
+            ListarRespuestas: Erradas, con sus\nrespuestas correctas
+            mostrandoPregunta --> abortar
+            abortar --> ListarRespuestas
+            ListarRespuestas --> [*]
+
+        }
+        
+        
+
+    }
+    mostrandoMenu -right-> perfil
+    state perfil {
+        [*]  --> cargando
+        cargando: Opciones
+        cargando: * cambio de Email
+        cargando: * cambio de contraseña
+
+        cargando --> cambioContraseña
+        cambioContraseña --> cambioRealizado
+        cambioRealizado --> [*]
+        cargando --> cambioEmail
+        cambioEmail --> cambioRealizado
+        cambioRealizado: mostrando mensaje
+
+    }
+
+    mostrandoMenu --> ayuda
+    state ayuda {
+        [*] --> cargandoView
+        cargandoView --> listarPreguntasFrecuentes
+        listarPreguntasFrecuentes --> seleccionandoPregunta
+        seleccionandoPregunta --> mostrandoRespuesta
+        mostrandoRespuesta -right-> listarPreguntasFrecuentes
+
+    }
+    cursos --> mostrandoMenu
+    perfil --> mostrandoMenu
+    ayuda --> mostrandoMenu
+
+
+
+}
+
+
+
+
+ViewAdmin --> CerrandoSesion
+ViewUser --> CerrandoSesion
+CerrandoSesion --> [*]
+
+
+
+@enduml
