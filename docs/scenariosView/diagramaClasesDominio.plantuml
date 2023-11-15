@@ -14,17 +14,19 @@ class Administrador{
   correo
   contraseña
 }
-class Usuario{
-  nombreUsuario
-  apellidoUsuario
+class Estudiante{
+  nombreEstudiante
+  apellidoEstudiante
   correo
   contraseña
-  cedulaIdentidad
-  cursosUsuario
+  cursosEstudiante
   TiposExamenesPresentados
   ultimasPreguntasAprobadas
   ultimasPreguntasReprobadas
 }
+
+class Ayuda
+
 class Curso{
   nombreCurso
   idCurso
@@ -33,36 +35,40 @@ class Curso{
 class Examen{
   tipo
   instrucciones
-  cantidadPreguntas
   duracion
   resultado
 }
 class Pregunta{
-  dominio
   enunciadoPregunta
 }
+
+class Dominio
+
 class Respuesta{
+  enunciadoRespuesta
   respuestaCorrecta
   explicacion
 }
 class Certificado{
   participante
   cursoParticipante
+  nombreProfesores
 }
 
-Administrador -down-> "    1..*"Examen: crea
-Administrador -> "     1..*"Usuario: registra
-Administrador "1..*"-right-o Curso: administra
+Administrador -right-> "1..*       "Examen: crea
+Administrador -right-> "     1..*"Estudiante: registra
+Administrador "    1..*"-right-o Curso: administra
 
-Usuario "0..*"-->"    1..*"Curso: pertenece
-Usuario "1..*  "-left- "1..* "Examen: presenta
-(Usuario, Curso) .. Certificado: entrega
+Estudiante "0..*"-right->"    1..*"Curso: pertenece
+Estudiante "1..*   "-right-> "0..* "Examen: presenta
+Estudiante --> Certificado: recibe
+Estudiante "1..*"---> Ayuda: consulta
 
 Examen *-down- "1..*"Pregunta: contiene
-Pregunta *-- Respuesta: tiene
+Pregunta *-down- Respuesta: tiene
+Pregunta *-right- Dominio: posee
 
-Curso o-- Examen: pertenece
-
-
+Curso o----- "1..*"Examen: pertenece
+Curso *- Certificado: expide
 
 @enduml
