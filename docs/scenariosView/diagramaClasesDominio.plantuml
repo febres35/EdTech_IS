@@ -31,6 +31,7 @@ class Curso{
   nombreCurso
   idCurso
   participantesCurso
+  nombreProfesoresCurso
 }
 class Examen{
   tipo
@@ -50,9 +51,6 @@ class Respuesta{
   explicacion
 }
 class Certificado{
-  participante
-  cursoParticipante
-  nombreProfesores
 }
 
 Administrador -right-> "1..*       "Examen: crea
@@ -66,7 +64,7 @@ Estudiante "1..*"---> Ayuda: consulta
 
 Examen *-down- "1..*"Pregunta: contiene
 Pregunta *-down- Respuesta: tiene
-Pregunta *-right- Dominio: posee
+Pregunta -right-o Dominio: posee
 
 Curso o----- "1..*"Examen: pertenece
 Curso *- Certificado: expide
