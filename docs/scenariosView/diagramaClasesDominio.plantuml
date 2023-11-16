@@ -9,17 +9,10 @@ skinparam Class{
   BorderColor blue
 }
 class Administrador{
-  nombre
-  apellido
-  correo
-  contraseña
 }
 class Estudiante{
   nombreEstudiante
   apellidoEstudiante
-  correo
-  contraseña
-  cursosEstudiante
   TiposExamenesPresentados
   ultimasPreguntasAprobadas
   ultimasPreguntasReprobadas
@@ -65,6 +58,7 @@ Examen *-down- "1..*"Pregunta: contiene
 Pregunta *-down- Respuesta: tiene
 Pregunta -right-o Dominio: posee
 
+Curso "0..*" -right-o Categoria: pertenece
 Curso o----- "1..*"Examen: pertenece
 Curso *- Certificado: expide
 
