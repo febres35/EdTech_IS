@@ -30,7 +30,6 @@ class Ayuda
 class Curso{
   nombreCurso
   idCurso
-  participantesCurso
   nombreProfesoresCurso
 }
 class Examen{
