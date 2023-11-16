@@ -25,6 +25,7 @@ class Curso{
   idCurso
   nombreProfesoresCurso
 }
+class Categoria
 class Examen{
   tipo
   instrucciones
