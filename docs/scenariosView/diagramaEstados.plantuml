@@ -1,6 +1,6 @@
 @startuml "Diagrama de Estado"
 
-title "Diagrama de estados del dominio\nProyecto"
+title "Diagrama de estados del dominio\nEquipo 3"
 
 state "Iniciando Proceso" as IP
 
