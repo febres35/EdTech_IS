@@ -26,3 +26,5 @@ EdTech_IS proyecto de Ingeniería de Software
 
 # Modelo de Dominio
 ![alt "Modelo de clases"](https://github.com/febres35/EdTech_IS/blob/main/docs/scenariosView/diagramaClasesDominio/Diagrama%20de%20clases.png)
+![alt "Modelo de clases"](https://github.com/febres35/EdTech_IS/blob/main/docs/scenariosView/diagramaEstados/Diagrama%20de%20Estado.png)
+
