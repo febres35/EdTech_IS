@@ -10,8 +10,8 @@ state seleccionandoVista <<choice>>
 
 IP --> seleccionandoVista
 
-seleccionandoVista ---> Administrando: [es administrador== si]
-seleccionandoVista ---> PC: [es administrador== no]
+seleccionandoVista ---> Administrando: [esAdministrador== si]
+seleccionandoVista ---> PC: [esAdministrador== no]
 
 state Administrando {
     state opciones <<choice>>
@@ -24,12 +24,12 @@ state Administrando {
     [*] --> SC
     
     SC --> cursoRegistrado
-    cursoRegistrado ------> RC: [curso registrado == no]
-    cursoRegistrado ------> opciones: [curso registrado == si]
-    opciones -----> crearExamen :[registrar usuario == no]
-    opciones -----> RU:[registrar usuario == si]
-    crearExamen ------> CE : [crear examen == si]
-    crearExamen ------>[*]:[crear examen == no]
+    cursoRegistrado ------> RC: [cursoRegistrado == no]
+    cursoRegistrado ------> opciones: [cursoRegistrado == si]
+    opciones -----> crearExamen :[registrarUsuario == no]
+    opciones -----> RU:[registrarUsuario == si]
+    crearExamen ------> CE : [crearExamen == si]
+    crearExamen ------>[*]:[crearExamen == no]
     RC --> RU
     RU ----> crearExamen
     CE -->  [*]
@@ -47,8 +47,8 @@ state "Participando en Curso" as PC {
     [*] --> MO
 
     MO --> presentarExamen
-    presentarExamen ----> SE: [presentar examen == si]
-    presentarExamen --> Perfil: [presentar examen == no]
+    presentarExamen ----> SE: [presentarExamen == si]
+    presentarExamen --> Perfil: [presentarExamen == no]
 
     state "Seleccionando Examen" as SE {
       state "Mostrando Examenes Disponibles" as ME
@@ -70,8 +70,31 @@ state "Participando en Curso" as PC {
           RP -right-> Finalizando 
           Finalizando --> LR
           LR --> [*]
+          --
+    
+    state "Tiempo transcurriendo" as TT
+    state "Tiempo detenido" as TD 
+    [*] -r-> TT
+    
+    TT-r-> TD : [ExamenAbortado == True]
+    TT -r-> TD : [ExamenCompletado == True]
+    TD -r-> [*]
         }
+  state "Examen Abortado" as EA 
+state "Examen Completado" as EC 
+
+state opciones2 <<choice>> 
+    state join1 <<join>>
+    PE --> opciones2
+opciones2 --> EC
+opciones2 --> EA 
+EC --> join1
+EA --> join1
+join1 --> [*]
+        
     }
+
+  
 }
 
 state "Consultando ayuda" as CA {
@@ -94,8 +117,8 @@ state consultarAyuda <<choice>>
 Administrando --> consultarAyuda
 PC --> consultarAyuda
 
-consultarAyuda ----> CA :[consultar ayuda== si]
-consultarAyuda --> FP:[consultar ayuda== no]
+consultarAyuda ----> CA :[consultarAyuda== si]
+consultarAyuda --> FP:[consultarAyuda== no]
 
 CA -->FP
 
