@@ -1,4 +1,9 @@
 @startuml
-
-
+left to right direction
+:Administrador: as profe
+:Estudiante: as alumno
+rectangle Login{
+(mono) as (UC1)
+}
+profe-->UC1
 @enduml
