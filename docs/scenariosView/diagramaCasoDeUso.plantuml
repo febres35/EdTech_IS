@@ -1,9 +1,42 @@
 @startuml
 left to right direction
-:Administrador: as profe
-:Estudiante: as alumno
-rectangle Login{
-(mono) as (UC1)
+
+skinparam actorStyle awesome
+
+
+
+
+
+rectangle Sistema{
+  usecase " Login" as UC1
+  usecase " Registrar Usuario" as UC2
+  usecase " Registrar Curso" as UC3
+  usecase "Seleccionar Examen" as UC4
+  usecase "Praticar Examen" as UC5
+  usecase " Resultado" as UC6
+  usecase " Crear Examen" as UC7
+  usecase "Consultar Ayuda" as UC8
+  usecase " Logout " as UC9
+  usecase "  Actualizacion del Perfil " as UC10
+
+
 }
-profe-->UC1
+ Administrador--> UC7
+Administrador --> UC2
+ Administrador--> UC1
+ Estudiante--> UC1
+ 
+ Estudiante--> UC3
+ Estudiante--> UC4
+ Estudiante--> UC5
+ Estudiante--> UC6
+ Administrador--> UC8
+ Administrador--> UC9
+ Estudiante--> UC9
+Estudiante--> UC10
+Administrador--> UC10
+ 
+ 
+ 
+
 @enduml
