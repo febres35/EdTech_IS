@@ -23,9 +23,11 @@ state Login{
     State3->A2
     A2-->[*]:abortado
     A2:Si el Usuario decide cancelar el proceso termina el caso de uso sin hacer nada
+    State5--->[*]:Ingresa
 }
 
 state RegistrarUsuario{
+    [*]-->solicitaIncorporar
     solicitaIncorporar:El administrador solicita incorporar
     solicitaIncorporar:un estudiante
     solicitaIncorporar-->permiteDatos
@@ -36,13 +38,46 @@ state RegistrarUsuario{
     permiteDatos-->introDatos
     muestraDatos:El sistema muestra los datos para que se verifiquen
     introDatos-->muestraDatos
-    concluRegistro:El administradorconcluye el registro
-    muestraDatos-->concluRegistro
+    concluRegistro:El administrador concluye el registro
+    muestraDatos---->concluRegistro :coinciden
     noCoinciden:Si el administrador verifica los datos estos no coinciden
     noCoinciden:el sistema permite retroceder para corregirlo
     muestraDatos--->noCoinciden
     noCoinciden-->introDatos
-    concluRegistro-->[*]:exitoso
+    cancelRegistro:Si el administrador decide cancelar el proceso
+    cancelRegistro:termina el caso de uso sin hacer nada
+    introDatos-->cancelRegistro
+    cancelRegistro-->[*]:cancelado
+    concluRegistro--->[*]:exitoso
 }
+
+
+state RegistrarCurso{
+[*]-->solicitaRegistrar
+solicitaRegistrar:El administrador solicita ingresar un curso
+muestraCamposDeRegistro:El sistema permite introducir los campos categoria del curso
+muestraCamposDeRegistro: ,nombre del curso y nombre de los profesores del curso
+solicitaRegistrar-->muestraCamposDeRegistro
+llenarCampos:El administradorllena los campos categoria del curso
+llenarCampos:,nombre del curso, nombre de los profesores del curso y finaliza el registro
+incluirCurso:El sistema inclute el curso a la lista de cursos y concluye el proceso
+muestraCamposDeRegistro-->llenarCampos
+state validarCurso <<fork>>
+llenarCampos--->validarCurso
+validarCurso-->incluirCurso :datosCorrectos
+datosCursoIncorrectos:Si los datos ingresados por el administrador
+datosCursoIncorrectos:  son incorrectos el sistema debera informar
+datosCursoIncorrectos: el error e indicar que los introduzca de nuevo
+validarCurso-->datosCursoIncorrectos :datosIncorrectos
+datosCursoIncorrectos-->llenarCampos
+cancelaRegistro:Si el administrador decide cancelar el proceso
+cancelaRegistro:termina el caso de uso sin hacer nada
+muestraCamposDeRegistro->cancelaRegistro
+cancelaRegistro--->[*]:cancelado
+incluirCurso-->[*]:exitoso
+
+}
+
 Login-->RegistrarUsuario
+Login-->RegistrarCurso
 @enduml
