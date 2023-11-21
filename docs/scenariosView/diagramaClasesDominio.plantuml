@@ -14,7 +14,7 @@ class Usuario{
   correo
   contraseña 
 }
-class Profesor
+class Administrador
 
 class Estudiante{
   tiposExamenesPresentados
@@ -52,12 +52,12 @@ class Respuesta{
 class Certificado{
 }
 
-Usuario <|-left- Profesor
+Usuario <|-left- Administrador
 Usuario <|-up- Estudiante
 
-Profesor --> "1..*"Examen: crea
-Profesor -right-> "     1..*"Estudiante: registra
-Profesor "    1..*"-up-o Curso: administra
+Administrador --> "1..*"Examen: crea
+Administrador -right-> "     1..*"Estudiante: registra
+Administrador "    1..*"-up-o Curso: administra
 
 Estudiante "0..*"-right->"    1..*"Curso: pertenece
 Estudiante "1..*"-right-> "0..* "Examen: presenta
