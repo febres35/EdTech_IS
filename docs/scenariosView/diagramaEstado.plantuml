@@ -11,17 +11,38 @@ state Login{
     State3:e inicia sesion
     State3-->State4
     State4:El sistema valida las credenciales ingresadas
-    State4-->State5
     State5:El sistema inicia sesion y muestra la pagina
     State5:correspondiente al actor
-    State3->A1
     A1:Si los datos ingresados por el usuario son incorrectos el sistema
     A1:deberá informar del error e indicar que los introduzca de nuevo
-    A1->State3
-    State3-->A2
-    A2-->[*]
+    state validacion<<fork>>
+    State4-->validacion
+    validacion-->State5 :correctos
+    validacion-->A1 :incorrectos
+    A1-->State3
+    State3->A2
+    A2-->[*]:abortado
     A2:Si el Usuario decide cancelar el proceso termina el caso de uso sin hacer nada
 }
+
 state RegistrarUsuario{
+    solicitaIncorporar:El administrador solicita incorporar
+    solicitaIncorporar:un estudiante
+    solicitaIncorporar-->permiteDatos
+    permiteDatos:el sistema permite introducir los datos
+    permiteDatos:personales del estudiante
+    introDatos:El administrador introduce nombre,apellido,
+    introDatos:correo y contraseña del estudiante
+    permiteDatos-->introDatos
+    muestraDatos:El sistema muestra los datos para que se verifiquen
+    introDatos-->muestraDatos
+    concluRegistro:El administradorconcluye el registro
+    muestraDatos-->concluRegistro
+    noCoinciden:Si el administrador verifica los datos estos no coinciden
+    noCoinciden:el sistema permite retroceder para corregirlo
+    muestraDatos--->noCoinciden
+    noCoinciden-->introDatos
+    concluRegistro-->[*]:exitoso
 }
+Login-->RegistrarUsuario
 @enduml
