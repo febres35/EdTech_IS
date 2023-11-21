@@ -192,7 +192,21 @@ state ConsultarAyuda{
 
 }
 
-state
+state Logout{
+  state solicitaLogout: El Usuario solicita cerrar sesión
+  state confirmarCerrarSesion: El Sistema muestra un mensaje de confirmación de cerrar la sesión
+  state confirmaMensaje: El Usuario confirma el mensaje
+  state sistemaCerrarSesion: El Sistema cierra la sesión del Usuario
+  state A1Logout: Si el usuario no confirma el mensaje, la sesión continuará activa
+
+  [*]-->solicitaLogout
+
+  solicitaLogout-->confirmarCerrarSesion
+  confirmarCerrarSesion-->confirmaMensaje
+  confirmaMensaje--> A1Logout
+  A1Logout->[*]
+  confirmaMensaje-->sistemaCerrarSesion
+}
 
 state ActualizarPerfil{
   state solicitaActualizarPerfil: El Usuario solicita actualizar información de su perfil
@@ -217,7 +231,6 @@ state ActualizarPerfil{
 
 }
 
-
 concluyeExamen-->VerResultado
 aceptaInstrucciones--->practicaExamen
 Login-->RegistrarUsuario
@@ -226,4 +239,6 @@ Login--->seleccionarExamen
 Login-->CrearExamen
 Login->ConsultarAyuda
 Login-->ActualizarPerfil
+Login-->Logout
+sistemaCerrarSesion-->[*]
 @enduml
