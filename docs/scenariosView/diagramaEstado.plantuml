@@ -112,7 +112,7 @@ state practicaExamen{
     seleccionaRespuesta:de respuesta a cada pregunta
     muestraExamen-->seleccionaRespuesta
     explicaRespuestas:El sistema muestra una breve explicacion de la respuesta
-   state respondOreturn <<fork>>
+    state respondOreturn <<fork>>
     seleccionaRespuesta-->respondOreturn
     concluyeExamen:El estudiante concluye el examen
     cronometroEnd:Si el cronometro se detiene el sistema debe finalizar el examen
@@ -126,12 +126,104 @@ state practicaExamen{
    respondOreturn-->retrocederEnP :quiere ver preguntas anteriores
    retrocederEnP-->muestraExamen
 }
+ 
+state VerResultado{
+
+  [*]-->mostrarRespuestas
+
+  state mostrarRespuestas: El sistema muestra las respuestas del estudiante del último examen y su resultado
+  state revisionResultado: El Estudiante revisa su resultado
+  state cerrarResumen: El Estudiante solicita cerrar el resumen del resultado
+  state guardarResumen: El Sistema cierra el resumen y guarda un resumen de los resultados
+  state A1VerResultado: Si el Estudiante había seleccionado una respuesta incorrecta \nel sistema debe mostrar cuál era la respuesta correcta y una breve explicación de la respuesta
 
 
+  mostrarRespuestas --> revisionResultado
+  mostrarRespuestas --> A1VerResultado
+  revisionResultado --> cerrarResumen
+  cerrarResumen --> guardarResumen
+  guardarResumen --> [*]
+
+}
+
+state CrearExamen{
+
+    solicitaCrearExamen:El administrador solicita crear examen
+    permiteIntroducirExamen:El sistema permite introducir los campos\ntipo, duracion, cantidad de preguntas,\npreguntas, respuestas y explicacion
+    llenarCamposExamen:El administrador llena los campos
+    finalizarCreacion:El administrador finaliza el proceso
+    A1ErrorEnNumero:Si el adiministrador ingresa un numero de preguntas\nque no coincide con la cantidad de preguntas escogidas;\nentonces el sistema debe informar el error
+    A2cancelarCreacion: Si el administrador decide cancelar el proceso\ntermina el caso de uso sin hacer nada
+    [*]-->solicitaCrearExamen
+    solicitaCrearExamen-->permiteIntroducirExamen
+    permiteIntroducirExamen-->llenarCamposExamen
+    state correctoUerror <<fork>>
+    llenarCamposExamen-->correctoUerror
+    correctoUerror-->finalizarCreacion :datos correctos
+    correctoUerror-->A1ErrorEnNumero :datos incorrectos
+    A1ErrorEnNumero-->llenarCamposExamen
+    permiteIntroducirExamen-->A2cancelarCreacion
+    A2cancelarCreacion-->[*]
+    finalizarCreacion-->[*] :examen creado
+}
+
+state ConsultarAyuda{
+
+  state solicitaAyuda: El Estudiante solicita consultar Ayuda
+  state preguntasFrecuentes: El Sistema muestra preguntas frecuentes
+  state preguntaProblema: El Estudiante selecciona \nla pregunta que se le asemeje a su problema
+  state respuestaProblema: El Sistema muestra la respuesta \na la pregunta seleccionada por el Estudiante
+  state terminaConsulta: El Estudiante verifica la respuesta y  \ntermina el proceso de consulta
+  state A1ConsultarAyuda:  Si la pregunta que a la que el Estudiante desea hallar \nsolución no se encuentra listada, el sistema creará una consulta al administrador
+  state A2ConsultarAyuda: Si el Estudiante decide cancelar el proceso termina el caso de uso sin hacer nada
+
+  [*]-->solicitaAyuda
+  [*]--> A2ConsultarAyuda
+
+  A2ConsultarAyuda -->[*]
+
+  solicitaAyuda-->preguntasFrecuentes
+  preguntasFrecuentes-->preguntaProblema
+  preguntaProblema-->respuestaProblema
+  preguntaProblema-->A1ConsultarAyuda
+  A1ConsultarAyuda-->[*]
+  respuestaProblema-->terminaConsulta
+  terminaConsulta-->[*]
+
+}
+
+state
+
+state ActualizarPerfil{
+  state solicitaActualizarPerfil: El Usuario solicita actualizar información de su perfil
+  state actualizarDatos: El Sistema muestra pantalla para la \nactualización de correo y/o contraseña del usuario
+  state introduceNuevosDatos: El Usuario introduce su nuevo correo y/o nueva contraseña
+  state validarInfoIngresada: El sistema valida la información ingresada
+  state finalizarActualizacion: El sistema actualiza el nuevo correo y/o password \ny muestra un mensaje de éxito
+  state A1ActualizarPerfil: Si la dirección de correo electrónico del usuario ya está en uso, el sistema le mostrará un mensaje de error \ny le pedirá que ingrese una dirección de correo electrónico diferente
+  state A2ActualizarPerfil: Si la nueva contraseña ingresada no cumple los requisitos mínimos de formato \nel sistema mostrará un mensaje de error y solicitará el ingreso de contraseña nuevamente
+
+  [*]-->solicitaActualizarPerfil
+
+  solicitaActualizarPerfil --> actualizarDatos
+  actualizarDatos --> introduceNuevosDatos
+  introduceNuevosDatos--> validarInfoIngresada
+  validarInfoIngresada --> A1ActualizarPerfil
+  A1ActualizarPerfil --> actualizarDatos
+  validarInfoIngresada --> A2ActualizarPerfil
+  A2ActualizarPerfil --> actualizarDatos
+  validarInfoIngresada --> finalizarActualizacion
+  finalizarActualizacion --> [*]
+
+}
 
 
+concluyeExamen-->VerResultado
 aceptaInstrucciones--->practicaExamen
 Login-->RegistrarUsuario
 Login-->RegistrarCurso
 Login--->seleccionarExamen
+Login-->CrearExamen
+Login->ConsultarAyuda
+Login-->ActualizarPerfil
 @enduml
