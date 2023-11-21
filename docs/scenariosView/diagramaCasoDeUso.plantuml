@@ -1,0 +1,38 @@
+@startuml
+left to right direction
+
+skinparam actorStyle awesome
+
+rectangle CertiComp {
+  usecase " Login" as UC1
+  usecase " Registrar Usuario" as UC2
+  usecase " Registrar Curso" as UC3
+  usecase " Seleccionar Examen" as UC4
+  usecase " Praticar Examen" as UC5
+  usecase " Ver Resultado" as UC6
+  usecase " Crear Examen" as UC7
+  usecase " Consultar Ayuda" as UC8
+  usecase " Logout " as UC9
+  usecase " Actualizar Perfil " as UC10
+
+
+}
+ Administrador--> UC7
+Administrador --> UC2
+ Administrador--> UC1
+ Estudiante--> UC1
+ 
+ Estudiante--> UC3
+ Estudiante--> UC4
+ Estudiante--> UC5
+ Estudiante--> UC6
+ Administrador--> UC8
+ Administrador--> UC9
+ Estudiante--> UC9
+Estudiante--> UC10
+Administrador--> UC10
+ 
+ 
+ 
+
+@enduml
