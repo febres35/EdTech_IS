@@ -1,4 +1,4 @@
-@startuml
+@startuml "Diagrama de estado"
 [*]-->Login
 state Login{
     [*]-->State1
@@ -23,9 +23,11 @@ state Login{
     State3->A2
     A2-->[*]:abortado
     A2:Si el Usuario decide cancelar el proceso termina el caso de uso sin hacer nada
+    State5--->[*]:Ingresa
 }
 
 state RegistrarUsuario{
+    [*]-->solicitaIncorporar
     solicitaIncorporar:El administrador solicita incorporar
     solicitaIncorporar:un estudiante
     solicitaIncorporar-->permiteDatos
@@ -36,13 +38,100 @@ state RegistrarUsuario{
     permiteDatos-->introDatos
     muestraDatos:El sistema muestra los datos para que se verifiquen
     introDatos-->muestraDatos
-    concluRegistro:El administradorconcluye el registro
-    muestraDatos-->concluRegistro
+    concluRegistro:El administrador concluye el registro
+    muestraDatos---->concluRegistro :coinciden
     noCoinciden:Si el administrador verifica los datos estos no coinciden
     noCoinciden:el sistema permite retroceder para corregirlo
     muestraDatos--->noCoinciden
     noCoinciden-->introDatos
-    concluRegistro-->[*]:exitoso
+    cancelRegistro:Si el administrador decide cancelar el proceso
+    cancelRegistro:termina el caso de uso sin hacer nada
+    introDatos-->cancelRegistro
+    cancelRegistro-->[*]:cancelado
+    concluRegistro--->[*]:exitoso
 }
+
+state RegistrarCurso{
+ [*]-->solicitaRegistrar
+ solicitaRegistrar:El administrador solicita ingresar un curso
+ muestraCamposDeRegistro:El sistema permite introducir los campos categoria del curso
+ muestraCamposDeRegistro: ,nombre del curso y nombre de los profesores del curso
+ solicitaRegistrar-->muestraCamposDeRegistro
+ llenarCampos:El administradorllena los campos categoria del curso
+ llenarCampos:,nombre del curso, nombre de los profesores del curso y finaliza el registro
+ incluirCurso:El sistema inclute el curso a la lista de cursos y concluye el proceso
+ muestraCamposDeRegistro-->llenarCampos
+ state validarCurso <<fork>>
+ llenarCampos--->validarCurso
+ validarCurso-->incluirCurso :datosCorrectos
+ datosCursoIncorrectos:Si los datos ingresados por el administrador
+ datosCursoIncorrectos:  son incorrectos el sistema debera informar
+ datosCursoIncorrectos: el error e indicar que los introduzca de nuevo
+ validarCurso-->datosCursoIncorrectos :datosIncorrectos
+ datosCursoIncorrectos-->llenarCampos
+ cancelaRegistro:Si el administrador decide cancelar el proceso
+ cancelaRegistro:termina el caso de uso sin hacer nada
+ muestraCamposDeRegistro->cancelaRegistro
+ cancelaRegistro--->[*]:cancelado
+ incluirCurso-->[*]:exitoso
+}
+
+state seleccionarExamen{
+    [*]-->solicitaExamen
+    state presentaOcancel <<fork>>
+    solicitaExamen:El estudiante solicita iniciar examen de practica
+    muestraExamenDisponibles: El sistema muestra los tipos de examenes disponibles
+    solicitaExamen-->muestraExamenDisponibles
+    seleccionaExamenApracticar:El estudiante selecciona el tipo de examen que desea practicar
+    muestraExamenDisponibles-->seleccionaExamenApracticar
+    muestraInstrucciones:El sistema muestra las instrucciones del examen
+    muestraInstrucciones:que eligio el estudiante
+    aceptaInstrucciones:El estudiante acepta las instrucciones
+    state aceptaInstruc <<fork>>
+    muestraInstrucciones-->aceptaInstruc
+    aceptaInstruc-->aceptaInstrucciones :acepta
+    noAceptaInstruc:Si el estudiante al verificar las instrucciones
+    noAceptaInstruc:no esta de acuerdo el sistema debe permitir declinar
+    noAceptaInstruc: y retroceder en el proceso
+    aceptaInstruc-->noAceptaInstruc :no acepta
+    noAceptaInstruc-->seleccionaExamenApracticar
+    cancelaExamen:Si el estudiante decide no practicar ningun examen
+    cancelaExamen:termina el caso de uso sin hacer nada
+    seleccionaExamenApracticar-->presentaOcancel
+    presentaOcancel-->cancelaExamen :no presenta
+    presentaOcancel-->muestraInstrucciones :ve instrucciones
+    cancelaExamen---->[*]:cancela
+}
+
+state practicaExamen{
+    
+    [*]--->muestraExamen
+    muestraExamen:El sistema muestra las preguntas y respuestas
+    muestraExamen: del examen e inicia el cronometro
+    seleccionaRespuesta:El estudiante selecciona la opcion
+    seleccionaRespuesta:de respuesta a cada pregunta
+    muestraExamen-->seleccionaRespuesta
+    explicaRespuestas:El sistema muestra una breve explicacion de la respuesta
+   state respondOreturn <<fork>>
+    seleccionaRespuesta-->respondOreturn
+    concluyeExamen:El estudiante concluye el examen
+    cronometroEnd:Si el cronometro se detiene el sistema debe finalizar el examen
+    state finalizaExamne <<join>>
+    explicaRespuestas-->finalizaExamne :termino de responder
+    cronometroEnd-->finalizaExamne :se acabo el cronometro
+    finalizaExamne-->concluyeExamen
+    retrocederEnP:Si el estudiante decide retroceder en las preguntas, el sistema
+    retrocederEnP:deberá mostrar las preguntas anteriormente respondidas
+   respondOreturn-->explicaRespuestas :termina de responder
+   respondOreturn-->retrocederEnP :quiere ver preguntas anteriores
+   retrocederEnP-->muestraExamen
+}
+
+
+
+
+aceptaInstrucciones--->practicaExamen
 Login-->RegistrarUsuario
+Login-->RegistrarCurso
+Login--->seleccionarExamen
 @enduml
