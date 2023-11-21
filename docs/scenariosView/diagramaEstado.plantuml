@@ -4,16 +4,16 @@ state Login{
     [*]-->State1
     State1:El usuario solicita iniciar el sistema
     State1-->State2
-    State2:El sistema permite introducir correo y contraseña
+    State2:El sistema muestra pantalla
+    State2:para introducir correo y contraseña
     State2-->State3
     State3:El usuario introduce correo y contraseña
     State3:e inicia sesion
     State3-->State4
-    State4:Si el correo y contraseña son correctos y son de un Administrador
-    State4:el sistema muestra la vista de Administrador
-    State3-->State5
-    State5:Si el correo y contraseña son correctos y son de un Estudiante
-    State5:el sistema muestra la vista de Estudiante
+    State4:El sistema valida las credenciales ingresadas
+    State4-->State5
+    State5:El sistema inicia sesion y muestra la pagina
+    State5:correspondiente al actor
     State3->A1
     A1:Si los datos ingresados por el usuario son incorrectos el sistema
     A1:deberá informar del error e indicar que los introduzca de nuevo
@@ -22,5 +22,6 @@ state Login{
     A2-->[*]
     A2:Si el Usuario decide cancelar el proceso termina el caso de uso sin hacer nada
 }
-
+state RegistrarUsuario{
+}
 @enduml
