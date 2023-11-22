@@ -15,37 +15,22 @@ seleccionandoVista ---> PC: [Participante]
 
 state Administrando {
 
-  state opciones <<choice>>
-  state cursoRegistrado <<choice>>
+ state Administrando {
+
   state "Seleccionando Curso" as SC
   state "Registrar Curso" as RC
-  state "Opciones Curso" as OpcionesCurso
-  state "Registrando Usuario" as RU
-  state "Añadir Usuario" as AU
+  state "Registrar Usuario" as AU
   state "Creando Examen" as CE
   [*] --> SC
 
-  SC --> cursoRegistrado : Creado
-  cursoRegistrado --> RC: No
-  cursoRegistrado --> OpcionesCurso : Si
-  OpcionesCurso --> opciones : Añadir Usuario
-  opciones --> AU : Registrado
-  opciones --> RU : No Registrado
-  state UsuarioExistente <<choice>>
-  RC --> UsuarioExistente : Existe Usuario
-  UsuarioExistente --> AU : Si
-  UsuarioExistente --> RU : No
-  RU --> AU
-  state CrearExamen <<choice>>
-  RC --> CE : Crear Examen
-  OpcionesCurso --> CrearExamen : Crear Examen
-  CrearExamen --> CE : Si
-  CrearExamen --> Finalizar : No
-
-
+  SC --> RC
+  RC --> AU 
+  RC --> CE
   AU --> Finalizar
   Finalizar --> [*]
   CE -->  Finalizar
+
+}
 
 }
 
