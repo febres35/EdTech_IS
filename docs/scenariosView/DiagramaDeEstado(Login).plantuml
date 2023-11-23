@@ -1,0 +1,20 @@
+@startuml "Diagrama de estado (Login)"
+[*]-->Login
+state Login{
+    [*]-->ingresarInformacion
+
+    ingresarInformacion: Se Introduce correo y contraseña
+    ingresarInformacion-->validarinformacion
+    validarinformacion:se valida la informacion ingresadas
+    iniciar: inicia sesion 
+    A1:datos invalidos
+    state validacion<<fork>>
+    validarinformacion-->validacion
+    validacion-->iniciar :correcta
+    validacion-->A1 :incorrecta
+    A1-->ingresarInformacion
+    
+   
+    iniciar--->[*]:Ingresa
+}
+@enduml

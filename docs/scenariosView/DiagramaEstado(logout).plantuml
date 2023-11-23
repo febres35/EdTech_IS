@@ -1,0 +1,15 @@
+state Logout{
+  
+  state CerrarSesion: Se muestra la opcion de cerrar sesion
+  state confirmaMensaje:  confirma el mensaje de cerrar la sesion
+  state sistemaCerrarSesion: El Sistema cierra la sesión del Usuario
+  state A1Logout: Si el usuario no confirma el mensaje, la sesión continuará activa
+
+  [*]-->CerrarSesion
+
+  
+  CerrarSesion-->confirmaMensaje
+  confirmaMensaje--> A1Logout
+  sistemaCerrarSesion->[*]
+  confirmaMensaje-->sistemaCerrarSesion
+}

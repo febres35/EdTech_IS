@@ -1,0 +1,214 @@
+@startuml "Diagrama de estado (General)"
+[*]-->Login
+state Login{
+    [*]-->ingresarInformacion
+
+    ingresarInformacion: Se Introduce correo y contraseña
+    ingresarInformacion-->validarinformacion
+    validarinformacion:se valida la informacion ingresadas
+    iniciar: inicia sesion 
+    A1:datos invalidos
+    state validacion<<fork>>
+    validarinformacion-->validacion
+    validacion-->iniciar :correcta
+    validacion-->A1 :incorrecta
+    A1-->ingresarInformacion
+    
+   
+    iniciar--->[*]:Ingresa
+}
+
+state RegistrarUsuario{
+    [*]-->introDatos
+    introDatos:Se ingresa la informacion 
+    
+    muestraDatos: se verifica la informacion
+    introDatos-->muestraDatos
+    concluRegistro:Registro exitoso
+    muestraDatos---->concluRegistro :correcto
+    noCorrecto: Se edita la informacion
+    
+    muestraDatos--->noCorrecto
+    noCorrecto-->introDatos
+    cancelRegistro: No se desea registrar nada 
+   introDatos-->cancelRegistro
+    cancelRegistro-->[*]:cancelado
+    concluRegistro--->[*]:exitoso
+}
+
+state RegistrarCurso{
+  [*]-->muestraCamposDeRegistro
+ 
+ muestraCamposDeRegistro: Se introduce la informacion requerida
+ 
+ incluirCurso:se incluye el curso a la lista de cursos 
+ state validarCurso <<fork>>
+ validarCurso-->incluirCurso :datosCorrectos
+ datosCursoIncorrectos: se edita la informacion
+ muestraCamposDeRegistro--->validarCurso
+ validarCurso-->datosCursoIncorrectos :datosIncorrectos
+ cancelaRegistro: No desea registran nada
+ muestraCamposDeRegistro->cancelaRegistro
+ cancelaRegistro--->[*]:cancelado
+ incluirCurso-->[*]:exitoso
+}
+
+state seleccionarExamen{
+   [*]-->muestraExamenDisponibles
+    state presentaOcancel <<fork>>
+    
+    muestraExamenDisponibles: tipos de examenes disponibles
+    seleccionaExamenApracticar: Se selecciona el tipo de examen 
+    muestraExamenDisponibles-->seleccionaExamenApracticar
+    muestraInstrucciones: Se dan las instrucciones del examen
+    aceptaInstrucciones:El estudiante acepta las instrucciones
+    state aceptaInstruc <<fork>>
+    muestraInstrucciones-->aceptaInstruc
+    aceptaInstruc-->aceptaInstrucciones :acepta
+    noAceptaInstruc:Se escoje otro examen 
+    aceptaInstruc-->noAceptaInstruc :no acepta
+    noAceptaInstruc-->seleccionaExamenApracticar
+    cancelaExamen: no  desea practicar ningun examen
+    seleccionaExamenApracticar-->presentaOcancel
+    presentaOcancel-->cancelaExamen :no presenta
+    presentaOcancel-->muestraInstrucciones :ve instrucciones
+     cancelaExamen---->[*]
+    aceptaInstrucciones-->[*]
+}
+
+state practicaExamen{
+    
+  [*]--->muestraExamen
+    muestraExamen: se presentan las preguntas y las posibles respuestas
+    muestraExamen: Se inicia el cronometro
+    seleccionaRespuesta:selecciona la opcion
+    seleccionaRespuesta:de respuesta a cada pregunta
+    muestraExamen-->seleccionaRespuesta
+    explicaRespuestas: Se da  una breve explicacion de la respuesta
+    state respondOreturn <<fork>>
+    seleccionaRespuesta-->respondOreturn
+    concluyeExamen: 
+    cronometroEnd: finaliza el examen por tiempo
+    state finalizaExamne <<join>>
+    explicaRespuestas-->finalizaExamne: finalizado por eleccion
+    cronometroEnd-->finalizaExamne :finalizado por tiempo
+    finalizaExamne-->concluyeExamen
+    retrocederEnP: mostras preguntas anteriores o siguientes
+   respondOreturn-->explicaRespuestas :termina de responder
+   respondOreturn-->retrocederEnP :quiere ver preguntas anteriores
+   retrocederEnP-->seleccionaRespuesta
+   concluyeExamen---->[*]
+}
+ 
+state VerResultado{
+   
+   [*]-->mostrarRespuestas
+
+  state mostrarRespuestas: se muestran las respuestas  del último examen y su resultado
+  state revisionResultado: revisa su resultado
+  state guardarResumen: se guarda un resumen de los resultados
+  state A1VerResultado: Se muestran las respuestas correctas a las preguntas
+
+
+  mostrarRespuestas --> revisionResultado
+  mostrarRespuestas --> A1VerResultado
+  revisionResultado --> guardarResumen
+
+  guardarResumen --> [*]
+   
+}
+
+state CrearExamen{
+
+    permiteIntroducirExamen:ntipo, duracion, cantidad de preguntas,\npreguntas, respuestas y explicacion
+    llenarCamposExamen: se carga toda la informacion
+    finalizarCreacion:El administrador finaliza el proceso
+    A1ErrorEnNumero: errores de creacion del examen
+    A2cancelarCreacion: No desea crear el examen 
+    [*]-->permiteIntroducirExamen
+    permiteIntroducirExamen-->llenarCamposExamen
+    state correctoUerror <<fork>>
+    llenarCamposExamen-->correctoUerror
+    correctoUerror-->finalizarCreacion :datos correctos
+    correctoUerror-->A1ErrorEnNumero :datos incorrectos
+    A1ErrorEnNumero-->llenarCamposExamen
+    permiteIntroducirExamen-->A2cancelarCreacion
+    A2cancelarCreacion-->[*]
+    finalizarCreacion-->[*] :examen creado
+}
+
+state ConsultarAyuda{
+
+  state solicitaAyuda:
+  state preguntasFrecuentes: se  muestran preguntas frecuentes
+  state preguntaProblema: selecciona la pregunta que se le asemeje a su problema
+  state respuestaProblema: se muestra la respuesta solicitada
+  state terminaConsulta: verifica su respuesta
+  state A1ConsultarAyuda:  Si la respuesta no esta,se anota la pregunta para agregar en un futuro la respuesta 
+  state A2ConsultarAyuda: Si el Estudiante decide cancelar el proceso termina el caso de uso sin hacer nada
+
+  [*]-->solicitaAyuda
+  [*]--> A2ConsultarAyuda
+
+  A2ConsultarAyuda -->[*]
+
+  solicitaAyuda-->preguntasFrecuentes
+  preguntasFrecuentes-->preguntaProblema
+  preguntaProblema-->respuestaProblema
+  preguntaProblema-->A1ConsultarAyuda
+  A1ConsultarAyuda-->[*]
+  respuestaProblema-->terminaConsulta
+  terminaConsulta-->[*]
+
+
+}
+
+state Logout{
+   state CerrarSesion: Se muestra la opcion de cerrar sesion
+  state confirmaMensaje:  confirma el mensaje de cerrar la sesion
+  state sistemaCerrarSesion: El Sistema cierra la sesión del Usuario
+  state A1Logout: Si el usuario no confirma el mensaje, la sesión continuará activa
+
+  [*]-->CerrarSesion
+
+  
+  CerrarSesion-->confirmaMensaje
+  confirmaMensaje--> A1Logout
+  sistemaCerrarSesion->[*]
+  confirmaMensaje-->sistemaCerrarSesion
+}
+
+state ActualizarPerfil{
+
+  state actualizarDatos: se permite editar la informacion
+  state introduceNuevosDatos: introduce su nuevo correo y/o nueva contraseña
+  state validarInfoIngresada:  se valida la información ingresada
+  state finalizarActualizacion: se guardan los cambios el nuevo correo y/o password \ny muestra un mensaje de éxito
+  state A1ActualizarPerfil: Si la dirección de correo electrónico ya está en uso
+  state A2ActualizarPerfil: Si la nueva contraseña ingresada no cumple los requisitos mínimos 
+
+  [*]-->actualizarDatos
+
+  
+  actualizarDatos --> introduceNuevosDatos
+  introduceNuevosDatos--> validarInfoIngresada
+  validarInfoIngresada --> A1ActualizarPerfil
+  A1ActualizarPerfil --> actualizarDatos
+  validarInfoIngresada --> A2ActualizarPerfil
+  A2ActualizarPerfil --> actualizarDatos
+  validarInfoIngresada --> finalizarActualizacion
+  finalizarActualizacion --> [*]
+
+}
+
+concluyeExamen-->VerResultado
+aceptaInstrucciones--->practicaExamen
+Login-->RegistrarUsuario
+Login-->RegistrarCurso
+Login--->seleccionarExamen
+Login-->CrearExamen
+Login->ConsultarAyuda
+Login-->ActualizarPerfil
+Login-->Logout
+sistemaCerrarSesion-->[*]
+@enduml
