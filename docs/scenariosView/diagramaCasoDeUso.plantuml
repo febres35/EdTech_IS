@@ -1,12 +1,14 @@
-@startuml
+@startuml Diagrama de Casos de Uso
 
 left to right direction
 skinparam actorStyle awesome
 
+header Casos de uso
+footer Equipo 3
 
-rectangle CertiComp {
+rectangle CertiComp{
 
-  usecase " Login" as UC1 
+  usecase " Iniciar Sesion " as UC1 
   usecase " Registrar Usuario" as UC2
   usecase " Registrar Curso" as UC3
   usecase " Seleccionar Examen" as UC4
@@ -14,10 +16,10 @@ rectangle CertiComp {
   usecase " Ver Resultado" as UC6
   usecase " Crear Examen" as UC7
   usecase " Consultar Ayuda" as UC8
-  usecase " Logout " as UC9
+  usecase " Cerrar sesion " as UC9
   usecase " Actualizar Perfil " as UC10
   
-} 
+}
 
 Administrador -up- UC7
 Administrador -up- UC2
