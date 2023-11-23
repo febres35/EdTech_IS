@@ -1,13 +1,17 @@
 @startuml "Diagrama de clases"
 
-title "Diagrama de clases del Dominio\n Equipo 03"
+title CertiComp
+header "Diagrama de clases del Dominio\n"
+Footer Equipo 3 
 
-skinparam Class{
-  BackgroundColor 2B2F7B-black
-  AttributeFontColor white
+/'skinparam Class{
+  BackgroundColor 0A8C5A
+  AttributeFontColor 000
   BorderThickness 3
-  BorderColor blue
-}
+  BorderColor fff
+}'/
+
+
 class Usuario{
   nombre
   apellido
