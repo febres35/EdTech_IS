@@ -53,19 +53,19 @@ class Certificado{
 
 Usuario <|-left- Administrador
 Usuario <|-up- Estudiante
-Usuario "0..*"---> Ayuda: consulta
+Usuario "0..*"--- Ayuda: > consulta
 
-Administrador --> "1..*"Examen: crea
+Administrador -- "1..*"Examen: > crea
 Administrador -right-> "     1..*"Estudiante: registra
 Administrador "    1..*"-up-o Curso: administra
 
-Estudiante "0..*"-right->"    1..*"Curso: pertenece
+Estudiante "0..*"-right-"    1..*"Curso: > pertenece
 Estudiante -right- "0..*"Examen: presenta
 Estudiante -- "0..*   "Certificado: > recibe
-Estudiante --- Resultado: "obtiene          "
+Estudiante --- Resultado: > obtiene
 
 Examen *-right- "1..*"Pregunta: contiene
-Examen -up--> Resultado: emite
+Examen -up-- Resultado: > emite
 
 Pregunta *-down- "4..*" Respuesta: tiene
 Pregunta -right-o Dominio: posee
