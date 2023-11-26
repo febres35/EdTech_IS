@@ -19,9 +19,9 @@ class Estudiante{
 class Ayuda
 
 class Curso{
-  nombreCurso
-  descripcionCurso
-  nombreProfesoresCurso
+  nombre
+  descripcion
+  nombreProfesores
 }
 class Categoria
 
@@ -42,24 +42,25 @@ class Pregunta{
 class Dominio
 
 class Respuesta{
-  respuestaCorrecta
+  descripcion
+  esRespuestaCorrecta
   explicacion
 }
 class Certificado{
 }
 
-Usuario <|-left- Administrador
+Usuario <|-up- Administrador
 Usuario <|-up- Estudiante
-Usuario -down-- Ayuda: > consulta
+Usuario -down- Ayuda: > consulta
 
-Administrador -- "1..*"Examen: > crea
+Administrador -- "1..* "Examen: > crea
 Administrador -right-> "     1..*"Estudiante: registra
 Administrador "    1..*"-up-o Curso: administra
 
 Estudiante "0..*"-right-"    1..*"Curso: > pertenece
 Estudiante -right- "0..*"Examen: presenta
 Estudiante -right- "0..*"Certificado: > recibe
-Estudiante -right- Resultado: > obtiene
+Estudiante -- Resultado: > obtiene
 
 Examen *-right- "1..*"Pregunta: contiene
 Examen -up-- Resultado: > emite
@@ -68,9 +69,8 @@ Pregunta *-down- "4..*" Respuesta: tiene
 Pregunta -right-o Dominio: posee
 
 Curso "0..*" -right-o Categoria: pertenece
-Curso o----- "1..*    "Examen: pertenece
+Curso o----- "1..*"Examen: pertenece
 Curso *- Certificado: genera
 
-Certificado --> "1..*"Resultado: recibe >
 
 @enduml
