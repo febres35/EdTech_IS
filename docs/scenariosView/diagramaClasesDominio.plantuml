@@ -3,11 +3,11 @@
 title "Diagrama de clases del Dominio\n Equipo 03"
 
 skinparam Class{
-  BackgroundColor 2B2F7B-black
-  AttributeFontColor white
-  BorderThickness 3
-  BorderColor blue
+  BorderThickness 1
 }
+
+skinparam style strictuml
+
 class Usuario{
   nombre
   apellido
@@ -23,6 +23,7 @@ class Ayuda
 
 class Curso{
   nombreCurso
+  descripcionCurso
   nombreProfesoresCurso
 }
 class Categoria
