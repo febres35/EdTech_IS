@@ -5,6 +5,7 @@ header Estado Inicial
 footer Equipo 3
 title "Diagrama de estados del dominio"
 
+skinparam width 320
 
 
 
@@ -17,13 +18,18 @@ state  "creando\nusuario" as cu
 state "Mostrando\nOpciones" as es
 state "Mostrando\nExamenes" as me
 state "Mostrando\nInstrucciones" as mi
-state "Presentando\nExamen" as ee
+state "Presentando\nExamen" as ee{
+    state "Mostrado\nPregunta" as mp
+    state "Respondiendo\nPregunta" as rp
+    mp --> rp: Selecciona opcion\nSiguiente
+    rp --> mp
+}
 state "Guardando y\nMostrando\nResultado" as gr
 state "Actualizando\nPerfil" as ap
 state "Mostrando\nAyuda" as ma
 state "Incluyendo\nEstudiante" as ie
 state finAd <<join>>
-ad : Examen, Curso, \nUsuario, Perfil, \nIncluir, Ayuda
+'ad : Examen, Curso, \nUsuario, Perfil, \nIncluir, Ayuda
 [*] --> vi: Usuario
 vi -left-> ad: Administrador
 ad --> ie: Incluir\nEstudiante
@@ -40,7 +46,7 @@ ap --> finAd
 ma --> finAd
 finAd --> [*]
  
-es: Cursos\nPerfil\nAyuda
+'es: Cursos\nPerfil\nAyuda
 vi -right-> es: Estudiante
 es -->me: Selección\nCurso
 es --> ap: Selección\nPerfil
