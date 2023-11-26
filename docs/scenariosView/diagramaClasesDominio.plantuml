@@ -2,12 +2,9 @@
 
 title "Diagrama de clases del Dominio\n Equipo 03"
 
-skinparam Class{
-  BackgroundColor 2B2F7B-black
-  AttributeFontColor white
-  BorderThickness 3
-  BorderColor blue
-}
+skinparam ClassBorderThickness 1
+skinparam style strictuml
+
 class Usuario{
   nombre
   apellido
@@ -17,14 +14,14 @@ class Usuario{
 class Administrador
 
 class Estudiante{
-  tiposExamenesPresentados
 }
 
 class Ayuda
 
 class Curso{
-  nombreCurso
-  nombreProfesoresCurso
+  nombre
+  descripcion
+  nombreProfesores
 }
 class Categoria
 
@@ -45,34 +42,35 @@ class Pregunta{
 class Dominio
 
 class Respuesta{
-  enunciadoRespuesta
-  respuestaCorrecta
+  descripcion
+  esRespuestaCorrecta
   explicacion
 }
 class Certificado{
 }
 
-Usuario <|-left- Administrador
+Usuario <|-up- Administrador
 Usuario <|-up- Estudiante
+Usuario -down- Ayuda: > consulta
 
-Administrador --> "1..*"Examen: crea
+Administrador -- "1..* "Examen: > crea
 Administrador -right-> "     1..*"Estudiante: registra
 Administrador "    1..*"-up-o Curso: administra
 
-Estudiante "0..*"-right->"    1..*"Curso: pertenece
-Estudiante "1..*"-right-> "0..* "Examen: presenta
-Estudiante --> "0..*   "Certificado: recibe
-Estudiante "0..*"---> Ayuda: consulta
-Estudiante --> Resultado: "obtiene     "
+Estudiante "0..*"-right-"    1..*"Curso: > pertenece
+Estudiante -right- "0..*"Examen: presenta
+Estudiante -right- "0..*"Certificado: > recibe
+Estudiante -- Resultado: > obtiene
 
-Examen *-down- "1..*"Pregunta: contiene
-Examen -up---> Resultado: expide
+Examen *-right- "1..*"Pregunta: contiene
+Examen -up-- Resultado: > emite
 
-Pregunta *-down- Respuesta: tiene
+Pregunta *-down- "4..*" Respuesta: tiene
 Pregunta -right-o Dominio: posee
 
 Curso "0..*" -right-o Categoria: pertenece
 Curso o----- "1..*"Examen: pertenece
-Curso *- Certificado: otorga
+Curso *- Certificado: genera
+
 
 @enduml
