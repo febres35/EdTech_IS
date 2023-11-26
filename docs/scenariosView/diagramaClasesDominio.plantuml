@@ -2,10 +2,7 @@
 
 title "Diagrama de clases del Dominio\n Equipo 03"
 
-skinparam Class{
-  BorderThickness 1
-}
-
+skinparam ClassBorderThickness 1
 skinparam style strictuml
 
 class Usuario{
