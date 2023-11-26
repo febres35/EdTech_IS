@@ -13,15 +13,16 @@ state  "creando\nCurso" as gc
 state  "creando\nExamen" as ge
 state  "cargando\npregunta" as cp
 
-state "Mostrando\nInstrucciones" as mi
-state "Presentando\nExamen" as ee{
+'state "Mostrando\nInstrucciones" as mi
+state "Presentando\nExamen" as ee
+/'{
     state "mostrando pregunta" as mp
     state "Guardando Respuesta" as gp
     mp --> gp: opcion
     gp --> mp: \nSiguiente
-}
+}'/
 state "Mostrando\nResultado" as gr
-state "Actualizando\nPerfil" as ap
+'state "Actualizando\nPerfil" as ap
 state "Mostrando\nAyuda" as ma
 state "Registrar\nEstudiante" as ie
 'state finAd <<join>>
@@ -37,13 +38,13 @@ vi --> ma
 
 
 ma --> [*]: cerrar sesion
-ap --> [*]: cerrar sesion
+'ap --> [*]: cerrar sesion
 ie -right-> [*] : cerrar sesion
 
  
 
-vi -right-> mi: Iniciar Examen\nEstudiante
-mi --> ee: Presentar Examen
+vi -right-> ee: Iniciar Examen\nEstudiante
+'mi --> ee: Presentar Examen
 ee --> gr: resultado
 gr --> [*]:  Cerrar Sesion
 
