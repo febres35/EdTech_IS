@@ -44,7 +44,6 @@ class Pregunta{
 class Dominio
 
 class Respuesta{
-  enunciadoRespuesta
   respuestaCorrecta
   explicacion
 }
@@ -72,6 +71,6 @@ Pregunta -right-o Dominio: posee
 
 Curso "0..*" -right-o Categoria: pertenece
 Curso o----- "1..*"Examen: pertenece
-Curso *- Certificado: > genera
+Curso *- Certificado: genera
 
 @enduml
