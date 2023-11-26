@@ -20,20 +20,20 @@ state "Presentando\nExamen" as ee{
     mp --> gp: opcion
     gp --> mp: \nSiguiente
 }
-state "Guardando \ny\nMostrando\nResultado" as gr
+state "Mostrando\nResultado" as gr
 state "Actualizando\nPerfil" as ap
 state "Mostrando\nAyuda" as ma
-state "Incluyendo\nEstudiante" as ie
-state finAd <<join>>
+state "Registrar\nEstudiante" as ie
+'state finAd <<join>>
 
 [*] --> vi: Iniciar Sesion
 vi -left-> gc: Crear Curso\nAdministrador
 gc --> ge: Crear Exmen
 ge -right-> cp: Cargar pregunta
 cp --> ie: Registrar\nEstudiante
-vi --> finAd
-finAd --> ma
-finAd --> ap
+vi --> ma
+'finAd --> ma
+'finAd --> ap
 
 
 ma --> [*]: cerrar sesion
