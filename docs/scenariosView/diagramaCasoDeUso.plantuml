@@ -9,24 +9,30 @@ footer Equipo 3
 rectangle CertiComp{
 
   usecase " Iniciar Sesion " as UC1 
-  usecase " Registrar Usuario" as UC2
+  usecase " Registrar Estudiante" as UC2
   usecase " Registrar Curso" as UC3
-  usecase " Seleccionar Examen" as UC4
-  usecase " Praticar Examen" as UC5
+  'usecase " Seleccionar Examen" as UC4
+  usecase "Iniciar Examen " as UC11
+  usecase " Presentar Examen" as UC5
   usecase " Ver Resultado" as UC6
   usecase " Crear Examen" as UC7
+  usecase " Cargar Pregunta" as UC12
   usecase " Consultar Ayuda" as UC8
   usecase " Cerrar sesion " as UC9
   usecase " Actualizar Perfil " as UC10
   
+  
 }
-
-Administrador -up- UC7
 Administrador -up- UC2
+Administrador -up- UC12
+Administrador -up- UC7
 Administrador -up- UC3
-Estudiante-- UC4
+
+'Estudiante-- UC4
+Estudiante-- UC11
 Estudiante-- UC5
 Estudiante-- UC6
+
 
 Administrador -up- UC1
 Estudiante -- UC1

@@ -1,6 +1,8 @@
 @startuml "Diagrama de clases"
 
-title "Diagrama de clases del Dominio\n Equipo 03"
+title CertiComp
+header "Diagrama de clases del Dominio\n"
+Footer Equipo 3 
 
 skinparam ClassBorderThickness 1
 skinparam style strictuml
