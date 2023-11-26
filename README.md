@@ -1,7 +1,7 @@
 # EdTech_IS
 EdTech_IS proyecto de Ingeniería de Software
 
-# Integrnates
+# Integrantes
 
 * Mario Gamez
 * Rahigrim Monasterios
