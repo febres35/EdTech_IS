@@ -27,11 +27,11 @@ ad : Examen, Curso, \nUsuario, Perfil, \nIncluir, Ayuda
 [*] --> vi: Usuario
 vi -left-> ad: Administrador
 ad --> ie: Incluir\nEstudiante
-ad --> gc: LLenado\nFormulario\nGuardar
-ad --> cp: LLenado\nFormulario\nGuardar
-ad --> cu: LLenado\nFormulario\nGuardar
-ad --> ap: Select\nPerfil
-ad --> ma: Select\nAyuda
+ad --> gc: Formulario\nGuardar
+ad --> cp: Formulario\nGuardar
+ad --> cu: Formulario\nGuardar
+ad --> ap: Selección\nPerfil
+ad --> ma: Selección\nAyuda
 ie --> finAd
 gc --> finAd 
 cp --> finAd 
@@ -42,11 +42,11 @@ finAd --> [*]
  
 es: Cursos\nPerfil\nAyuda
 vi -right-> es: Estudiante
-es -->me: Select\nCurso
-es --> ap: Select\nPerfil
-es--> ma: Select\nPerfil
-me --> mi: selecciona\nExamen 
-mi --> ee: acepta
+es -->me: Selección\nCurso
+es --> ap: Selección\nPerfil
+es--> ma: Selección\nPerfil
+me --> mi: Selección\nExamen 
+mi --> ee: Aceptar
 ee -left-> gr: Finalizar\nExamne
 gr -left-> [*]
 
