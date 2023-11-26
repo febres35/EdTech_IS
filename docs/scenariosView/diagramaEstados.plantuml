@@ -9,14 +9,10 @@ title "Diagrama de estados del dominio"
 
 
 state "Validando\nIdentificacion" as vi
-'state "Mostrando\nOpciones" as ad
 state  "creando\nCurso" as gc
 state  "creando\nExamen" as ge
 state  "cargando\npregunta" as cp
-'state  "creando\nusuario" as cu
 
-'state "Mostrando\nOpciones" as es
-'state "Mostrando\nExamenes" as me
 state "Mostrando\nInstrucciones" as mi
 state "Presentando\nExamen" as ee{
     state "mostrando pregunta" as mp
@@ -29,7 +25,7 @@ state "Actualizando\nPerfil" as ap
 state "Mostrando\nAyuda" as ma
 state "Incluyendo\nEstudiante" as ie
 state finAd <<join>>
-'ad : Examen, Curso, \nUsuario, Perfil, \nIncluir, Ayuda
+
 [*] --> vi: Iniciar Sesion
 vi -left-> gc: Crear Curso\nAdministrador
 gc --> ge: Crear Exmen
@@ -42,33 +38,12 @@ finAd --> ap
 ma --> [*]: cerrar sesion
 ap --> [*]: cerrar sesion
 ie -right-> [*] : cerrar sesion
-/'ad --> ie: Incluir\nEstudiante
-ad --> gc: Formulario\nGuardar
-ad --> cp: Formulario\nGuardar
-ad --> cu: Formulario\nGuardar
-ad --> ap: Selección\nPerfil
-ad --> ma: Selección\nAyuda
-ie --> finAd
-gc --> finAd 
-cp --> finAd 
-cu --> finAd
-ap --> finAd 
-ma --> finAd
-finAd --> [*]'/
+
  
-'es: Cursos\nPerfil\nAyuda
+
 vi -right-> mi: Iniciar Examen\nEstudiante
 mi --> ee: Presentar Examen
 ee --> gr: resultado
 gr --> [*]:  Cerrar Sesion
 
-
-/'es -->me: Selección\nCurso
-es --> ap: Selección\nPerfil
-es--> ma: Selección\nPerfil
-me --> mi: Selección\nExamen 
-mi --> ee: Aceptar
-ee -left-> gr: Finalizar\nExamne
-gr -left-> [*]
-'/
 @enduml
