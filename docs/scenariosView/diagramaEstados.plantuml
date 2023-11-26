@@ -29,11 +29,12 @@ state finAd <<join>>
 [*] --> vi: Iniciar Sesion
 vi -left-> gc: Crear Curso\nAdministrador
 gc --> ge: Crear Exmen
-ge --> cp: Cargar pregunta
+ge -right-> cp: Cargar pregunta
 cp --> ie: Registrar\nEstudiante
 vi --> finAd
 finAd --> ma
 finAd --> ap
+
 
 ma --> [*]: cerrar sesion
 ap --> [*]: cerrar sesion
