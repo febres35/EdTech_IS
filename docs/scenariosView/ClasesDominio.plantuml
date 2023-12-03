@@ -1,9 +1,9 @@
-@startuml "Modelo del Dominio"
+@startuml "Diagrama de Clases"
 
 title CertiComp
 header "Diagrama de clases del Dominio\n"
 Footer Equipo 3 
-
+skinparam width 320
 skinparam ClassBorderThickness 1
 skinparam style strictuml
 
