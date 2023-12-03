@@ -10,50 +10,43 @@ skinparam width 320
 
 
 state "Validando\nIdentificacion" as vi
-state "Mostrando\nOpciones" as ad
 state  "creando\nCurso" as gc
+state  "creando\nExamen" as ge
 state  "cargando\npregunta" as cp
-state  "creando\nusuario" as cu
 
-state "Mostrando\nOpciones" as es
-state "Mostrando\nExamenes" as me
-state "Mostrando\nInstrucciones" as mi
-state "Presentando\nExamen" as ee{
-    state "Mostrado\nPregunta" as mp
-    state "Respondiendo\nPregunta" as rp
-    mp --> rp: Selecciona opcion\nSiguiente
-    rp --> mp
-}
-state "Guardando y\nMostrando\nResultado" as gr
-state "Actualizando\nPerfil" as ap
+'state "Mostrando\nInstrucciones" as mi
+state "Presentando\nExamen" as ee
+/'{
+    state "mostrando pregunta" as mp
+    state "Guardando Respuesta" as gp
+    mp --> gp: opcion
+    gp --> mp: \nSiguiente
+}'/
+state "Mostrando\nResultado" as gr
+'state "Actualizando\nPerfil" as ap
 state "Mostrando\nAyuda" as ma
-state "Incluyendo\nEstudiante" as ie
-state finAd <<join>>
-'ad : Examen, Curso, \nUsuario, Perfil, \nIncluir, Ayuda
-[*] --> vi: Usuario
-vi -left-> ad: Administrador
-ad --> ie: Incluir\nEstudiante
-ad --> gc: Formulario\nGuardar
-ad --> cp: Formulario\nGuardar
-ad --> cu: Formulario\nGuardar
-ad --> ap: Selección\nPerfil
-ad --> ma: Selección\nAyuda
-ie --> finAd
-gc --> finAd 
-cp --> finAd 
-cu --> finAd
-ap --> finAd 
-ma --> finAd
-finAd --> [*]
+state "Registrar\nEstudiante" as ie
+'state finAd <<join>>
+
+[*] --> vi: Iniciar Sesion
+vi -left-> gc: Crear Curso\nAdministrador
+gc --> ge: Crear Exmen
+ge -right-> cp: Cargar pregunta
+cp --> ie: Registrar\nEstudiante
+vi --> ma
+'finAd --> ma
+'finAd --> ap
+
+
+ma --> [*]: cerrar sesion
+'ap --> [*]: cerrar sesion
+ie -right-> [*] : cerrar sesion
+
  
-'es: Cursos\nPerfil\nAyuda
-vi -right-> es: Estudiante
-es -->me: Selección\nCurso
-es --> ap: Selección\nPerfil
-es--> ma: Selección\nPerfil
-me --> mi: Selección\nExamen 
-mi --> ee: Aceptar
-ee -left-> gr: Finalizar\nExamne
-gr -left-> [*]
+
+vi -right-> ee: Iniciar Examen\nEstudiante
+'mi --> ee: Presentar Examen
+ee --> gr: resultado
+gr --> [*]:  Cerrar Sesion
 
 @enduml
