@@ -1,4 +1,4 @@
-@startuml Diagrama de Estado
+@startuml Modelo del Dominio
 
 
 header Estado Inicial
