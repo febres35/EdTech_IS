@@ -45,7 +45,7 @@ boundary "examView" as ev
 ad -r- ev
 ev -r-> ce
 ce -u-> e
-d -r- e
+ce -r- d
 e --> ev
 
 
@@ -68,10 +68,25 @@ boundary "askView" as av
 ad -r- av
 av -r- ua
 ua -- a
-a -l- d: consulta
+ua -- ce
+ce -- d
 a -u- av
 
+newpage
+title start Exam
+header Clases de Analisis
+footer Equipo 3
 
+actor "Student" as st
+
+control "InitExam" as iE
+
+boundary "askView" as av
+boundary "examView" as ev
+
+
+st -r- iE
+iE -- eC
 
 
 
