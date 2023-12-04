@@ -1,0 +1,43 @@
+@startuml "Clases Obvias"
+
+title Class & Package
+header CertiComp
+footer Equipo 3
+
+/'
+class "Controller\nCourse" as cCourse
+class "Controller\nExam" as CExam
+'ask : pregunta
+class "Controller\nAsk " as cAsk
+
+interface "Interface\ncourse" as iCourse
+'/
+
+package "Course Management" {
+    class Course
+    class Exam
+    class Ask
+    class Domain
+    class Category
+    class "Administration" as ad
+
+    Course o-- Exam
+    Exam *-- Ask
+    Domain o-- Ask
+    Category o-- Course
+    ad -- Course: administra
+}
+
+package "Result Management" {
+    class Result
+    class Certificate
+    class Student
+
+    Student -- Result: occupies 
+    Student -- Certificate: occupies
+}
+
+
+
+
+@enduml
