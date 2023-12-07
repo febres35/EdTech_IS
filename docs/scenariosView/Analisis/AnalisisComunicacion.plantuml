@@ -39,7 +39,7 @@ footer Equipo 3
 actor "Administrator" as ad
 boundary "courseRegisterView" as crv
 
-control "controller" as c
+control "courseRegistrationController" as c
 
 entity course
 entity Category
@@ -64,6 +64,7 @@ boundary "CreateExamView" as cev
 boundary "adminCoursesViews" as cv
 
 control "examRegistrationController" as c
+control "courseRegistrationController" as rc
 
 entity Course
 entity Domain
@@ -72,8 +73,9 @@ entity Exam
 ad -- cv
 cv -- cev
 cev -- c
-c -- Course
-Course -- Exam
+c -r- rc
+rc -- Course
+c -- Exam
 Exam -- Domain
 
 newpage
@@ -91,7 +93,7 @@ entity Exam
 entity Questions
 entity Answer
 
-control "controller" as c
+control "uploadQuestionsController" as c
 
 ad -- uqv
 uqv -- c
@@ -108,10 +110,47 @@ title Init Exam
 header Análisis y Comunicación
 footer Equipo 3
 
-boundary ExamView
-boundary InstructionView
+actor "Studen" as st
 
-control "controller" as c
+boundary "examView" as ev
+boundary "instructionView" as iv
+boundary "questionView" as qv
+
+control "startExamController" as c
+
+entity Instruction
+entity Exam
+'entity Question
+
+st -- ev
+ev -- iv
+iv -- c
+c -r- qv
+c -- Exam
+Exam -- Instruction
+'Exam -- Question
+
+newpage
+left to right direction
+
+title Init Exam
+header Análisis y Comunicación
+footer Equipo 3
+
+actor "Studen" as st
+
+boundary "questionView" as qv
+
+entity Answer
+entity Questions
+'entity Result
+
+control "presentExamController" as c
+
+st -- qv
+qv -- c
+c -- Questions
+Questions -- Answer
 
 
 
