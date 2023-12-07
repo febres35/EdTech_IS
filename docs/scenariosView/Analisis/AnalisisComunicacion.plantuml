@@ -109,7 +109,11 @@ header Análisis y Comunicación
 footer Equipo 3
 
 boundary ExamView
-boundary Instruction 
+boundary InstructionView
+
+control "controller" as c
+
+
 
 
 
