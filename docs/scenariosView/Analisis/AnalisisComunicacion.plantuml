@@ -78,7 +78,7 @@ rc -- Course
 c -- Exam
 Exam -- Domain
 
-newpage
+/'newpage
 left to right direction
 
 title Upload Question
@@ -102,7 +102,7 @@ Exam -- Questions
 Exam -- Domain
 Questions -- Answer
 
-
+'/
 newpage
 left to right direction
 
@@ -133,7 +133,7 @@ Exam -- Instruction
 newpage
 left to right direction
 
-title Init Exam
+title Present Exam
 header Análisis y Comunicación
 footer Equipo 3
 
