@@ -16,28 +16,28 @@ interface "Interface\ncourse" as iCourse
 package "Course Management" {
     class Course
     class Exam
-    class Ask
+    class Questions
     class Domain
     class Category
-    class "Administration" as ad
+    class "Admin" as ad
 
     Course o-- Exam
-    Exam *-- Ask
-    Domain o-- Ask
+    Exam *-- Questions
+    Domain o-- Questions
     Category o-- Course
     ad -- Course: administra
 }
 
-package "Result Management" {
-    class Result
+package "Answer Management" {
+    class Answer
     class Certificate
     class Student
 
-    Student -- Result: occupies 
+    Student -- Answer: occupies 
     Student -- Certificate: occupies
 }
 
-
+Student -- Course
 
 
 @enduml

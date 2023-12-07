@@ -22,7 +22,7 @@ entity Answer
 
 
 ad -- cView
-cView --> c
+cView -- c
 
 c -- Exam
 Exam -- Domain
@@ -83,9 +83,7 @@ title Upload Question
 header Análisis y Comunicación
 footer Equipo 3
 
-
 actor "Administrator" as ad
-
 boundary "uploadQuestionView" as uqv
 
 entity Domain
@@ -93,7 +91,25 @@ entity Exam
 entity Questions
 entity Answer
 
-control "controller"
+control "controller" as c
+
+ad -- uqv
+uqv -- c
+c -- Exam
+Exam -- Questions
+Exam -- Domain
+Questions -- Answer
+
+
+newpage
+left to right direction
+
+title Init Exam
+header Análisis y Comunicación
+footer Equipo 3
+
+boundary ExamView
+boundary Instruction 
 
 
 
