@@ -80,13 +80,17 @@ footer Equipo 3
 actor "Student" as st
 
 control "InitExam" as iE
+control "examController" as eC
 
 boundary "askView" as av
 boundary "examView" as ev
 
 
-st -r- iE
-iE -- eC
+st -r- ev
+ev -r- av
+
+
+
 
 
 

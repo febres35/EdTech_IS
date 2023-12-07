@@ -1,0 +1,57 @@
+@startuml Clases de Analisis y Colaboracion
+
+left to right direction
+
+
+skinparam EntityBackgroundColor white
+skinparam BoundaryBackgroundColor white
+skinparam ControlBackgroundColor white
+skinparam ActorBackgroundColor white
+
+actor "Administrator" as ad
+
+boundary "uploadQuestionsview" as cView
+
+control "examRegisterController" as c
+
+entity Exam
+entity Domain
+entity Question
+entity Answer
+
+
+ad -- cView
+cView --> c
+
+c -- Exam
+Exam -- Domain
+Exam -- Question
+Question -l- Answer
+
+newpage
+left to right direction
+actor "Administrator" as ad
+
+boundary "courseRegisterView" as crv
+
+control "controller" as c
+
+entity course
+entity Category
+
+
+ad -- crv
+crv -- c
+c -- course
+course -- Category
+
+
+newpage
+left to right direction
+actor "Administrator" as ad
+
+
+
+
+
+@enduml
