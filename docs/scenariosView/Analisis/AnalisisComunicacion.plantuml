@@ -26,7 +26,7 @@ cView --> c
 c -- Exam
 Exam -- Domain
 Exam -- Question
-Question -l- Answer
+Question -- Answer
 
 newpage
 left to right direction
@@ -48,7 +48,22 @@ course -- Category
 
 newpage
 left to right direction
+
 actor "Administrator" as ad
+
+boundary "CreateExamView" as cev
+boundary "courseRegisterView" as crv
+
+control "controller" as c
+
+entity Course
+entity Domain
+entity Exam
+
+ad -- crv
+crv -- cev
+cev -- c
+c -- Course
 
 
 
