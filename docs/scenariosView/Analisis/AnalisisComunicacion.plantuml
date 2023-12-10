@@ -1,0 +1,160 @@
+@startuml Clases de Analisis y Colaboracion
+
+left to right direction
+
+
+skinparam EntityBackgroundColor white
+skinparam BoundaryBackgroundColor white
+skinparam ControlBackgroundColor white
+skinparam ActorBackgroundColor white
+
+title Upload Question
+header Análisis y Comunicación
+footer Equipo 3
+actor "Administrator" as ad
+boundary "uploadQuestionsview" as cView
+control "examRegisterController" as c
+
+entity Exam
+entity Domain
+entity Question
+entity Answer
+
+
+ad -- cView
+cView -- c
+
+c -- Exam
+Exam -- Domain
+Exam -- Question
+Question -- Answer
+
+newpage
+left to right direction
+
+title Course Register
+header Análisis y Comunicación
+footer Equipo 3
+
+actor "Administrator" as ad
+boundary "courseRegisterView" as crv
+
+control "courseRegistrationController" as c
+
+entity course
+entity Category
+
+
+ad -- crv
+crv -- c
+c -- course
+course -- Category
+
+
+newpage
+left to right direction
+
+title Create Exam
+header Análisis y Comunicación
+footer Equipo 3
+
+
+actor "Administrator" as ad
+boundary "CreateExamView" as cev
+boundary "adminCoursesViews" as cv
+
+control "examRegistrationController" as c
+control "courseRegistrationController" as rc
+
+entity Course
+entity Domain
+entity Exam
+
+ad -- cv
+cv -- cev
+cev -- c
+c -r- rc
+rc -- Course
+c -- Exam
+Exam -- Domain
+
+/'newpage
+left to right direction
+
+title Upload Question
+header Análisis y Comunicación
+footer Equipo 3
+
+actor "Administrator" as ad
+boundary "uploadQuestionView" as uqv
+
+entity Domain
+entity Exam
+entity Questions
+entity Answer
+
+control "uploadQuestionsController" as c
+
+ad -- uqv
+uqv -- c
+c -- Exam
+Exam -- Questions
+Exam -- Domain
+Questions -- Answer
+
+'/
+newpage
+left to right direction
+
+title Init Exam
+header Análisis y Comunicación
+footer Equipo 3
+
+actor "Studen" as st
+
+boundary "examView" as ev
+boundary "instructionView" as iv
+boundary "questionView" as qv
+
+control "startExamController" as c
+
+entity Instruction
+entity Exam
+'entity Question
+
+st -- ev
+ev -- iv
+iv -- c
+c -r- qv
+c -- Exam
+Exam -- Instruction
+'Exam -- Question
+
+newpage
+left to right direction
+
+title Present Exam
+header Análisis y Comunicación
+footer Equipo 3
+
+actor "Studen" as st
+
+boundary "questionView" as qv
+
+entity Answer
+entity Questions
+'entity Result
+
+control "presentExamController" as c
+
+st -- qv
+qv -- c
+c -- Questions
+Questions -- Answer
+
+
+
+
+
+
+@enduml
