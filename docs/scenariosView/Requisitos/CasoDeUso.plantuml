@@ -2,19 +2,21 @@
 
 left to right direction
 skinparam actorStyle awesome
+skinparam ActorBackgroundColor black
 
 header Casos de uso
 footer Equipo 3
 
 rectangle CertiComp{
 
+  usecase " Ver Resultado" as UC6
   usecase " Iniciar Sesion " as UC1 
   usecase " Registrar Estudiante" as UC2
   usecase " Registrar Curso" as UC3
-  'usecase " Seleccionar Examen" as UC4
-  usecase "Iniciar Examen " as UC11
-  usecase " Presentar Examen" as UC5
-  usecase " Ver Resultado" as UC6
+  usecase "Generar Certificado" as UC4  
+  
+  usecase "Tomar Examen" as UC13
+  
   usecase " Crear Examen" as UC7
   usecase " Cargar Pregunta" as UC12
   usecase " Consultar Ayuda" as UC8
@@ -22,17 +24,22 @@ rectangle CertiComp{
   usecase " Actualizar Perfil " as UC10
   
   
+
+  
 }
+'usecase "Iniciar Examen " as UC11
+'usecase " Presentar Examen" as UC5
+
+
 Administrador -up- UC2
 Administrador -up- UC12
 Administrador -up- UC7
 Administrador -up- UC3
 
-'Estudiante-- UC4
-Estudiante-- UC11
-Estudiante-- UC5
+Estudiante -- UC13
 Estudiante-- UC6
-
+Estudiante-- UC4
+ 
 
 Administrador -up- UC1
 Estudiante -- UC1

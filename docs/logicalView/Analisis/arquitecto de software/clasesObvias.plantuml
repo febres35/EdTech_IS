@@ -20,24 +20,27 @@ package "Course Management" {
     class Domain
     class Category
     class "Admin" as ad
-
+    class Answer
     Course o-- Exam
     Exam *-- Questions
     Domain o-- Questions
     Category o-- Course
     ad -- Course: administra
+    Questions *-- Answer
 }
 
 package "Answer Management" {
-    class Answer
+    class Result
     class Certificate
     class Student
 
-    Student -- Answer: occupies 
+    Student -- Course: occupies 
     Student -- Certificate: occupies
+    Result -- Certificate
+    Result -- Exam
 }
 
-Student -- Course
+
 
 
 @enduml

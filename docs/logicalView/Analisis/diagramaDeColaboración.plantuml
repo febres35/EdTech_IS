@@ -1,0 +1,118 @@
+@startuml
+header Diagrama de clases de casos de uso
+title  Presentar Examen 
+footer equipo 3
+
+
+interface examList{
+    displayExam()
+}
+interface instructions{
+    displayInstructions()
+}
+interface results{
+    displayResults()
+}
+
+class takeExam<<control>>{
+    finishExam()
+}
+interface createExamUI{
+    
+}
+class createExam<<control>>{
+
+}
+interface createQuestionsUI{
+
+}
+class createQuestions{
+    getDomain()
+}
+interface registerCourseUI{
+    
+}
+entity Course{
+    courseID: number
+    name: text
+    categoryID: number
+    getName()
+    getCategory()
+    setName()
+    setCategory()
+}
+class registerCourse{
+    saveRegister()
+    consultar()
+}
+entity category{
+    nameCategory: text
+    categoryID: number
+}
+
+
+interface takeExamUI{
+    DisplayExamUI()
+}
+entity Exam{
+    examID: number
+    duration: number
+    instructions: text
+    title: text
+    getExam()
+    getInstructions()
+    getDomain()
+    getAnswers()
+    getQuestions()
+    setDomain()
+    setName()
+    setDuration()
+    setInstructions()
+
+}
+entity Domain{
+    domainID: number
+    Name: text
+    getID()
+}
+entity Questions{
+    questionID: number
+    questions: text
+    explanation: text
+    correctAnswerID: number
+    getAnswers()
+    getExplanation()
+    setExplainationAnswer()
+    setDomain()
+    setCorrectAnswer()
+    setQuestions()
+}
+entity Answers{
+    answerID: number
+    questionID: number
+    answerDescription: text
+    
+}
+
+examList->takeExam
+'takeExamUI->takeExam:displayExam
+takeExam->Exam
+takeExam-down->instructions
+takeExam-up->takeExamUI
+Exam *- "1..*" Questions
+Questions *-down- "4..*" Answers
+Questions-up-o "1..*" Domain
+takeExam-up->results
+
+createExamUI-down->createExam
+createExam-down->Exam
+
+createQuestionsUI-down->createQuestions
+createQuestions -left-> Questions
+createQuestions-> Domain:consultar
+
+Course-o category
+Course o-down- Exam
+registerCourse-down->Course
+registerCourseUI->registerCourse
+@enduml

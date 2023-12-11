@@ -1,0 +1,31 @@
+@startuml "Relaición de Estados de Casos de Usos"
+
+
+title Estados de casos de usos\nAdministrador
+header Casos de uso
+Footer Equipo 3
+skinparam width 300
+left to right direction
+
+state "autenticando" as au
+state "Registrando Curso" as rc
+state "Creando Examen" as ce
+state "Cargando Preguntas" as cp
+
+
+[*] -r-> au : Inicio de sesión
+au --> rc: Registrar Curso
+
+rc --> rc
+rc --> ce: Crear Examen
+ce --> ce
+ce --> cp: Cargar Pregunta
+cp --> cp
+cp -r-> [*]
+
+
+
+
+
+
+
