@@ -11,7 +11,7 @@ rectangle CertiComp{
 
   usecase " Ver Resultado" as UC6
   usecase " Iniciar Sesion " as UC1 
-  usecase " Registrar Estudiante" as UC2
+  usecase " Registrar Usuario" as UC2
   usecase " Registrar Curso" as UC3
   usecase "Generar Certificado" as UC4  
   
