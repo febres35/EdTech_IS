@@ -1,0 +1,24 @@
+@startuml "Relaición de Estados de Casos de Usos"
+
+
+title Estados de casos de usos\nEstudiante
+header Casos de uso
+Footer Equipo 3
+skinparam width 300
+left to right direction
+
+state "autenticando" as au
+state "presentando examen" as pe
+state "mostrando resultados" as mr
+state "generando certificado" as gc
+
+
+[*] -r-> au : Inicio de sesión
+au --> pe: Tomar Examen
+pe --> mr: Resultado
+mr --> pe: Tomar Examen
+mr -r-> gc: Generar Certificado
+
+gc -r-> [*]: Cerrar Sesion
+
+
