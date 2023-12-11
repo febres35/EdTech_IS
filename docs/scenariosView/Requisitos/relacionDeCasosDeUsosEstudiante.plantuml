@@ -14,9 +14,9 @@ state "generando certificado" as gc
 
 
 [*] -r-> au : Inicio de sesión
-au --> pe: Tomar Examen
+au --> pe: Presentar Examen
 pe --> mr: Resultado
-mr --> pe: Tomar Examen
+mr --> pe: Presentar Examen
 mr -r-> gc: Generar Certificado
 
 gc -r-> [*]: Cerrar Sesion
