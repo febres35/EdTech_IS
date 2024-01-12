@@ -1,0 +1,61 @@
+@startuml "Sequence Diagram"
+
+skinparam style strictuml
+title "Diagrama de Secuencia Caso de Uso: Presentar Examen"
+
+actor ": Student" as S 
+boundary ": ExamListView" as ELV
+entity ": Course" as Course
+entity ": Exam" as E 
+boundary ": InstructionsView" as IV
+control ": takeExamController" as TEC  
+boundary ": takeExamView" as TEV
+boundary ": resultsView" as RV
+
+S -> ELV : 1: loadExamCourseView()
+activate ELV
+ELV -> TEC : 2: loadCourse()
+activate TEC 
+
+TEC -> Course : 2.1: getCourseList()
+activate Course
+Course --> TEC: 2.2: courseList
+deactivate Course
+TEC --> ELV : 2.3: displayCourse(courseList)
+deactivate TEC
+
+S -> ELV : 3: selectedCourse
+ELV -> TEC : 4: loadExam(selectedCourse) 
+activate TEC 
+TEC -> E : 4.1 getCourseExamList(selectedCourse)
+activate E
+E --> TEC : 4.2 examList
+deactivate E
+TEC --> ELV : 4.3 displayExam(examList)
+deactivate TEC
+
+S -> ELV : 5: takeExam(selectedExam)
+ELV -> IV : 6: displayInstructions(selectedExam)
+activate IV
+IV -> TEC : 6.1: getExamInstructions(selectedExam)
+activate TEC 
+TEC --> IV : 6.2: examInstructions
+
+S -> IV : 6.3: confirmInstructions(value) 
+
+alt value == True
+IV -> TEC: 7: startExam(selectedExam)
+loop questionsMap.end
+TEC -> E : 7.1: getExamQuestions(selectedExam)
+activate E
+E --> TEC : 7.2: questionsMap
+deactivate E
+TEC -> TEV : 7.3: displayQuestion()
+end
+activate TEV
+else value == False
+IV -> ELV
+deactivate IV 
+
+end 
+@enduml

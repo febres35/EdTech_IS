@@ -1,0 +1,85 @@
+@startuml
+header Diagrama de clases de casos de uso
+title  Presentar Examen 
+footer equipo 3
+
+
+class examList{
+    +displayExam()
+}
+class instructions{
+    +displayInstructions()
+}
+class results{
+    +displayResults()
+}
+
+class takeExam{
+    +finishExam()
+}
+
+class takeExamUI{
+    +DisplayExamUI()
+}
+class Exam{
+    -int examID
+    -int duration
+    -String instructions
+    -String title
+    +getExamID()
+    +getDuration()
+    +getInstructions()
+    +getTitle()
+    +setExamID()
+    +setDuration()
+    +setTitle()
+    +setInstructions()
+
+}
+entity Course{
+    courseID: number
+    name: text
+    categoryID: number
+    getName()
+    getCategory()
+    setName()
+    setCategory()
+}
+class Questions{
+    -int questionID
+    -String questions
+    -String explanation
+    -int correctAnswerID
+    +getCorrectAnswerID()
+    +getQuestions()
+    +getQuestionID()
+    +getExplanation()
+    +setQuestionID()
+    +setExplanation()
+    +setCorrectAnswerID()
+    +setQuestions()
+}
+class Answers{
+    -int answerID
+    -int questionID
+    -String answerDescription
+    +getAnswerID()
+    +getQuestionID()
+    +getAnswerDescription()
+    +setAnswerID()
+    +setQuestionID()
+    +setAnswerDescription() 
+}
+
+examList->takeExam
+takeExam->Exam
+takeExam-down->instructions
+takeExam-up->takeExamUI
+Exam *- "1..*" Questions
+Questions *-down- "4..*" Answers
+takeExam-up->results
+examList->instructions
+
+Course-down-o Exam
+
+@enduml
