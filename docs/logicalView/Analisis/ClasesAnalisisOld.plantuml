@@ -7,7 +7,7 @@ footer equipo 3
 interface examList<<view>>{
     ButtonCourse: number
     coursoDescButton()
-    getExamDesc(): text
+    - getExamDesc(): text
     listExamDesc(): text
 }
 interface instructions<<view>>{
@@ -18,11 +18,11 @@ interface instructions<<view>>{
 interface takeExamUI <<view>>{
     ExamButton: number
     
-    getQuestionsId()
-    getAnswers(questionId:number)
-    setAnswerSelect(answerId:number, questionId:number)
-    chronometer()
-    setResult()
+    - getQuestionsId()
+    - getAnswers(questionId:number)
+    - setAnswerSelect(answerId:number, questionId:number)
+    - chronometer()
+    - setResult()
     
     getExam()
     setAnswersSelect();
@@ -36,9 +36,9 @@ interface results<<view>>{
 }
 
 class takeExam<<controller>>{
-    getExam(curseId: number): List<object>
-    getQuestion(examId: numbre): List<object>
-    getQuestion(answerId): text
+    - getExam(curseId: number): List<object>
+    - getQuestion(examId: numbre): List<object>
+    - getQuestion(answerId): text
     setResult(object)
     
     getExam(ExamId): text
@@ -68,7 +68,7 @@ entity Exam<<Model>>{
     toString(): text
 
     getQuestion(): text
-    getQuestionList(): List<object>
+    - getQuestionList(): List<object>
 }
 
 entity Domain <<Model>>{
@@ -100,8 +100,8 @@ entity Questions<<Model>>{
 
     toString(): text 
 
-    getAnswesList(examId:number): list<object>
-    getDomainList(examId:number): list<object>
+    - getAnswesList(examId:number): list<object>
+    - getDomainList(examId:number): list<object>
 
 }
 entity Answers<<Model>>{
@@ -119,6 +119,20 @@ entity Answers<<Model>>{
     setQuestionId(): number
     setItIsRigth(): boolean
 }
+entity DomainQuestion<<Model>>{
+    questionId: number
+    domainId: number
+
+    setQuestionId()
+    setDomainId()
+
+    getQuestionId(): number
+    getDomainId(): number
+
+}
+
+
+(Questions, Domain) -l- DomainQuestion
 
 
 examList -l-  takeExamUI
@@ -126,9 +140,8 @@ instructions -- takeExamUI
 takeExamUI -l- results
 takeExamUI --> takeExam
 
-takeExam --> Exam
+takeExam -->Exam
 takeExam -l- Questions
 Questions -l- Answers
-Questions -- Domain
 
 @enduml
