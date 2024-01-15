@@ -41,3 +41,37 @@ docs/logicalView/Analisis/docsOlds/arquitecto de software/clasesObvias.plantuml
 docs/logicalView/Analisis/docsOlds/arquitecto de software/clasesObvias/Clases Obvias.png
 docs/logicalView/Analisis/docsOlds/ClasesAnalisis/analisisDeClases_presentarExamen.png
 docs/logicalView/Analisis/docsOlds/Ingeniero de casos de usos/analisisCasosDeUso.plantuml
+docs/scenariosView/docsOld/DiagramaDeEstado(Login).plantuml
+docs/scenariosView/docsOld/DiagramadeEstado(practicaExamen).plantuml
+docs/scenariosView/docsOld/DiagramaDeEstado(registrarUsuario).plantuml
+docs/scenariosView/docsOld/DiagramaDeEstado(seleccionarExamen).plantuml
+docs/scenariosView/docsOld/DiagramaDeEstado(verResultados).plantuml
+docs/scenariosView/docsOld/DiagramaDeEstados(registrarcurso).plantuml
+docs/scenariosView/docsOld/DiagramaEstado.plantuml
+docs/scenariosView/docsOld/DiagramaEstado(actualizarPerfil).plantuml
+docs/scenariosView/docsOld/DiagramaEstado(consultarAyuda).plantuml
+docs/scenariosView/docsOld/DiagramaEstado(crearExamen).plantuml
+docs/scenariosView/docsOld/DiagramaEstado(logout).plantuml
+docs/scenariosView/docsOld/diagramaEstadoAdministrador.plantuml
+docs/scenariosView/docsOld/diagramaEstadoGeneralCU.plantuml
+docs/scenariosView/docsOld/diagramaEstadoParticipante.plantuml
+docs/scenariosView/docsOld/DiagramaCasosDeuso(verResultados)/DiagramaCasosDeuso(verResultados).png
+docs/scenariosView/docsOld/DiagramaDeEstado(Login)/Diagrama de estado (Login).png
+docs/scenariosView/docsOld/DiagramadeEstado(practicaExamen)/DiagramadeEstado(practicaExamen).png
+docs/scenariosView/docsOld/DiagramaDeEstado(registrarUsuario)/DiagramaDeEstado(registrarUsuario).png
+docs/scenariosView/docsOld/DiagramaDeEstado(seleccionarExamen)/DiagramaDeEstado(seleccionarExamen).png
+docs/scenariosView/docsOld/DiagramaDeEstados(registrarcurso)/DiagramaDeEstados(registrarcurso).png
+docs/scenariosView/docsOld/diagramaEstado/Diagrama de estado.png
+docs/scenariosView/docsOld/DiagramaEstado(actualizarPerfil)/DiagramaEstado(actualizarPerfil).png
+docs/scenariosView/docsOld/DiagramaEstado(consultarAyuda)/DiagramaEstado(consultarAyuda).png
+docs/scenariosView/docsOld/DiagramaEstado(crearExamen)/DiagramaEstado(crearExamen).png
+docs/scenariosView/docsOld/DiagramaEstado(logout)/DiagramaEstado(logout).png
+docs/scenariosView/docsOld/diagramaEstadoAdministrador/DiagramaDeEstadoAdmin.png
+docs/scenariosView/docsOld/diagramaEstadoGeneralCU/Diagrama de estado (General).png
+docs/scenariosView/docsOld/diagramaEstadoParticipante/DiagramaDeEstado.png
+docs/scenariosView/docsOld/diagramaEstados/DiagramaDeEstado.png
+docs/scenariosView/docsOld/relacionDeCasosDeUsosEstudiante/Casos de usos.docx
+docs/scenariosView/docsOld/relacionDeCasosDeUsosEstudiante/Esquemas de pantallas RETO 10 --.pdf
+docs/scenariosView/docsOld/relacionDeCasosDeUsosEstudiante/Quick Explorations.pdf
+docs/scenariosView/docsOld/relacionDeCasosDeUsosEstudiante/Rahigrim-DESCOMPOSICIÓN DEL DOMINIO.pdf
+docs/scenariosView/docsOld/relacionDeCasosDeUsosEstudiante/RETO 09 - Casos de Uso.pdf
