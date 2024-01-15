@@ -1,0 +1,148 @@
+@startuml "Diagrama de clases"
+header Diagrama de clases de casos de uso
+
+title "Diagrama de clases de análisis"
+
+footer equipo 3
+
+skinparam style strictuml
+skinparam ClassBackGroundColor white
+skinparam ClassBorderThickness 1.5
+
+class examList <<View>>{
+    displayExam()
+    loadCourses()
+    selectCourse()
+    takeExamButtom()
+}
+class instructions <<View>>{
+    displayInstructions()
+    acceptInstructionsButtom()
+    declineInstructionsButtom()
+}
+class results <<View>>{
+    displayResults()
+    closeResults()
+}
+class takeExam <<Controller>>{    
+    startExam()
+    evaluateStudentAnswers()
+}
+class createExamUI <<View>>{
+    associateCourseSelect()
+    loadCourses()
+    levelSelect()
+    confirmCreateExamButtom()
+}
+class createExam <<Controller>>{
+    collectExamInputData()
+}
+class addQuestionsUI <<View>>{
+    displayAddQuestions()
+    loadExams()
+    loadDomains()
+    addOption()
+    deleteOption()
+}
+class addQuestions <<Controller>>{
+    getDomains()
+    collectQuestionInputData()
+}
+class registerCourseUI <<View>>{
+    registerCourseButtom()
+}
+class Course <<Model>>{
+    courseID: number
+    name: text
+    getCourseID(): number
+    getName(): text
+    setCourseID()
+    setName()
+}
+class registerCourse <<Controller>>{
+    getCourseCategories()
+    collectCourseDataInput()
+}
+class Category <<Model>> {
+    nameCategory: text
+    categoryID: number
+    getNameCategory(): text
+    getCategoryID(): number
+    setNameCategory()
+    setCategoryID() 
+}
+class takeExamUI <<View>>{
+    DisplayExamUI()
+    finishExamButtom()
+    nextQuestion()
+    previousQuestion()
+}
+class Exam <<Model>>{
+    examID: number
+    duration: number
+    instructions: text
+    title: text
+    getExamID(): number
+    getInstructions(): text
+    getDuration(): number
+    getTitle(): text
+    setExamID()
+    setDuration()
+    setInstructions()
+    setTitle()
+
+}
+class Domain <<Model>>{
+    domainID: number
+    name: text
+    getDomainID(): number
+    getName(): text
+    setDomainID()
+    setName()
+}
+class Question <<Model>>{
+    questionID: number
+    questions: text
+    explanation: text
+    getQuestionID(): number
+    getQuestion(): text
+    getExplanation(): text
+    setQuestionID()
+    setQuestion()
+    setExplanation()
+}
+class Answer <<Model>>{
+    answerID: number
+    answerDescription: text   
+    isCorrectAnswer: boolean
+    getAnswerID(): number
+    getAnswerDescription(): text
+    getIsCorrectAnswer() : boolean
+    setAnswerID()
+    setAnswerDescription()
+    setIsCorrectAnswer()
+}
+
+examList-left->instructions
+'takeExamUI->takeExam:displayExam
+takeExam->Exam
+takeExam-down->instructions
+takeExam-up->takeExamUI
+Exam -- Question
+Question -left- Answer
+Question-up- Domain
+takeExam-up->results
+
+createExamUI-down->createExam
+createExam-down->Exam
+createExam-down->Domain
+
+addQuestionsUI-down->addQuestions
+addQuestions -left-> Question
+addQuestions-up-> Domain
+
+Course-left-o Category
+Course o-down- Exam
+registerCourse-down->Course
+registerCourseUI->registerCourse
+@enduml
