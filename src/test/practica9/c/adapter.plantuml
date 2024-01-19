@@ -1,0 +1,77 @@
+@startuml Adapter
+
+class TurnOnDevices{
+    +main(String[] args)
+    +TurnOnDevices(Connectable device)
+}
+note left: "public class TurnOnDevices {\n\npublic static void main(String[] args){\n\nturnOnDevice(new Lamp());\n turnOnDevice(new Computer());\n }\n\n private static void turnOnDevice(Connectable device) {\n device.turnOn();\n System.out.println(device.isOn());\n }\n}\n"
+
+interface Connectable{
+    +turnOn()
+    +turnOff()
+    +ifOn()
+}
+
+
+
+
+class Lamp{
+    +turnOn()
+    +turnOff()
+    +isOn()
+}
+
+class Computer{
+    +turnOn()
+    +turnOff()
+    +isOn()
+}
+
+class CoffeMaker{
+    +On()
+    +Off()
+    +isOff()
+}
+note right : "public class CoffeMaker {\n\tprivate  boolean state;\n\t\n\tpublic CoffeMaker(){\n\t\tthis.state = false;\n\t}\n\t    public void On(){        state = true;\n\t        System.out.println("Encendido");\n\t    }\n\t    public void Off(){\n\t        state = false;\n\t        System.out.println("Apagado");\n   }\n\t    public boolean isOff(){        if (!state){\n\t\t            return true;\n\t        }\n\t       return false;    \n}"
+
+TurnOnDevices --> Connectable
+
+Connectable <|-- Lamp
+Connectable <|-- Computer
+
+class CoffeMakerAdapter{
+    -CoffeMaker coffeMaker
+    +turnOn()
+    +turnOff()
+    +isOn(): bool
+}
+note right : "\n\
+public class CoffeMakerAdapter extends Connectable {\n\
+    private CoffeMaker coffiMaker;\n\
+\n\
+    public CoffeMakerAdapter(){\n\
+        coffiMaker = new CoffeMaker();\n\
+    }\n\
+    @Override\n\
+    public void turnOff() {\n\
+\n\
+        coffiMaker.Off();\n\
+    }\n\
+\n\
+    public void turnOn(){\n\
+        coffiMaker.On();\n\
+    }\n\
+\n\
+    public boolean IsOn(){\n\
+        return !coffiMaker.isOff();\n\
+    }\n\
+    \n\
+}\n"
+
+CoffeMakerAdapter -l-|> Connectable
+CoffeMakerAdapter o.. CoffeMaker
+
+
+
+
+@enduml

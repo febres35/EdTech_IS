@@ -1,0 +1,32 @@
+@startuml Factory
+
+package usantantecla.mastermind{
+    abstract GameMastermind{
+        # board:Board
+        # {abstract} play()
+    }
+
+    class ConsoleMastermind {
+        - {static} main()
+        - play()
+
+    }
+
+    class GraphcsMastermind{
+        - {static} main()
+        - play()
+    }
+
+    GameMastermind <|-- ConsoleMastermind
+    GameMastermind <|-- GraphcsMastermind
+
+}
+
+ConsoleMastermind ..> Game
+GraphcsMastermind ..> Game
+ConsoleMastermind *-- ConsoleView
+GraphcsMastermind *-- GraphicsView
+
+
+
+@enduml

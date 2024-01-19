@@ -1,0 +1,14 @@
+@startuml patron de diseno Singleton
+
+class Config{
+
+    private NAME: str
+    private URL: str
+    private USER: str
+    private password: str
+}
+
+Config *-d- Config
+
+
+@endplant
