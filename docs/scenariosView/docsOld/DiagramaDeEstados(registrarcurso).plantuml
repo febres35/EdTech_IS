@@ -1,0 +1,17 @@
+state RegistrarCurso{
+ [*]-->muestraCamposDeRegistro
+ 
+ muestraCamposDeRegistro: Se introduce la informacion requerida
+ 
+ incluirCurso:se incluye el curso a la lista de cursos 
+ state validarCurso <<fork>>
+ validarCurso-->incluirCurso :datosCorrectos
+ datosCursoIncorrectos: se edita la informacion
+ muestraCamposDeRegistro--->validarCurso
+ validarCurso-->datosCursoIncorrectos :datosIncorrectos
+ datosCursoIncorrectos-->muestraCamposDeRegistro
+ cancelaRegistro: No desea registrar  nada
+ muestraCamposDeRegistro->cancelaRegistro
+ cancelaRegistro--->[*]:cancelado
+ incluirCurso-->[*]:exitoso
+}

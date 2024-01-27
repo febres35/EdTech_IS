@@ -1,0 +1,99 @@
+@startuml Clases de Analisis y Colaboracion
+
+
+skinparam EntityBackgroundColor white
+skinparam BoundaryBackgroundColor white
+skinparam ControlBackgroundColor white
+skinparam ActorBackgroundColor white
+
+
+header Clases de Análisis
+footer Equipo 3
+
+title Register Course
+actor "Administrator" as ad
+
+control RegisterCourse
+
+entity Category
+entity Course
+
+boundary CourseView
+
+ad -r- CourseView
+CourseView -r- RegisterCourse
+RegisterCourse -- Category
+RegisterCourse -- Course
+
+
+newpage 
+header Clases de Análisis
+footer Equipo 3
+
+title Crate Exam
+
+
+actor "Administrator" as ad
+
+control "createExam" as ce
+
+entity "exam" as e
+entity "domain" as d
+
+boundary "examView" as ev
+
+ad -r- ev
+ev -r-> ce
+ce -u-> e
+ce -r- d
+e --> ev
+
+
+newpage
+
+title Upload Question
+header Clases de Análisis
+footer Equipo 3
+
+actor "Administrator" as ad
+
+control "uploadAsk" as ua
+control "createExam" as ce
+
+entity "Ask" as a
+entity "domain" as d
+
+boundary "askView" as av
+
+ad -r- av
+av -r- ua
+ua -- a
+ua -- ce
+ce -- d
+a -u- av
+
+newpage
+title start Exam
+header Clases de Analisis
+footer Equipo 3
+
+actor "Student" as st
+
+control "InitExam" as iE
+control "examController" as eC
+
+boundary "askView" as av
+boundary "examView" as ev
+
+
+st -r- ev
+ev -r- av
+
+
+
+
+
+
+
+
+@enduml
