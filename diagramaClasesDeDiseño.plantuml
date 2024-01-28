@@ -13,6 +13,9 @@ class InstructionsView <<JFrame>>{
     -TextView instructionsText
     -Button acceptInstructions
     -Button declineInstructions
+    +confirmInstructions()
+    +displayInstructions()
+    +loadInstructions()
 }
 
 class Button <<JButton>>{
@@ -30,12 +33,18 @@ class TextLine <<JLabel>>{
 }
 
 class TakeExamController{    
+    +getExamInstructions()
+    +getExamQuestions()
     +startExam()
     +evaluateStudentAnswers()
 }
 
 class TakeExamView <<JFrame>>{ 
     -JLabel title   
+    +displayQuestion()
+    +submitAnswer()
+    +nextQuestion()
+    +previousQuestion()
 }
 
 class TakeExamViewLeftSide <<JPanel>>{
