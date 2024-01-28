@@ -1,26 +1,75 @@
-@startuml
+@startuml "Diagrama de clases"
 header Diagrama de clases de casos de uso
 title  Presentar Examen 
 footer equipo 3
 
+skinparam style strictuml
+skinparam ClassBackGroundColor EEEEEE
+skinparam ClassBorderThickness 1.5
 
-class examList{
-    +displayExam()
-}
-class instructions{
-    +displayInstructions()
-}
-class results{
-    +displayResults()
-}
-
-class takeExam{
-    +finishExam()
+class InstructionsView <<JFrame>>{
+    -JLabel instructionsTitle
+    -TextView instructionsText
+    -Button acceptInstructions
+    -Button declineInstructions
 }
 
-class takeExamUI{
-    +DisplayExamUI()
+class Button <<JButton>>{
 }
+
+class RadioButton <<JRadioButton>>{    
+}
+
+class TextView <<JPanel>>{
+    -JTextArea text
+}
+
+class TextLine <<JLabel>>{
+    -JLabel lineText
+}
+
+class TakeExamController{    
+    +startExam()
+    +evaluateStudentAnswers()
+}
+
+class TakeExamView <<JFrame>>{ 
+    -JLabel title   
+}
+
+class TakeExamViewLeftSide <<JPanel>>{
+    -Button finishExam
+    -JLabel title
+    -JLabel studentName
+    -JLabel examName
+
+}
+
+class TimeCronometer <<JPanel>>{
+    Timer timer
+    JLabel timeLabel
+}
+
+class TakeExamViewRightSide <<JPanel>>{
+    -JProgressBar questionsCounter
+    -Button next
+    -Button previous
+}
+
+class DomainNameLeftPanel<<JPanel>>{
+}
+
+class DomainNameRightPanel<<JPanel>>{
+}
+
+class QuestionPanel <<JPanel>>{
+    
+}
+
+class AnswersPanel <<JPanel>>{
+
+}
+
 class Exam{
     -int examID
     -int duration
@@ -36,16 +85,8 @@ class Exam{
     +setInstructions()
 
 }
-entity Course{
-    courseID: number
-    name: text
-    categoryID: number
-    getName()
-    getCategory()
-    setName()
-    setCategory()
-}
-class Questions{
+
+class Question{
     -int questionID
     -String questions
     -String explanation
@@ -59,7 +100,7 @@ class Questions{
     +setCorrectAnswerID()
     +setQuestions()
 }
-class Answers{
+class Answer{
     -int answerID
     -int questionID
     -String answerDescription
@@ -71,15 +112,26 @@ class Answers{
     +setAnswerDescription() 
 }
 
-examList->takeExam
-takeExam->Exam
-takeExam-down->instructions
-takeExam-up->takeExamUI
-Exam *- "1..*" Questions
-Questions *-down- "4..*" Answers
-takeExam-up->results
-examList->instructions
+TakeExamController->Exam
+TakeExamController-down->InstructionsView
+InstructionsView-->TextView
+TakeExamController->TakeExamView
+TakeExamView-->TakeExamViewLeftSide
+TakeExamView-->TakeExamViewRightSide
+TakeExamViewRightSide-->TextView
+TakeExamViewRightSide-->QuestionPanel
+TakeExamViewRightSide-->AnswersPanel
+TakeExamViewRightSide-->DomainNameLeftPanel
+TakeExamViewRightSide-->DomainNameRightPanel
+TakeExamViewRightSide-->Button
+TakeExamViewLeftSide-->Button
+TakeExamViewLeftSide-->TimeCronometer
+DomainNameLeftPanel-->TextLine
+DomainNameRightPanel-->TextLine
+QuestionPanel-->TextView
+AnswersPanel--"4..*"RadioButton
+Exam *- "1..*" Question
+Question *-down- "4..*" Answer
 
-Course-down-o Exam
 
 @enduml
