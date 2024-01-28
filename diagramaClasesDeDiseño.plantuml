@@ -90,8 +90,8 @@ class Question{
     -int questionID
     -String questions
     -String explanation
-    -int correctAnswerID
-    +getCorrectAnswerID()
+    -bool isCorrectAnswer
+    +getIsCorrectAnswer()
     +getQuestions()
     +getQuestionID()
     +getExplanation()
