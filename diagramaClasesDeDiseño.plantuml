@@ -46,8 +46,8 @@ class TakeExamViewLeftSide <<JPanel>>{
 }
 
 class TimeCronometer <<JPanel>>{
-    Timer timer
-    JLabel timeLabel
+    -Timer timer
+    -JLabel timeLabel
 }
 
 class TakeExamViewRightSide <<JPanel>>{
@@ -83,7 +83,6 @@ class Exam{
     +setDuration()
     +setTitle()
     +setInstructions()
-
 }
 
 class Question{
@@ -100,6 +99,7 @@ class Question{
     +setCorrectAnswerID()
     +setQuestions()
 }
+
 class Answer{
     -int answerID
     -int questionID
