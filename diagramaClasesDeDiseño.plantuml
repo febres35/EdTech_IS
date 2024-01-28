@@ -6,6 +6,7 @@ footer equipo 3
 skinparam style strictuml
 skinparam ClassBackGroundColor EEEEEE
 skinparam ClassBorderThickness 1.5
+skinparam dpi 300
 
 class InstructionsView <<JFrame>>{
     -JLabel instructionsTitle

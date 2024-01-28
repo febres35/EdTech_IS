@@ -1,5 +1,7 @@
 @startuml "Diagrama de despliegue"
 
+skinparam dpi 300
+
 node node[
   Personal Computer
   --
