@@ -100,6 +100,7 @@ class Question{
     -String questions
     -String explanation
     -bool isCorrectAnswer
+    -int correctAnswerID
     +getIsCorrectAnswer()
     +getQuestions()
     +getQuestionID()
