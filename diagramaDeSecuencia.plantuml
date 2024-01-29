@@ -1,0 +1,93 @@
+@startuml "Sequence Diagram"
+
+skinparam dpi 150
+skinparam style strictuml
+title "Diagrama de Secuencia \n Caso de Uso: Presentar Examen"
+
+
+actor ": Student" as S 
+boundary "ExamListView : JFrame" as ELV
+boundary "InstructionsView : JFrame" as IV 
+boundary "takeExamView: JFrame" as TEV
+boundary "resultsView : JFrame" as RV
+control ": takeExamController" as TEC  
+entity ": Exam" as E
+entity ": Student" as Student 
+
+
+S -> ELV : 1: takeExam(examID)
+activate ELV
+ELV -> IV : 2: displayInstructions(examID)
+deactivate ELV
+activate IV
+
+IV -> TEC : 2.1: getExamInstructions(examID)
+activate TEC 
+TEC -> E : 2.2 getInstructions(examID)
+activate E 
+
+E --> TEC : 2.3 examInstructions
+deactivate E
+
+TEC --> IV : 2.4: examInstructions
+activate IV
+IV -> IV : 2.5: loadInstructions(examInstructions)
+
+
+S -> IV : 3: confirmInstructions(examID, isConfirmed) 
+deactivate IV 
+
+alt isConfirmed == True
+    
+IV -> TEV: 4: startExam(examID)
+activate TEV 
+TEV -> TEC: 4.1:getExamQuestions(examID)
+TEC -> E : 4.2: getQuestions(examID)
+destroy IV
+activate E
+E --> TEC : 4.3: questionsCollection
+deactivate E
+TEC --> TEV : 4.4 questionsCollection
+loop for question in questionsCollection
+    
+TEV -> TEV : 4.5: displayQuestion(question)
+
+activate TEV
+S -> TEV : 4.6: submitAnswer(answerOption, questionID)
+TEV -> TEV : 4.7: updateAnswerList(questionOption, questionID)
+S -> TEV : 4.8: nextQuestion() or previousQuestion()
+deactivate TEV
+    
+end
+
+    S -> TEV : 4.9 finishExam()
+    TEV -> TEC : 5: evaluateStudentAnswers(answersList, studentID, examID)
+    TEC -> Student : 6: registerStudentResults(studentID, examID, answersList)
+    activate Student
+    deactivate Student
+    TEV -> RV : 7: displayResults()
+    activate RV 
+    RV -> TEC : 7.1: getStudentResults(studentID, examID)
+    TEC -> Student : 7.2: getResults(studentID, examID)
+    activate Student
+    Student --> TEC : 7.3: studentResults
+    deactivate Student
+    TEC --> RV : 7.4: studentResults
+    RV -> RV: 7.5: loadResults(studentResults)
+    
+    destroy TEV
+deactivate RV 
+
+else isConfirmed == False
+activate IV 
+IV -> ELV
+destroy IV
+activate ELV
+
+deactivate ELV 
+
+
+end 
+
+@enduml
+
