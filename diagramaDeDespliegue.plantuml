@@ -1,0 +1,15 @@
+@startuml "Diagrama de despliegue"
+
+skinparam dpi 300
+
+node node[
+  Personal Computer
+  --
+
+]
+
+component certicomp.jar
+
+node *--> certicomp.jar
+
+@enduml
