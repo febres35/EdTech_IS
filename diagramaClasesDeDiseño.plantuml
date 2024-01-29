@@ -85,10 +85,10 @@ class Exam{
     -int duration
     -String instructions
     -String title
-    +getExamID()
-    +getDuration()
-    +getInstructions()
-    +getTitle()
+    +int getExamID()
+    +int getDuration()
+    +String getInstructions()
+    +String getTitle()
     +setExamID()
     +setDuration()
     +setTitle()
@@ -101,12 +101,13 @@ class Question{
     -String explanation
     -bool isCorrectAnswer
     -int correctAnswerID
-    +getIsCorrectAnswer()
-    +getQuestions()
-    +getQuestionID()
-    +getExplanation()
+    +bool getIsCorrectAnswer()
+    +String getQuestions()
+    +int getQuestionID()
+    +String getExplanation()
     +setQuestionID()
     +setExplanation()
+    +setIsCorrectAnswer()
     +setCorrectAnswerID()
     +setQuestions()
 }
@@ -115,9 +116,9 @@ class Answer{
     -int answerID
     -int questionID
     -String answerDescription
-    +getAnswerID()
-    +getQuestionID()
-    +getAnswerDescription()
+    +int getAnswerID()
+    +int getQuestionID()
+    +String getAnswerDescription()
     +setAnswerID()
     +setQuestionID()
     +setAnswerDescription() 
