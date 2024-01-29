@@ -1,0 +1,126 @@
+@startuml "Diagrama de Estado" 
+ 
+title "Diagrama de estados del dominio\nEquipo 3" 
+ 
+state "Iniciando Proceso" as IP 
+ 
+[*] --> IP 
+ 
+state seleccionandoVista <<choice>> 
+ 
+IP --> seleccionandoVista: Usuario 
+ 
+seleccionandoVista ---> Administrando: [Admistrador] 
+seleccionandoVista ---> PC: [Participante] 
+ 
+state Administrando { 
+    state opciones <<choice>> 
+    state cursoRegistrado <<choice>> 
+    state crearExamen <<choice>> 
+    state "Seleccionando Curso" as SC 
+    state "Registrando Curso" as RC 
+    state "Registrando Usuario" as RU 
+    state "Creando Examen" as CE 
+    [*] --> SC 
+     
+    SC --> cursoRegistrado 
+    cursoRegistrado ------> RC: [cursoRegistrado == no] 
+    cursoRegistrado ------> opciones: [cursoRegistrado == si] 
+    opciones -----> crearExamen :[registrarUsuario == no] 
+    opciones -----> RU:[registrarUsuario == si] 
+    crearExamen ------> CE : [crearExamen == si] 
+    crearExamen ------>[*]:[crearExamen == no] 
+    RC --> RU 
+    RU ----> crearExamen 
+    CE -->  [*] 
+} 
+ 
+state "Participando en Curso" as PC { 
+  state "Mostrando Opciones" as MO 
+    state "Modificando Perfil" as Perfil{ 
+      state "Editar datos" as ED 
+      [*]-->ED 
+      ED-->[*] 
+    } 
+ 
+    [*] --> MO 
+ 
+    MO --> presentarExamen 
+    presentarExamen ----> SE: [presentarExamen == si] 
+    presentarExamen --> Perfil: [presentarExamen == no] 
+ 
+    state "Seleccionando Examen" as SE { 
+      state "Mostrando Examenes Disponibles" as ME 
+      state "Seleccionando Tipo" as ST 
+      state "Mostrando Instrucciones" as MI 
+       
+      [*] --> ME 
+      ME --> ST 
+      ST --> MI  
+      MI --> PE 
+        state "Presentando examen" as PE { 
+          state "Mostrando Enunciado Pregunta" as MP 
+          state "Respondiendo Pregunta" as RP 
+          state Finalizando 
+          state "Listando Respuestas" as LR 
+          [*] --> MP 
+          MP --> RP 
+          RP -left-> MP: siguiente 
+          RP -right-> Finalizando  
+          Finalizando --> LR 
+          LR --> [*] 
+          -- 
+     
+    state "Tiempo transcurriendo" as TT 
+    state "Tiempo detenido" as TD  
+    [*] -r-> TT 
+     
+    TT-r-> TD : [ExamenAbortado == True] 
+    TT -r-> TD : [ExamenCompletado == True] 
+    TD -r-> [*] 
+        } 
+  state "Examen Abortado" as EA  
+state "Examen Completado" as EC  
+ 
+state opciones2 <<choice>>  
+    state join1 <<join>> 
+    PE --> opciones2 
+opciones2 --> EC 
+opciones2 --> EA  
+EC --> join1 
+EA --> join1 
+join1 --> [*] 
+         
+    } 
+ 
+   
+} 
+ 
+state "Consultando ayuda" as CA { 
+        [*] --> SA 
+        state "Seleccionando ayuda" as SA 
+        state "Mostrando preguntas frecuentes" as MF 
+        state "Seleccionando pregunta" as SP 
+        state "Mostrando respuesta" as MR 
+        SA --> MF 
+        MF --> SP 
+        SP --> MR 
+        MR -right-> MF 
+        MR -left-> [*] 
+} 
+ 
+ 
+state "Finalizando Proceso" as FP 
+state consultarAyuda <<choice>> 
+ 
+Administrando --> consultarAyuda 
+PC --> consultarAyuda 
+ 
+consultarAyuda ----> CA :[consultarAyuda== si] 
+consultarAyuda --> FP:[consultarAyuda== no] 
+ 
+CA -->FP 
+ 
+FP --> [*] 
+ 
+@enduml

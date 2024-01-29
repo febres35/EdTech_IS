@@ -1,0 +1,22 @@
+state seleccionarExamen{
+    [*]-->muestraExamenDisponibles
+    state presentaOcancel <<fork>>
+    
+    muestraExamenDisponibles: tipos de examenes disponibles
+    seleccionaExamenApracticar: Se selecciona el tipo de examen 
+    muestraExamenDisponibles-->seleccionaExamenApracticar
+    muestraInstrucciones: Se dan las instrucciones del examen
+    aceptaInstrucciones:El estudiante acepta las instrucciones
+    state aceptaInstruc <<fork>>
+    muestraInstrucciones-->aceptaInstruc
+    aceptaInstruc-->aceptaInstrucciones :acepta
+    noAceptaInstruc:Se escoje otro examen 
+    aceptaInstruc-->noAceptaInstruc :no acepta
+    noAceptaInstruc-->seleccionaExamenApracticar
+    cancelaExamen: no  desea practicar ningun examen
+    seleccionaExamenApracticar-->presentaOcancel
+    presentaOcancel-->cancelaExamen :no presenta
+    presentaOcancel-->muestraInstrucciones :ve instrucciones
+    cancelaExamen---->[*]
+    aceptaInstrucciones-->[*]
+}

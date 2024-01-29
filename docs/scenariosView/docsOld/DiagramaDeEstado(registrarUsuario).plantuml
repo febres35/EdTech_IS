@@ -1,0 +1,18 @@
+state RegistrarUsuario{
+    [*]-->introDatos
+   
+    introDatos:Se ingresa la informacion 
+    
+    muestraDatos: se verifica la informacion
+    introDatos-->muestraDatos
+    concluRegistro:Registro exitoso
+    muestraDatos---->concluRegistro :correcto
+    noCorrecto: Se edita la informacion
+    
+    muestraDatos--->noCorrecto
+    noCorrecto-->introDatos
+    cancelRegistro: No se desea registrar nada 
+   introDatos-->cancelRegistro
+    cancelRegistro-->[*]:cancelado
+    concluRegistro--->[*]:exitoso
+}

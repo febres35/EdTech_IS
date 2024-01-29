@@ -1,0 +1,147 @@
+@startuml analisisDeClases_presentarExamen
+header Analisis de Clases
+title  Presnetar Examen
+footer equipo 3
+
+
+interface examList<<view>>{
+    ButtonCourse: number
+    coursoDescButton()
+    - getExamDesc(): text
+    listExamDesc(): text
+}
+interface instructions<<view>>{
+    acceptExam(examId: number)
+    refuseExam()
+}
+
+interface takeExamUI <<view>>{
+    ExamButton: number
+    
+    - getQuestionsId()
+    - getAnswers(questionId:number)
+    - setAnswerSelect(answerId:number, questionId:number)
+    - chronometer()
+    - setResult()
+    
+    getExam()
+    setAnswersSelect();
+    finishExam()
+    getExams(courseId:number)
+}
+
+interface results<<view>>{
+
+    displayResult()
+}
+
+class takeExam<<controller>>{
+    - getExam(curseId: number): List<object>
+    - getQuestion(examId: numbre): List<object>
+    - getQuestion(answerId): text
+    setResult(object)
+    
+    getExam(ExamId): text
+    getQuestion(QuestionId): text  
+}
+
+
+entity Exam<<Model>>{
+    id: number
+    courseId: number
+    desc: text
+    duration: number
+    instructions: text
+    
+
+    getExamId(): number
+    getCourseId(): number
+    getDuration(): number
+    getInstructions(): text
+    getDesc(): text
+
+    setCourseId()
+    setDuration()
+    setInstructions()
+    setDesc()
+
+    toString(): text
+
+    getQuestion(): text
+    - getQuestionList(): List<object>
+}
+
+entity Domain <<Model>>{
+    id: number
+    desc: text
+    examId: number
+    questionId: number
+
+    getId(): number
+    getDesc(): text
+    getExamId(): text
+    setDesc(): text
+    setExamId(): text
+}
+
+entity Questions<<Model>>{
+    id: number
+    examId: number
+    desc: text
+    explanation: text
+
+    getId(): number
+    getExamId(): number
+    getDesc(): number
+    getExplanation(): text
+    setExamId(): number
+    setDesc(): number
+    setExplanation(): text
+
+    toString(): text 
+
+    - getAnswesList(examId:number): list<object>
+    - getDomainList(examId:number): list<object>
+
+}
+entity Answers<<Model>>{
+    id: number
+    desc: text
+    questionId: number
+    itIsRigth: boolean
+
+    getId(): number
+    getDesc(): text
+    getQuestionId(): number
+    getItIsRigth(): boolean
+    
+    setDesc(): text
+    setQuestionId(): number
+    setItIsRigth(): boolean
+}
+entity DomainQuestion<<Model>>{
+    questionId: number
+    domainId: number
+
+    setQuestionId()
+    setDomainId()
+
+    getQuestionId(): number
+    getDomainId(): number
+
+}
+
+
+(Questions, Domain) -l- DomainQuestion
+
+
+examList -l-  takeExamUI
+instructions -- takeExamUI
+takeExamUI -l- results
+takeExamUI --> takeExam
+
+takeExam -->Exam
+takeExam -l- Questions
+Questions -l- Answers
+
+@enduml
