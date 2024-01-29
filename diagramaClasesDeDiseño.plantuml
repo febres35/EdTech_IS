@@ -8,6 +8,11 @@ skinparam ClassBackGroundColor EEEEEE
 skinparam ClassBorderThickness 1.5
 skinparam dpi 300
 
+class ExamListView <<JFrame>>{
+    -Button takeExam
+    +takeExam()
+}
+
 class InstructionsView <<JFrame>>{
     -JLabel instructionsTitle
     -TextView instructionsText
@@ -124,10 +129,11 @@ class Answer{
     +setAnswerDescription() 
 }
 
-TakeExamController->Exam
-TakeExamController-down->InstructionsView
+TakeExamController-Exam
+TakeExamController--InstructionsView
+ExamListView-down->InstructionsView
 InstructionsView-->TextView
-TakeExamController->TakeExamView
+TakeExamController--TakeExamView
 TakeExamView-->TakeExamViewLeftSide
 TakeExamView-->TakeExamViewRightSide
 TakeExamViewRightSide-->TextView
