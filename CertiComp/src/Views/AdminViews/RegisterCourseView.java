@@ -16,7 +16,7 @@ public class RegisterCourseView extends JFrame{
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
 
-         ImageIcon certiCompLogo = new ImageIcon("images/SmallCertiCompLogo.png");
+         ImageIcon certiCompLogo = new ImageIcon("CertiComp/images/SmallCertiCompLogo.png");
          JLabel logo = new JLabel(certiCompLogo);
 
          JPanel logoPanel = new JPanel();

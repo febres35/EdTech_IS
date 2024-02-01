@@ -34,7 +34,7 @@ class HomeView{
         dateLabel.setFont(new Font("Roboto", Font.BOLD, 25));
         dateLabel.setHorizontalAlignment(JLabel.CENTER);
 
-        ImageIcon certiCompLogo = new ImageIcon("images/CertiComp400.png");
+        ImageIcon certiCompLogo = new ImageIcon("CertiComp/images/CertiComp400.png");
         JLabel logo = new JLabel(certiCompLogo);
 
         JLabel welcomeUser = new JLabel("¡Hola, "+ adminUserName + "!");

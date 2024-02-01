@@ -19,7 +19,7 @@ public class CourseManagementView extends JPanel {
         coursePanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
-        ImageIcon certiCompLogo = new ImageIcon("images/CertiComp250.png");
+        ImageIcon certiCompLogo = new ImageIcon("certicomp/images/CertiComp250.png");
         JLabel logo = new JLabel(certiCompLogo);
 
         ButtonFactory BigFactory = new BigButtonsFactory();
