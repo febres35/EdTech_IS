@@ -16,7 +16,9 @@ import javax.swing.table.DefaultTableCellRenderer;
 //import javax.swing.border.EmptyBorder;
 //import javax.swing.JOptionPane;
 
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Rectangle;
 //import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,18 +28,19 @@ public class BtnInTable extends JTable implements ActionListener  {
     public  JButton btnPresentarExamen;
     public BtnInTable(String[] headers, Object[][] data){
         super(new DefaultTableModel(data, headers));
-        
         setEnabled(false);
 
 
-        getColumnModel().getColumn(1).setPreferredWidth(200);
-        getColumnModel().getColumn(getColumnCount()-1).setPreferredWidth(200);
+        //getColumnModel().getColumn(1).setPreferredWidth(200);
+        //getColumnModel().getColumn(getColumnCount()-1).setPreferredWidth(200);
         //getTableHeader().setReorderingAllowed(false);
-
         
+        
+        //setShowHorizontalLines(false);
+        //setShowVerticalLines(false);
         centerCell();
         //applyBorder();
-        applyPadding();
+        //applyPadding();
         //raizebleColumn();
 
     }
@@ -89,7 +92,7 @@ public class BtnInTable extends JTable implements ActionListener  {
     } */
 
     private void applyPadding(){
-        setRowHeight(getRowHeight() + 50);
+        setRowHeight(getRowHeight() + 30);
     }
 
 
@@ -112,7 +115,7 @@ public class BtnInTable extends JTable implements ActionListener  {
         }
     
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-            setText((value == null) ? "" : value.toString());
+            setText((value == null) ? "Presentar Examt" : value.toString());
             return this;
         }
     }
