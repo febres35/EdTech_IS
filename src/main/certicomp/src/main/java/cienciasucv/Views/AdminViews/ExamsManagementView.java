@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import cienciasucv.crearexamen;
 import cienciasucv.Models.Course;
 import cienciasucv.Views.Buttons;
 import cienciasucv.Views.LogoFactory;
@@ -61,7 +62,7 @@ public class ExamsManagementView extends JPanel {
 
         createExam.addActionListener((ActionListener) new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new CreateExamView();
+                new crearexamen();
             }
         });
 

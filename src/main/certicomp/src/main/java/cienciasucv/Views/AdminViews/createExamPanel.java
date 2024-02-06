@@ -65,9 +65,11 @@ public class createExamPanel extends createPanel{
                     controller.collectExamData(createExamPanel.this);
                     Domain nuevoDomain=new Domain(1,getDominumArea());
                     JOptionPane.showMessageDialog(null, "EXAMEN CREADO");
-                    System.exit(0);
-                }
+                    JFrame frame=(JFrame)SwingUtilities.getWindowAncestor(createExamPanel.this);
+                    frame.dispose();
+                }else{
                 JOptionPane.showMessageDialog(null, "DEBE LLENAR TODOS LOS CAMPOS");
+                }
             }
         };
       

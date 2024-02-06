@@ -1,7 +1,7 @@
 package cienciasucv;
 import cienciasucv.Views.AdminViews.*;
 public class crearexamen {
-    public static void main(String[] args) {
+    public crearexamen(){
         createExamUI ventana = new createExamUI();
     }
     
