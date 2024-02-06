@@ -51,7 +51,7 @@ class addInstruccionPanel extends createPanel {
     protected void addLogo(JLabel label1){
         
         this.newLabelInstructions = label1;
-        ImageIcon icon = new ImageIcon(getClass().getResource("/img/CertiCompSmall.png"));
+        ImageIcon icon = new ImageIcon(getClass().getResource("/images/CertiCompSmall.png"));
         //****Se añadieron nuevas dimensiones width y height***
         Icon nuevaIcon = new ImageIcon(icon.getImage().getScaledInstance(280, 50, Image.SCALE_SMOOTH));
         

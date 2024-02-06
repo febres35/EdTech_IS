@@ -47,7 +47,7 @@ class addDominiumPanel extends createPanel {
 
     protected void addLogo(JLabel label2){
         this.newLabelDominium = label2;
-        ImageIcon icon = new ImageIcon(getClass().getResource("/img/CertiCompSmall.png"));
+        ImageIcon icon = new ImageIcon(getClass().getResource("/images/CertiCompSmall.png"));
         Icon nuevaIcon = new ImageIcon(icon.getImage().getScaledInstance(280, 50, Image.SCALE_SMOOTH));
         newLabelDominium.setBounds(125, 20, 280, 50);
         newLabelDominium.setIcon(nuevaIcon); 

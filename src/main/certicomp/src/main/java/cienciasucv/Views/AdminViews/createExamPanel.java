@@ -128,7 +128,7 @@ public class createExamPanel extends createPanel{
 
     protected void addLogo(JLabel label){
         this.newLabel = label;
-        ImageIcon icon = new ImageIcon(getClass().getResource("/img/CertiCompSmall.png"));
+        ImageIcon icon = new ImageIcon(getClass().getResource("/images/CertiCompSmall.png"));
         Icon nuevaIcon = new ImageIcon(icon.getImage().getScaledInstance(200, 50, Image.SCALE_SMOOTH));
         newLabel.setBounds(15, 20, 200, 50);
         newLabel.setIcon(nuevaIcon); 

@@ -131,7 +131,7 @@ public class TakeExamView extends JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        ImageIcon icon = new ImageIcon(getClass().getResource("/img/CertiComp2.png"));
+        ImageIcon icon = new ImageIcon(getClass().getResource("/images/CertiCompSmall.png"));
         Icon nuevaIcon = new ImageIcon(icon.getImage().getScaledInstance(462, 104, Image.SCALE_SMOOTH));
         jLabel1.setBounds(0, 0, 462, 104);
         jLabel1.setIcon(nuevaIcon); // NOI18N
