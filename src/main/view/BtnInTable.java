@@ -3,6 +3,7 @@ package main.view;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -10,6 +11,7 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 //import javax.swing.BorderFactory;
 //import javax.swing.table.JTableHeader;
@@ -22,6 +24,73 @@ import java.awt.Rectangle;
 //import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+/*public class BtnInTable extends AbstractTableModel{
+
+    private Object[] header;
+    private Object[][] data;
+    
+
+    public BtnInTable( ){
+        header = null;
+        data = null;
+    }
+
+    public BtnInTable(Object[] header, Object[][] data ){
+        this.header = header;
+        this.data = data;
+        
+        
+    }
+
+    public BtnInTable(Object[] header){
+        this.header = header;
+        this.data = null;
+        
+        
+    }
+
+    @Override
+    public int getRowCount() {
+        // TODO Auto-generated method stub
+        //throw new UnsupportedOperationException("Unimplemented method 'getRowCount'");
+        if (data == null){
+            return 5;
+        }
+        return data.length;
+      }
+
+    @Override
+    public int getColumnCount() {
+        // TODO Auto-generated method stub
+        //throw new UnsupportedOperationException("Unimplemented method 'getColumnCount'");
+        if (header == null){
+            return 5;
+        }
+        return header.length;   
+
+    }
+
+    @Override
+    public Object getValueAt(int rowIndex, int columnIndex) {
+        // TODO Auto-generated method stub
+        //throw new UnsupportedOperationException("Unimplemented method 'getValueAt'");
+        if (data == null){
+            return null;
+        }
+        return data[rowIndex][columnIndex];
+    
+    }
+    public String getColumnName(int c){
+        if (header == null){
+            return "column " + c;
+        }
+        return  (String) this.header[c];
+    }
+}
+
+
+ */
 
 public class BtnInTable extends JTable implements ActionListener  {
 
@@ -100,7 +169,7 @@ public class BtnInTable extends JTable implements ActionListener  {
         for (int i = 0; i< getColumnCount()-1; i++) {
             getColumnModel().getColumn(i).setResizable(false);
         }
-    }*/
+    }
 
     public void actionPerformed(ActionEvent e){
         JButton btnPressed = (JButton) e.getSource();
@@ -120,26 +189,8 @@ public class BtnInTable extends JTable implements ActionListener  {
         }
     }
     
-    class ButtonEditor extends DefaultCellEditor {
-        private JButton boton;
     
-        public ButtonEditor(JButton boton) {
-            super(new JTextField());
-            this.boton = boton;
-            this.boton.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    fireEditingStopped();
-
-                    
-                }
-            });
-        }
-    
-        public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-            return boton;
-        }
-    }
-    
+*/    
 }
 
 
