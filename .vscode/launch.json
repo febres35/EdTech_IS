@@ -6,6 +6,27 @@
   "configurations": [
     {
       "type": "java",
+      "name": "LoginInterface",
+      "request": "launch",
+      "mainClass": "cienciasucv.Views.LoginInterface",
+      "projectName": "certicomp"
+    },
+    {
+      "type": "java",
+      "name": "TakeExamView",
+      "request": "launch",
+      "mainClass": "cienciasucv.Views.StudentViews.TakeExamView",
+      "projectName": "certicomp"
+    },
+    {
+      "type": "java",
+      "name": "EditUserView",
+      "request": "launch",
+      "mainClass": "cienciasucv.Views.AdminViews.EditUserView",
+      "projectName": "certicomp"
+    },
+    {
+      "type": "java",
       "name": "RegisterUserView",
       "request": "launch",
       "mainClass": "cienciasucv.Views.AdminViews.RegisterUserView",

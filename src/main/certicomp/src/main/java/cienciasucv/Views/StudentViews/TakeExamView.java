@@ -1,5 +1,8 @@
 package cienciasucv.Views.StudentViews;
 import cienciasucv.Controllers.*;
+import cienciasucv.Views.Buttons;
+import cienciasucv.Views.SizeType;
+
 import javax.swing.*;
 import javax.swing.plaf.metal.MetalButtonUI;
 
@@ -19,7 +22,7 @@ public class TakeExamView extends JFrame {
   // Variables declaration                     
   private ButtonGroup buttonGroup1;
   private Box.Filler filler1;
-  private JButton finisExamButton;
+  private JButton finishExamButton;
   private JButton previousButton;
   private JButton nextButton;
   private JLabel jLabel1;
@@ -106,10 +109,10 @@ public class TakeExamView extends JFrame {
         jLabel5 = new JLabel();
         jLabel6 = new JLabel();
         timePanel = new TimeCronometer(3600*3);;
-        finisExamButton = new JButton();
+        finishExamButton = Buttons.getButton("Finalizar Examen", SizeType.MEDIUM);
         jPanel2 = new JPanel();
-        previousButton = new JButton();
-        nextButton = new JButton();
+        previousButton = Buttons.getButton("Anterior", SizeType.SMALL);
+        nextButton = Buttons.getButton("Siguiente", SizeType.SMALL);
         pBarQuestions = new JProgressBar();
         questionPanel = new JPanel();
         jScrollPane1 = new JScrollPane();
@@ -155,11 +158,7 @@ public class TakeExamView extends JFrame {
       timePanel.setBackground(new java.awt.Color(255, 255, 255));
       timePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true), "TIEMPO RESTANTE", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Candara", 1, 24)));
 
-      finisExamButton.setBackground(new java.awt.Color(0, 0, 0));
-      finisExamButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-      finisExamButton.setForeground(new java.awt.Color(255, 255, 255));
-      finisExamButton.setText("Finalizar Examen");
-      finisExamButton.addActionListener(new java.awt.event.ActionListener() {
+      finishExamButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 finisExam(evt);
             }
@@ -189,7 +188,7 @@ public class TakeExamView extends JFrame {
                       .addComponent(timePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                   .addGroup(jPanel1Layout.createSequentialGroup()
                       .addGap(169, 169, 169)
-                      .addComponent(finisExamButton, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                      .addComponent(finishExamButton, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
               .addContainerGap(120, Short.MAX_VALUE))
       );
       jPanel1Layout.setVerticalGroup(
@@ -210,29 +209,24 @@ public class TakeExamView extends JFrame {
               .addGap(48, 48, 48)
               .addComponent(timePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
               .addGap(36, 36, 36)
-              .addComponent(finisExamButton, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+              .addComponent(finishExamButton, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
               .addGap(76, 76, 76))
       );
 
       jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-      previousButton.setUI(new MetalButtonUI());
-      previousButton.setFont(new java.awt.Font("Arial Black", 1, 14)); 
-      previousButton.setText("Anterior");
-      previousButton.setForeground(new java.awt.Color(255, 255, 255));
-      previousButton.setBackground(new java.awt.Color(0, 0, 0));
-      previousButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+    //   previousButton.setUI(new MetalButtonUI());
+    //   previousButton.setFont(new java.awt.Font("Arial Black", 1, 14)); 
+    //   previousButton.setText("Anterior");
+    //   previousButton.setForeground(new java.awt.Color(255, 255, 255));
+    //   previousButton.setBackground(new java.awt.Color(0, 0, 0));
+    //   previousButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
       previousButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 previousQuestion(evt);
             }
         });
 
-      nextButton.setFont(new java.awt.Font("Arial Black", 1, 14)); 
-      nextButton.setText("Siguiente");
-      nextButton.setForeground(new java.awt.Color(255, 255, 255));
-      nextButton.setBackground(new java.awt.Color(0, 0, 0));
-      nextButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
       nextButton.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             nextQuestion(evt);
@@ -438,4 +432,16 @@ public class TakeExamView extends JFrame {
         pBarQuestions.setString(pBarString+" de 100 respondidas");
     }             
 
+        public static void main(String[] args) {
+
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                
+                    TakeExamView ventana = new TakeExamView();   
+                
+                }
+            });
+        
+        }
+      
 }                      

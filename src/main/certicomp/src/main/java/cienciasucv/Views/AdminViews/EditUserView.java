@@ -4,7 +4,7 @@ import javax.swing.ImageIcon;
 import javax.swing.*;
 import java.awt.*;
 
-public class RegisterUserView extends javax.swing.JFrame {
+public class EditUserView extends javax.swing.JFrame {
 
     private javax.swing.JRadioButton adminRolButton;
     private javax.swing.ButtonGroup buttonGroup1;
@@ -20,13 +20,13 @@ public class RegisterUserView extends javax.swing.JFrame {
     private javax.swing.JLabel logoRegisterUser;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel passwordLabel;
-    private javax.swing.JButton registerButton;
-    private javax.swing.JLabel registerUserLabel;
+    private javax.swing.JButton editButton;
+    private javax.swing.JLabel editUserLabel;
     private javax.swing.JLabel rolLabel;
     private javax.swing.JRadioButton studentRolButton;
 
     
-    public RegisterUserView() {
+    public EditUserView() {
         initComponents();
     }
                  
@@ -34,7 +34,7 @@ public class RegisterUserView extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         logoRegisterUser = new javax.swing.JLabel();
-        registerUserLabel = new javax.swing.JLabel();
+        editUserLabel = new javax.swing.JLabel();
         enterDataLabel = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         nameLabel = new javax.swing.JLabel();
@@ -49,7 +49,7 @@ public class RegisterUserView extends javax.swing.JFrame {
         rolLabel = new javax.swing.JLabel();
         studentRolButton = new javax.swing.JRadioButton();
         adminRolButton = new javax.swing.JRadioButton();
-        registerButton = new javax.swing.JButton();
+        editButton = new javax.swing.JButton();
 
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -62,11 +62,11 @@ public class RegisterUserView extends javax.swing.JFrame {
         logoRegisterUser.setIcon(nuevaIcon);
         //add(logoRegisterUser);
 
-        registerUserLabel.setFont(new java.awt.Font("Leelawadee UI", 1, 38)); 
-        registerUserLabel.setText("Registrar Usuario");
+        editUserLabel.setFont(new java.awt.Font("Leelawadee UI", 1, 38)); 
+        editUserLabel.setText("Editar Usuario");
 
         enterDataLabel.setFont(new java.awt.Font("Arial", 1, 20)); 
-        enterDataLabel.setText("Introduzca los datos del nuevo usuario:");
+        enterDataLabel.setText("Modifique la información del usuario:");
 
         jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -115,13 +115,13 @@ public class RegisterUserView extends javax.swing.JFrame {
             }
         });
 
-        registerButton.setBackground(new java.awt.Color(0, 0, 0));
-        registerButton.setFont(new java.awt.Font("Arial", 1, 18)); 
-        registerButton.setForeground(new java.awt.Color(255, 255, 255));
-        registerButton.setText("Registrar");
-        registerButton.addActionListener(new java.awt.event.ActionListener() {
+        editButton.setBackground(new java.awt.Color(0, 0, 0));
+        editButton.setFont(new java.awt.Font("Arial", 1, 18)); 
+        editButton.setForeground(new java.awt.Color(255, 255, 255));
+        editButton.setText("Editar");
+        editButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registerButtonActionPerformed(evt);
+              editButtonActionPerformed(evt);
             }
         });
 
@@ -139,7 +139,7 @@ public class RegisterUserView extends javax.swing.JFrame {
                                 .addComponent(nameLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(registerButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(editButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(idLabel)
@@ -168,7 +168,7 @@ public class RegisterUserView extends javax.swing.JFrame {
                         .addComponent(adminRolButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(44, 44, 44)
-                        .addComponent(registerUserLabel)))
+                        .addComponent(editUserLabel)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -177,7 +177,7 @@ public class RegisterUserView extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addComponent(logoRegisterUser, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
-                .addComponent(registerUserLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(editUserLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(enterDataLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
@@ -206,14 +206,14 @@ public class RegisterUserView extends javax.swing.JFrame {
                     .addComponent(adminRolButton)
                     .addComponent(rolLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-                .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
 
         pack();
     }                      
 
-    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {                                               
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {                                               
         
     }                                              
 
@@ -232,7 +232,7 @@ public class RegisterUserView extends javax.swing.JFrame {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegisterUserView().setVisible(true);
+                new EditUserView().setVisible(true);
             }
         });
     }        
