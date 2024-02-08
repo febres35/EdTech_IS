@@ -12,7 +12,6 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
 import cienciasucv.Models.*;
-import cienciasucv.Views.*;
 import cienciasucv.Views.AdminViews.RegisterCourseView;
 
 public class RegisterCourseController {

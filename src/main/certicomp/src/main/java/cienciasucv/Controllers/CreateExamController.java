@@ -1,6 +1,5 @@
 package cienciasucv.Controllers;
 import cienciasucv.Models.*;
-import cienciasucv.Views.*;
 import cienciasucv.Views.AdminViews.*;
 
 import com.google.gson.Gson;
@@ -15,6 +14,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CreateExamController {
+
+    private createExamPanel view;
+
+    private String generateExamId() {
+        int nextId = 1;
+        File file = new File("exams.json");
+        if (file.exists()) {
+            try (FileReader reader = new FileReader(file)) {
+                JsonObject exams = new Gson().fromJson(reader, JsonObject.class);
+                for (String examID : exams.keySet()) {
+                    int currentIdNumber = Integer.parseInt(examID.substring(1));
+                    nextId = Math.max(nextId, currentIdNumber + 1);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return "E" + String.format("%03d", nextId);
+    }
 
     public void createNewExam(Exam exam) {
 
@@ -38,38 +56,18 @@ public class CreateExamController {
             System.out.println("Error, examen no creado." + e.getMessage());
         }
     }
-    
-
-  private String generateExamId() {
-        int nextId = 1;
-        File file = new File("exams.json");
-        if (file.exists()) {
-            try (FileReader reader = new FileReader(file)) {
-                JsonObject courses = new Gson().fromJson(reader, JsonObject.class);
-                for (String courseId : courses.keySet()) {
-                    int currentIdNumber = Integer.parseInt(courseId.substring(1));
-                    nextId = Math.max(nextId, currentIdNumber + 1);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return "E" + String.format("%03d", nextId);
-    }
 
     public void collectExamData(createExamPanel view){
 
         String id = generateExamId();
 
         Map<String, Object> examAttributes = new HashMap<>();
-        //String[] exams = new String[0];
 
-        examAttributes.put("name", view.getNameBox());
-        //examAttributes.put("level", view.getLevelBox());
-        examAttributes.put("course", view.getCourseBox());
         examAttributes.put("duration", view.getDurationBox());
         examAttributes.put("instructions", view.getInstructionsArea());
-        //examAttributes.put("exams", exams );
+        examAttributes.put("title", view.getNameBox());
+        examAttributes.put("course", view.getCourseBox());
+        
         Exam exam = new Exam(id, examAttributes);
 
         createNewExam(exam);

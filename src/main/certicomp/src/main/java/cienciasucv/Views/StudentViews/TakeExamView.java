@@ -259,7 +259,6 @@ public class TakeExamView extends JFrame {
             }
 
         } catch (IOException e) {
-          // TODO Auto-generated catch block
           e.printStackTrace();
         }
     
@@ -408,12 +407,10 @@ public class TakeExamView extends JFrame {
   }                      
 
     private void finisExam(java.awt.event.ActionEvent evt) {                                         
-      // TODO add your handling code here:
       timePanel.stopCountdown();
     }                  
     
     private void nextQuestion(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
        if(valor < 100){ valor += 10;}
        if(valor == pBarQuestions.getMaximum()){nextButton.setEnabled(false);}
        if(valor > pBarQuestions.getMinimum()){previousButton.setEnabled(true);}
@@ -423,7 +420,6 @@ public class TakeExamView extends JFrame {
     }              
 
     private void previousQuestion(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
         if(valor > 0){ valor -=10;}
         if(valor == pBarQuestions.getMinimum()){previousButton.setEnabled(false);}
         if(valor == pBarQuestions.getMaximum()-10){nextButton.setEnabled(true);}
