@@ -4,5 +4,11 @@
     "instructions": "aaaaaaaaaaaaaaaaaaaaaaaaaaa",
     "course": "CISCO",
     "title": "aaaaaaaaaaaaa"
+  },
+  "E002": {
+    "duration": 5,
+    "instructions": "saaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasas",
+    "course": "Java",
+    "title": "Examen Final Java SE"
   }
 }

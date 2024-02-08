@@ -15,8 +15,6 @@ import java.util.Map;
 
 public class CreateExamController {
 
-    private createExamPanel view;
-
     private String generateExamId() {
         int nextId = 1;
         File file = new File("exams.json");
