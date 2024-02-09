@@ -55,7 +55,7 @@ public class CreateExamController {
         }
     }
 
-    public void collectExamData(createExamPanel view){
+    public void collectExamData(CreateExamPanel view){
 
         String id = generateExamId();
 

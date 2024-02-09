@@ -12,21 +12,22 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class createExamPanel extends createPanel{
-    private JLabel newLabel;
+public class CreateExamPanel extends CreatePanel{
     public LimitedTextField NameBox;
     public JTextField DurationBox;
     private JComboBox Levels;
     private JComboBox AsociatedCourses;
     public static JTextArea DominiumArea;
     public static JTextArea InstructionsArea;
-    public addDominiumView dominiumWindow;
-    public addInstructionView instrucWindow;
+    public AddDominiumView dominiumWindow;
+    public AddInstructionView instrucWindow;
     private Button addEdit1;
     private Button addEdit2; 
-    private boolean dialogOpen= false;
 
-    public createExamPanel(){
+    public CreateExamPanel(){
+        JLabel labelLogo = new JLabel();
+        addLogo(labelLogo);
+        add(labelLogo);
         this.setLayout(null);
         this.setBackground(Fondo); 
         addTitulo(" Introduzca los datos del examen",40,90, 210, 30,14); 
@@ -56,24 +57,24 @@ public class createExamPanel extends createPanel{
         dimensiones=InstructionsArea.getBounds();
         Instrucciones.setBounds(dimensiones);
         this.add(Instrucciones);
-        ActionListener crearExamen = new ActionListener() {
+        botonCrear.addActionListener((ActionListener) new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae){
                 if(camposLlenos()){
                     CreateExamController controller = new CreateExamController();//añade esta instruccion aqui
                     //Exam nuevoExam= new Exam(1,getDurationBox(),getInstructionsArea(),getNameBox());
-                    controller.collectExamData(createExamPanel.this);
+                    controller.collectExamData(CreateExamPanel.this);
                     Domain nuevoDomain=new Domain(1,getDominumArea());
                     JOptionPane.showMessageDialog(null, "EXAMEN CREADO");
-                    JFrame frame=(JFrame)SwingUtilities.getWindowAncestor(createExamPanel.this);
+                    JFrame frame=(JFrame)SwingUtilities.getWindowAncestor(CreateExamPanel.this);
                     frame.dispose();
                 }else{
                 JOptionPane.showMessageDialog(null, "DEBE LLENAR TODOS LOS CAMPOS");
                 }
             }
-        };
+        });
       
-        ActionListener openDominium = new ActionListener() {
+        addEdit1.addActionListener((ActionListener) new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae){
                 addEdit1.setEnabled(false);
@@ -82,7 +83,7 @@ public class createExamPanel extends createPanel{
                 AsociatedCourses.setEnabled(false);
                 DurationBox.setEnabled(false);
                 Levels.setEnabled(false);
-                dominiumWindow = new addDominiumView();
+                dominiumWindow = new AddDominiumView();
                 dominiumWindow.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosed(WindowEvent e){
@@ -96,14 +97,14 @@ public class createExamPanel extends createPanel{
                     }
                 });
             }
-        };
+        });
        
-        ActionListener openInstructions = new ActionListener() {
+        addEdit2.addActionListener((ActionListener) new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae){
                 addEdit1.setEnabled(false);
                 addEdit2.setEnabled(false);
-                instrucWindow = new addInstructionView();
+                instrucWindow = new AddInstructionView();
                 NameBox.setEnabled(false);
                 AsociatedCourses.setEnabled(false);
                 DurationBox.setEnabled(false);
@@ -120,20 +121,15 @@ public class createExamPanel extends createPanel{
                     }
                 });
             }
-        };
-
-        botonCrear.addActionListener(crearExamen);
-        addEdit1.addActionListener(openDominium);
-        addEdit2.addActionListener(openInstructions);
+        });
     
     }
 
     protected void addLogo(JLabel label){
-        this.newLabel = label;
         ImageIcon icon = new ImageIcon(getClass().getResource("/images/CertiCompSmall.png"));
-        Icon nuevaIcon = new ImageIcon(icon.getImage().getScaledInstance(200, 50, Image.SCALE_SMOOTH));
-        newLabel.setBounds(15, 20, 200, 50);
-        newLabel.setIcon(nuevaIcon); 
+        Icon nuevaIcon = new ImageIcon(icon.getImage().getScaledInstance(300, 70, Image.SCALE_SMOOTH));
+        label.setBounds(15, 20, 300, 70);
+        label.setIcon(nuevaIcon); 
     }
 
     private void aggButtons(Button C, Button E1, Button E2 ){

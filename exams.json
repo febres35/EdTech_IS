@@ -10,5 +10,17 @@
     "instructions": "saaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasas",
     "course": "Java",
     "title": "Examen Final Java SE"
+  },
+  "E003": {
+    "duration": 121,
+    "instructions": "InstPrueba",
+    "course": "Java",
+    "title": "Prueba"
+  },
+  "E004": {
+    "duration": 120,
+    "instructions": "Instrucciones de Prueba",
+    "course": "Java",
+    "title": "Prueba"
   }
 }
