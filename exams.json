@@ -16,5 +16,11 @@
     "instructions": "InstPrueba",
     "course": "Java",
     "title": "Prueba"
+  },
+  "E004": {
+    "duration": 120,
+    "instructions": "Instrucciones de Prueba",
+    "course": "Java",
+    "title": "Prueba"
   }
 }

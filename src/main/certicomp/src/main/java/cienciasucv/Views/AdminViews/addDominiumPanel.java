@@ -7,10 +7,11 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 class AddDominiumPanel extends CreatePanel {
-
-    JLabel newLabelDominium;
     
     public AddDominiumPanel(){
+        JLabel labelLogo= new JLabel();
+        addLogo(labelLogo);
+        add(labelLogo);
         this.setLayout(null);
         this.setBackground(Fondo); 
         addTitulo(" Dominios", 35  , 75, 80, 20, 16);
@@ -27,7 +28,7 @@ class AddDominiumPanel extends CreatePanel {
         Doms.setAutoscrolls(true);
         this.add(dominiums);
         instruccionesFrame();
-        ActionListener oyente =new ActionListener(){
+        Guardar.addActionListener((ActionListener)new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent ae){
                 JFrame parentFrame=(JFrame)getRootPane().getParent();
@@ -38,24 +39,23 @@ class AddDominiumPanel extends CreatePanel {
                 parentFrame.dispose();
             }
             
-        };
-        Guardar.addActionListener(oyente);
-        };
+        });
+    }
     
     private Button Guardar;
     public JTextArea Doms;
 
-    protected void addLogo(JLabel label2){
-        this.newLabelDominium = label2;
+    protected void addLogo(JLabel label){
         ImageIcon icon = new ImageIcon(getClass().getResource("/images/CertiCompSmall.png"));
-        Icon nuevaIcon = new ImageIcon(icon.getImage().getScaledInstance(280, 50, Image.SCALE_SMOOTH));
-        newLabelDominium.setBounds(125, 20, 280, 50);
-        newLabelDominium.setIcon(nuevaIcon); 
+        Icon nuevaIcon = new ImageIcon(icon.getImage().getScaledInstance(250, 60, Image.SCALE_SMOOTH));
+        label.setBounds(15, 10, 250, 60);
+        label.setIcon(nuevaIcon); 
     }
 
+
     private void aggButtons(Button G){
-        G.addButton("GUARDAR", 328, 605, 110, 40);
-        G.setFont(new Font("Roboto", Font.BOLD, 14));
+        G.addButton("GUARDAR", 340, 605, 110, 40);
+        G.setFont(new Font("Roboto", Font.BOLD, 16));
         this.add(G);
     }      
 
