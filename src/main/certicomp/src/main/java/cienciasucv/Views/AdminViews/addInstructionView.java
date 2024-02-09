@@ -1,9 +1,9 @@
 package cienciasucv.Views.AdminViews;
 
 import javax.swing.*;
-public class addInstructionView extends JFrame{
+public class AddInstructionView extends JFrame{
 
-    public addInstructionView(){
+    public AddInstructionView(){
     JLabel logoInstructions = new JLabel();
     panelInstrucciones = new addInstruccionPanel();
     panelInstrucciones.addLogo(logoInstructions);

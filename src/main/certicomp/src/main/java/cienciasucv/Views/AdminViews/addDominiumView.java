@@ -2,11 +2,11 @@ package cienciasucv.Views.AdminViews;
 
 import javax.swing.*;
 
-public class addDominiumView extends JFrame{
+public class AddDominiumView extends JFrame{
 
-    public addDominiumView(){
+    public AddDominiumView(){
         JLabel logoDominium = new JLabel();
-        addDominiumPanel panelDominio = new addDominiumPanel();
+        AddDominiumPanel panelDominio = new AddDominiumPanel();
         panelDominio.addLogo(logoDominium);
 
         this.setBounds(900, 40, 530, 700);

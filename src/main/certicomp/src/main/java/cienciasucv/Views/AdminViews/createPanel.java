@@ -8,8 +8,8 @@ import javax.swing.text.DocumentFilter;
 
 import java.awt.*;
 
-public class createPanel extends JPanel {
-    createPanel(){
+public class CreatePanel extends JPanel {
+    CreatePanel(){
     }
 
     public static class LimitedTextField extends JTextField {

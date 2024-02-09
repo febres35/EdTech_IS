@@ -1,16 +1,16 @@
 package cienciasucv.Views.AdminViews;
-
+import cienciasucv.Views.AdminViews.CreatePanel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-class addDominiumPanel extends createPanel {
+class AddDominiumPanel extends CreatePanel {
 
     JLabel newLabelDominium;
     
-    public addDominiumPanel(){
+    public AddDominiumPanel(){
         this.setLayout(null);
         this.setBackground(Fondo); 
         addTitulo(" Dominios", 35  , 75, 80, 20, 16);
@@ -21,7 +21,7 @@ class addDominiumPanel extends createPanel {
         Rectangle dimensiones=Doms.getBounds();
         JScrollPane dominiums = new JScrollPane(Doms,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         dominiums.setBounds(dimensiones);
-        Doms.setText(createExamPanel.DominiumArea.getText());
+        Doms.setText(CreateExamPanel.DominiumArea.getText());
         Doms.setLineWrap(true);
         Doms.setWrapStyleWord(true);
         Doms.setAutoscrolls(true);
@@ -32,7 +32,7 @@ class addDominiumPanel extends createPanel {
             public void actionPerformed(ActionEvent ae){
                 JFrame parentFrame=(JFrame)getRootPane().getParent();
                 String Dominios=Doms.getText();
-                createExamPanel.setDominumArea(Dominios);
+                CreateExamPanel.setDominumArea(Dominios);
                 JOptionPane.showMessageDialog(null, "Dominios Editados");
                 parentFrame.setVisible(false);
                 parentFrame.dispose();

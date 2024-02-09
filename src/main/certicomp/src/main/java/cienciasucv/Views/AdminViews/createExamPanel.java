@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class createExamPanel extends createPanel{
+public class CreateExamPanel extends CreatePanel{
     private JLabel newLabel;
     public LimitedTextField NameBox;
     public JTextField DurationBox;
@@ -20,13 +20,12 @@ public class createExamPanel extends createPanel{
     private JComboBox AsociatedCourses;
     public static JTextArea DominiumArea;
     public static JTextArea InstructionsArea;
-    public addDominiumView dominiumWindow;
-    public addInstructionView instrucWindow;
+    public AddDominiumView dominiumWindow;
+    public AddInstructionView instrucWindow;
     private Button addEdit1;
     private Button addEdit2; 
-    private boolean dialogOpen= false;
 
-    public createExamPanel(){
+    public CreateExamPanel(){
         this.setLayout(null);
         this.setBackground(Fondo); 
         addTitulo(" Introduzca los datos del examen",40,90, 210, 30,14); 
@@ -62,10 +61,10 @@ public class createExamPanel extends createPanel{
                 if(camposLlenos()){
                     CreateExamController controller = new CreateExamController();//añade esta instruccion aqui
                     //Exam nuevoExam= new Exam(1,getDurationBox(),getInstructionsArea(),getNameBox());
-                    controller.collectExamData(createExamPanel.this);
+                    controller.collectExamData(CreateExamPanel.this);
                     Domain nuevoDomain=new Domain(1,getDominumArea());
                     JOptionPane.showMessageDialog(null, "EXAMEN CREADO");
-                    JFrame frame=(JFrame)SwingUtilities.getWindowAncestor(createExamPanel.this);
+                    JFrame frame=(JFrame)SwingUtilities.getWindowAncestor(CreateExamPanel.this);
                     frame.dispose();
                 }else{
                 JOptionPane.showMessageDialog(null, "DEBE LLENAR TODOS LOS CAMPOS");
@@ -82,7 +81,7 @@ public class createExamPanel extends createPanel{
                 AsociatedCourses.setEnabled(false);
                 DurationBox.setEnabled(false);
                 Levels.setEnabled(false);
-                dominiumWindow = new addDominiumView();
+                dominiumWindow = new AddDominiumView();
                 dominiumWindow.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosed(WindowEvent e){
@@ -103,7 +102,7 @@ public class createExamPanel extends createPanel{
             public void actionPerformed(ActionEvent ae){
                 addEdit1.setEnabled(false);
                 addEdit2.setEnabled(false);
-                instrucWindow = new addInstructionView();
+                instrucWindow = new AddInstructionView();
                 NameBox.setEnabled(false);
                 AsociatedCourses.setEnabled(false);
                 DurationBox.setEnabled(false);

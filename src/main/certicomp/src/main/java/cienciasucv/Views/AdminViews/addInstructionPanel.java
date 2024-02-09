@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-class addInstruccionPanel extends createPanel {
+class addInstruccionPanel extends CreatePanel {
 
     JLabel newLabelInstructions;
     
@@ -21,7 +21,7 @@ class addInstruccionPanel extends createPanel {
         Rectangle dimensiones=Inst.getBounds();
         JScrollPane Instructions = new JScrollPane(Inst,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         Instructions.setBounds(dimensiones);
-        Inst.setText(createExamPanel.InstructionsArea.getText());
+        Inst.setText(CreateExamPanel.InstructionsArea.getText());
         Inst.setLineWrap(true);
         Inst.setWrapStyleWord(true);
         Inst.setAutoscrolls(true);
@@ -32,7 +32,7 @@ class addInstruccionPanel extends createPanel {
             public void actionPerformed(ActionEvent ae){
                 JFrame parentFrame=(JFrame)getRootPane().getParent();
                 String instrucciones=Inst.getText();
-                createExamPanel.setInstructionsArea(instrucciones);
+                CreateExamPanel.setInstructionsArea(instrucciones);
                 JOptionPane.showMessageDialog(null, "Instruccion Editada");
                 parentFrame.setVisible(false);
                 parentFrame.dispose();
