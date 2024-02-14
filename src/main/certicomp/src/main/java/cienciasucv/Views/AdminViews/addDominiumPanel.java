@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import cienciasucv.Views.SizeType;
 import cienciasucv.Views.Buttons;
-import cienciasucv.Views.LogoFactory.Logo;
+import cienciasucv.Views.LogoFactory;
 
 public class AddDominiumPanel extends CreatePanel {
     public AddDominiumPanel(){
@@ -39,17 +39,17 @@ public class AddDominiumPanel extends CreatePanel {
         });
     }
 
-    private Buttons Guardar;
+    private JButton Guardar;
 
     public JTextArea Doms;
     
     private void addLogo(){
-        Logo labelLogo= new Logo(SizeType.MEDIUM, 15, 10);
+        JLabel labelLogo= LogoFactory.getLogo(SizeType.MEDIUM, 15, 10);
         add(labelLogo);
     }
 
     private void addButton(){
-        Guardar=new Buttons(SizeType.MEDIUM, "GUARDAR", 362, 600);
+        Guardar=Buttons.getButton(SizeType.MEDIUM, "GUARDAR", 362, 600);
         this.add(Guardar);
     }      
 

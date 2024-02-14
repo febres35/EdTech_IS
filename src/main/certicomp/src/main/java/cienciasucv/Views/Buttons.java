@@ -6,7 +6,7 @@ import java.awt.Font;
 
 import javax.swing.JButton;
 
-public class Buttons extends JButton {
+public class Buttons {
 
     public static JButton getButton(String text, SizeType size){
 
@@ -37,13 +37,14 @@ public class Buttons extends JButton {
         return button;
     }
     
-    public Buttons(SizeType size ,String text, int x, int y){
+    public static JButton getButton(SizeType size ,String text, int x, int y){
+    JButton button = new JButton();
     int ancho;
     int alto;
     int fontS;
     ancho=0;alto=0;fontS=0;
-    this.setBackground(Color.decode("#231F20"));
-    this.setForeground(Color.decode("#ffffff"));
+    button.setBackground(Color.decode("#231F20"));
+    button.setForeground(Color.decode("#ffffff"));
             
     switch (size) {
     case LARGE:
@@ -64,8 +65,9 @@ public class Buttons extends JButton {
     default:
         break;
     }
-    this.setFont(new Font("Roboto", Font.BOLD, fontS));
-    this.setBounds(x, y, ancho, alto);
-    this.setText(text);
+    button.setFont(new Font("Roboto", Font.BOLD, fontS));
+    button.setBounds(x, y, ancho, alto);
+    button.setText(text);
+    return button;
     }
 }

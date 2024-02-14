@@ -41,8 +41,7 @@ public class LogoFactory {
         }
     }
 
-    public static class Logo extends JLabel {
-    public Logo(SizeType type, int x , int y){
+    public static JLabel getLogo(SizeType type, int x , int y){
     int ancho=0;
     int alto=0;
         switch (type) {
@@ -57,11 +56,11 @@ public class LogoFactory {
             default:
             break;
         }
-        ImageIcon icon = new ImageIcon(getClass().getResource("/images/CertiCompSmall.png"));
+        ImageIcon icon = new ImageIcon(LogoFactory.class.getResource("/images/CertiCompSmall.png"));
         Icon nuevaIcon = new ImageIcon(icon.getImage().getScaledInstance(ancho, alto, Image.SCALE_SMOOTH));
-        this.setBounds(x, y, ancho, alto);
-        this.setIcon(nuevaIcon); 
+        JLabel logo= new JLabel();
+        logo.setBounds(x, y, ancho, alto);
+        logo.setIcon(nuevaIcon); 
+        return logo;
     }
-}
-
 }

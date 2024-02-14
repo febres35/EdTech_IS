@@ -9,7 +9,7 @@ import javax.swing.*;
 
 import cienciasucv.Views.SizeType;
 import cienciasucv.Views.Buttons;
-import cienciasucv.Views.LogoFactory.Logo;
+import cienciasucv.Views.LogoFactory;
 
 class AddInstructionPanel extends CreatePanel {
 
@@ -43,16 +43,16 @@ class AddInstructionPanel extends CreatePanel {
         });
     }
     
-    private Buttons Guardar;
+    private JButton Guardar;
     private JTextArea Inst;
 
     protected void addLogo(){
-        Logo labelLogo= new Logo(SizeType.MEDIUM, 15, 10);
+        JLabel labelLogo= LogoFactory.getLogo(SizeType.MEDIUM, 15, 10);
         add(labelLogo);
     }
     
     private void addButtons(){
-           Guardar=new Buttons(SizeType.MEDIUM, "GUARDAR", 362, 600);
+           Guardar=Buttons.getButton(SizeType.MEDIUM, "GUARDAR", 362, 600);
            this.add(Guardar);
         }      
     
