@@ -6,7 +6,7 @@ class AddDominiumView extends JFrame{
     private static AddDominiumView instance = null;
     private AddDominiumView(){
         AddDominiumPanel panelDominio;
-        panelDominio = AddDominiumPanel.getDominiumPanel();
+        panelDominio = new AddDominiumPanel();
         this.setBounds(900, 40, 530, 700);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -21,5 +21,11 @@ class AddDominiumView extends JFrame{
         }
         instance.setVisible(true);
         return instance; 
+    }
+    public static void destroyInstance(){
+        if (instance !=null){
+            instance.dispose();
+            instance=null;
         }
+    }
     }

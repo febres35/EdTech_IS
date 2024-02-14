@@ -16,7 +16,7 @@ import java.awt.event.WindowEvent;
 
 public class CreateExamPanel extends CreatePanel{
     public LimitedTextField NameBox;
-    public JTextField DurationBox;
+    public static JTextField DurationBox;
     private JComboBox Levels;
     private JComboBox AsociatedCourses;
     public static JTextArea DominiumArea;
@@ -36,13 +36,13 @@ public class CreateExamPanel extends CreatePanel{
         NameBox= new LimitedTextField(20);
         addNameBox(NameBox);
         DurationBox= new JTextField();
-        setDurationBox(DurationBox);
+        addDurationBox(DurationBox);
         String [] Prueba ={"Nivel 1", "Nivel 2", "Nivel 3"};
         Levels = new JComboBox(Prueba);
-        setLevelBox(Levels);
+        addLevelBox(Levels);
         String [] CursosP={"Java","CISCO","Front-End Web Developer"};
         AsociatedCourses = new JComboBox(CursosP);
-        setCourseBox(AsociatedCourses);
+        addCourseBox(AsociatedCourses);
         DominiumArea = new JTextArea();
         setDominumArea(DominiumArea);
         Rectangle dimensiones=DominiumArea.getBounds();
@@ -65,6 +65,7 @@ public class CreateExamPanel extends CreatePanel{
                     Domain nuevoDomain=new Domain(1,getDominumArea());
                     JOptionPane.showMessageDialog(null, "EXAMEN CREADO");
                     JFrame frame=(JFrame)SwingUtilities.getWindowAncestor(CreateExamPanel.this);
+                    restartAll();
                     frame.dispose();
                 }else{
                 JOptionPane.showMessageDialog(null, "DEBE LLENAR TODOS LOS CAMPOS");
@@ -143,19 +144,19 @@ public class CreateExamPanel extends CreatePanel{
         this.add(campo);
     }
    
-    private void setLevelBox(JComboBox lista){
+    private void addLevelBox(JComboBox lista){
         addSideText("Nivel:", 120, 197, 80, 30);
         addComboBox(lista, 160,202 , 130, 22);
         this.add(lista);
     }
     
-    private void setCourseBox(JComboBox lista){
+    private void addCourseBox(JComboBox lista){
         addSideText("Curso Asociado:", 54, 168, 120, 30);
         addComboBox(lista, 160,173 , 220, 22);
         this.add(lista);
     }
     
-    private void setDurationBox(JTextField cont){
+    private void addDurationBox(JTextField cont){
         AbstractDocument document = (AbstractDocument) cont.getDocument();
         document.setDocumentFilter(new IntegerDocumentFilter());
 
@@ -226,6 +227,9 @@ public class CreateExamPanel extends CreatePanel{
         DominiumArea.setText(dominios);
     }
 
+    public static void setDuration(String duration){
+        DurationBox.setText(duration);
+    }
     private boolean camposLlenos (){
 
         if(NameBox.getText().isEmpty()||DurationBox.getText().isEmpty()||Levels.getSelectedIndex()==-1||AsociatedCourses.getSelectedIndex()==-1 || DominiumArea.getText().isEmpty()||
@@ -264,5 +268,24 @@ public class CreateExamPanel extends CreatePanel{
     public String getInstructionsArea (){
         return InstructionsArea.getText();
     }
-
+    
+    public void setLevel(int index){
+        Levels.setSelectedIndex(index);
+    }
+    
+    public void setCourse(int index){
+        AsociatedCourses.setSelectedIndex(index);
+    }
+    
+    public void setName(String Name){
+        NameBox.setText(Name);
+    }
+    public void restartAll(){
+        setDominumArea("");
+        setInstructionsArea("");
+        setName("");
+        setDuration("");
+        setLevel(0);
+        setCourse(0);
+    }
 }

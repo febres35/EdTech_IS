@@ -9,9 +9,8 @@ import javax.swing.*;
 import cienciasucv.Views.SizeType;
 
 class AddInstructionPanel extends CreatePanel {
-    private static AddInstructionPanel instance=null;
 
-    private AddInstructionPanel(){
+    public AddInstructionPanel(){
         addLogo();
         this.setLayout(null);
         this.setBackground(Fondo); 
@@ -62,13 +61,4 @@ class AddInstructionPanel extends CreatePanel {
     public void instruccionesFrame(){
         addFrameInfo("<html><body>Ingrese las instrucciones a seguir por los estudiantes a la hora de<br>presentar el examen:</body></html>", 40, 90, 600, 50);
     }
-    
-    public static AddInstructionPanel getInstructionsPanel(){
-        if(instance==null){
-            instance = new AddInstructionPanel();
-        }
-        instance.setVisible(true);
-        return instance; 
-    }
-
-}
+ }

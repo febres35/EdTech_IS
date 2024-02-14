@@ -6,7 +6,7 @@ public class AddInstructionView extends JFrame{
     private static AddInstructionView instance = null; 
     private AddInstructionView(){
         AddInstructionPanel panelInstrucciones;
-        panelInstrucciones = AddInstructionPanel.getInstructionsPanel();
+        panelInstrucciones = new AddInstructionPanel();
         this.setBounds(500, 40, 530, 700);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -22,6 +22,13 @@ public class AddInstructionView extends JFrame{
         instance.setVisible(true);
         return instance; 
         }
+    
+    public static void destroyInstance(){
+            if (instance !=null){
+                instance.dispose();
+                instance=null;
+            }
+    }
 }
     
 

@@ -8,9 +8,7 @@ import javax.swing.*;
 import cienciasucv.Views.SizeType;
 
 public class AddDominiumPanel extends CreatePanel {
-    private static AddDominiumPanel instance=null;
-
-    private AddDominiumPanel(){
+    public AddDominiumPanel(){
         addLogo();
         this.setLayout(null);
         this.setBackground(Fondo); 
@@ -31,8 +29,7 @@ public class AddDominiumPanel extends CreatePanel {
             @Override
             public void actionPerformed(ActionEvent ae){
                 JFrame parentFrame=(JFrame)SwingUtilities.getWindowAncestor(AddDominiumPanel.this);
-                String Dominios=Doms.getText();
-                CreateExamPanel.setDominumArea(Dominios);
+                CreateExamPanel.setDominumArea(Doms.getText());
                 JOptionPane.showMessageDialog(null, "Dominios Editados");
                 parentFrame.dispose();
             }
@@ -61,13 +58,5 @@ public class AddDominiumPanel extends CreatePanel {
     
     public void instruccionesFrame(){
         addFrameInfo("<html><body>Ingrese o edite los dominios de las preguntas que compondrán el<br>examen. Un dominio por línea:</body></html>", 40, 90, 600, 50);
-    }
-
-    public static AddDominiumPanel getDominiumPanel(){
-        if(instance==null){
-            instance = new AddDominiumPanel();
-        }
-        instance.setVisible(true);
-        return instance; 
     }
 }
