@@ -2,11 +2,11 @@ package cienciasucv.Views.AdminViews;
 
 import javax.swing.*;
 
-public class AddDominiumView extends JFrame{
-
-    public AddDominiumView(){
-        AddDominiumPanel panelDominio = new AddDominiumPanel();
-
+class AddDominiumView extends JFrame{
+    private static AddDominiumView instance = null;
+    private AddDominiumView(){
+        AddDominiumPanel panelDominio;
+        panelDominio = new AddDominiumPanel();
         this.setBounds(900, 40, 530, 700);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -15,4 +15,17 @@ public class AddDominiumView extends JFrame{
         this.add(panelDominio);
     }
 
-}
+    public static AddDominiumView getDominiumView(){
+        if(instance==null){
+            instance = new AddDominiumView();
+        }
+        instance.setVisible(true);
+        return instance; 
+    }
+    public static void destroyInstance(){
+        if (instance !=null){
+            instance.dispose();
+            instance=null;
+        }
+    }
+    }

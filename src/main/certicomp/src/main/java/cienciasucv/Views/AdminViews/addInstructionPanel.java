@@ -6,18 +6,16 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-class addInstruccionPanel extends CreatePanel {
+import cienciasucv.Views.SizeType;
 
-    
-    public addInstruccionPanel(){
-        JLabel labelLogo= new JLabel();
-        addLogo(labelLogo);
-        add(labelLogo);
+class AddInstructionPanel extends CreatePanel {
+
+    public AddInstructionPanel(){
+        addLogo();
         this.setLayout(null);
         this.setBackground(Fondo); 
         addTitulo(" Instrucciones", 35  , 75, 102, 20, 16);
-        Guardar= new Button();
-        aggButtons(Guardar);
+        addButtons();
         Inst = new JTextArea();
         addTextArea(Inst, 40, 150, 432,420,true);
         Rectangle dimensiones=Inst.getBounds();
@@ -36,7 +34,6 @@ class addInstruccionPanel extends CreatePanel {
                 String instrucciones=Inst.getText();
                 CreateExamPanel.setInstructionsArea(instrucciones);
                 JOptionPane.showMessageDialog(null, "Instruccion Editada");
-                parentFrame.setVisible(false);
                 parentFrame.dispose();
             }
             
@@ -46,22 +43,22 @@ class addInstruccionPanel extends CreatePanel {
     private Button Guardar;
     private JTextArea Inst;
 
-    protected void addLogo(JLabel label){
-        ImageIcon icon = new ImageIcon(getClass().getResource("/images/CertiCompSmall.png"));
-        Icon nuevaIcon = new ImageIcon(icon.getImage().getScaledInstance(250, 60, Image.SCALE_SMOOTH));
-        label.setBounds(15, 10, 250, 60);
-        label.setIcon(nuevaIcon); 
+    protected void addLogo(){
+        Logo labelLogo= new Logo(SizeType.MEDIUM, 15, 10);
+        add(labelLogo);
     }
-    private void aggButtons(Button G){
-           G.addButton("GUARDAR", 340, 605, 110, 40);
-           G.setFont(new Font("Roboto", Font.BOLD, 16));
-           this.add(G);
+    
+    private void addButtons(){
+           Guardar=new Button(SizeType.MEDIUM, "GUARDAR", 362, 600);
+           this.add(Guardar);
         }      
+    
     public void paintComponent(Graphics g){
             super.paintComponent(g);
             g.drawRect(25, 85, 462, 500);
         }
+    
     public void instruccionesFrame(){
         addFrameInfo("<html><body>Ingrese las instrucciones a seguir por los estudiantes a la hora de<br>presentar el examen:</body></html>", 40, 90, 600, 50);
     }
-}
+ }

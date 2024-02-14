@@ -1,22 +1,19 @@
 package cienciasucv.Views.AdminViews;
-import cienciasucv.Views.AdminViews.CreatePanel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-class AddDominiumPanel extends CreatePanel {
-    
+import cienciasucv.Views.SizeType;
+
+public class AddDominiumPanel extends CreatePanel {
     public AddDominiumPanel(){
-        JLabel labelLogo= new JLabel();
-        addLogo(labelLogo);
-        add(labelLogo);
+        addLogo();
         this.setLayout(null);
         this.setBackground(Fondo); 
         addTitulo(" Dominios", 35  , 75, 80, 20, 16);
-        Guardar= new Button();
-        aggButtons(Guardar);
+        addButton();
         Doms = new JTextArea();
         addTextArea(Doms, 40, 150, 432,420,true);
         Rectangle dimensiones=Doms.getBounds();
@@ -31,32 +28,27 @@ class AddDominiumPanel extends CreatePanel {
         Guardar.addActionListener((ActionListener)new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent ae){
-                JFrame parentFrame=(JFrame)getRootPane().getParent();
-                String Dominios=Doms.getText();
-                CreateExamPanel.setDominumArea(Dominios);
+                JFrame parentFrame=(JFrame)SwingUtilities.getWindowAncestor(AddDominiumPanel.this);
+                CreateExamPanel.setDominumArea(Doms.getText());
                 JOptionPane.showMessageDialog(null, "Dominios Editados");
-                parentFrame.setVisible(false);
                 parentFrame.dispose();
             }
             
         });
     }
-    
-    private Button Guardar;
-    public JTextArea Doms;
 
-    protected void addLogo(JLabel label){
-        ImageIcon icon = new ImageIcon(getClass().getResource("/images/CertiCompSmall.png"));
-        Icon nuevaIcon = new ImageIcon(icon.getImage().getScaledInstance(250, 60, Image.SCALE_SMOOTH));
-        label.setBounds(15, 10, 250, 60);
-        label.setIcon(nuevaIcon); 
+    private Button Guardar;
+
+    public JTextArea Doms;
+    
+    private void addLogo(){
+        Logo labelLogo= new Logo(SizeType.MEDIUM, 15, 10);
+        add(labelLogo);
     }
 
-
-    private void aggButtons(Button G){
-        G.addButton("GUARDAR", 340, 605, 110, 40);
-        G.setFont(new Font("Roboto", Font.BOLD, 16));
-        this.add(G);
+    private void addButton(){
+        Guardar=new Button(SizeType.MEDIUM, "GUARDAR", 362, 600);
+        this.add(Guardar);
     }      
 
     public void paintComponent(Graphics g){
@@ -66,6 +58,5 @@ class AddDominiumPanel extends CreatePanel {
     
     public void instruccionesFrame(){
         addFrameInfo("<html><body>Ingrese o edite los dominios de las preguntas que compondrán el<br>examen. Un dominio por línea:</body></html>", 40, 90, 600, 50);
-
     }
 }
