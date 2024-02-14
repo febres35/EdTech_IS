@@ -1,12 +1,15 @@
 package cienciasucv.Views.AdminViews;
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
 import cienciasucv.Views.SizeType;
+import cienciasucv.Views.Buttons;
+import cienciasucv.Views.LogoFactory.Logo;
 
 class AddInstructionPanel extends CreatePanel {
 
@@ -40,7 +43,7 @@ class AddInstructionPanel extends CreatePanel {
         });
     }
     
-    private Button Guardar;
+    private Buttons Guardar;
     private JTextArea Inst;
 
     protected void addLogo(){
@@ -49,7 +52,7 @@ class AddInstructionPanel extends CreatePanel {
     }
     
     private void addButtons(){
-           Guardar=new Button(SizeType.MEDIUM, "GUARDAR", 362, 600);
+           Guardar=new Buttons(SizeType.MEDIUM, "GUARDAR", 362, 600);
            this.add(Guardar);
         }      
     
