@@ -12,7 +12,6 @@ public class CreateExamView extends JFrame{
         Dimension sizePantalla=miPantalla.getScreenSize();
 
         this.setBounds(80, 20, 640, 800);
-   
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);

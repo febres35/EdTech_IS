@@ -6,6 +6,8 @@ import javax.swing.text.AbstractDocument;
 
 import cienciasucv.Controllers.*;
 import cienciasucv.Models.*;
+import cienciasucv.Views.SizeType;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,20 +23,16 @@ public class CreateExamPanel extends CreatePanel{
     public static JTextArea InstructionsArea;
     public AddDominiumView dominiumWindow;
     public AddInstructionView instrucWindow;
+    private Button botonCrear;
     private Button addEdit1;
     private Button addEdit2; 
 
     public CreateExamPanel(){
-        JLabel labelLogo = new JLabel();
-        addLogo(labelLogo);
-        add(labelLogo);
+        addLogo();
         this.setLayout(null);
         this.setBackground(Fondo); 
         addTitulo(" Introduzca los datos del examen",40,90, 210, 30,14); 
-        Button botonCrear= new Button();
-        addEdit1 = new Button();
-        addEdit2 = new Button();
-        aggButtons(botonCrear,addEdit1,addEdit2);
+        addButtons();
         NameBox= new LimitedTextField(20);
         addNameBox(NameBox);
         DurationBox= new JTextField();
@@ -57,12 +55,12 @@ public class CreateExamPanel extends CreatePanel{
         dimensiones=InstructionsArea.getBounds();
         Instrucciones.setBounds(dimensiones);
         this.add(Instrucciones);
+       
         botonCrear.addActionListener((ActionListener) new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae){
                 if(camposLlenos()){
                     CreateExamController controller = new CreateExamController();//añade esta instruccion aqui
-                    //Exam nuevoExam= new Exam(1,getDurationBox(),getInstructionsArea(),getNameBox());
                     controller.collectExamData(CreateExamPanel.this);
                     Domain nuevoDomain=new Domain(1,getDominumArea());
                     JOptionPane.showMessageDialog(null, "EXAMEN CREADO");
@@ -83,7 +81,7 @@ public class CreateExamPanel extends CreatePanel{
                 AsociatedCourses.setEnabled(false);
                 DurationBox.setEnabled(false);
                 Levels.setEnabled(false);
-                dominiumWindow = new AddDominiumView();
+                dominiumWindow = dominiumWindow.getDominiumView();
                 dominiumWindow.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosed(WindowEvent e){
@@ -104,7 +102,7 @@ public class CreateExamPanel extends CreatePanel{
             public void actionPerformed(ActionEvent ae){
                 addEdit1.setEnabled(false);
                 addEdit2.setEnabled(false);
-                instrucWindow = new AddInstructionView();
+                instrucWindow = instrucWindow.getInstructionView();
                 NameBox.setEnabled(false);
                 AsociatedCourses.setEnabled(false);
                 DurationBox.setEnabled(false);
@@ -125,23 +123,18 @@ public class CreateExamPanel extends CreatePanel{
     
     }
 
-    protected void addLogo(JLabel label){
-        ImageIcon icon = new ImageIcon(getClass().getResource("/images/CertiCompSmall.png"));
-        Icon nuevaIcon = new ImageIcon(icon.getImage().getScaledInstance(300, 70, Image.SCALE_SMOOTH));
-        label.setBounds(15, 20, 300, 70);
-        label.setIcon(nuevaIcon); 
+    private void addLogo(){
+        Logo labelLogo= new Logo(SizeType.MEDIUM, 25, 20);
+        add(labelLogo);
     }
 
-    private void aggButtons(Button C, Button E1, Button E2 ){
-       C.addButton("CREAR", 450, 700, 150, 40);
-       C.setFont(new Font("Roboto", Font.BOLD, 16));
-       E1.addButton("Añadir/Editar", 160, 325, 110, 30);
-       E1.setFont(new Font("Myriad Pro", Font.BOLD, 11));
-       this.add(E1);
-       E2.addButton("Añadir/Editar", 160, 490, 110, 30);
-       E2.setFont(new Font("Myriad Pro", Font.BOLD, 11));
-       this.add(E2);
-       this.add(C);
+    private void addButtons(){
+       botonCrear=new Button(SizeType.LARGE, "CREAR", 400, 650);
+       addEdit1=new Button(SizeType.SMALL, "Añadir/Editar", 160, 325);
+       addEdit2=new Button(SizeType.SMALL, "Añadir/Editar", 160, 490);
+       this.add(botonCrear);
+       this.add(addEdit1);
+       this.add(addEdit2);
     }
 
     private void addNameBox(JTextField campo){
@@ -246,12 +239,15 @@ public class CreateExamPanel extends CreatePanel{
     public String getNameBox(){
         return NameBox.getText();
     }
+    
     public String getLevelBox(){  
         return String.valueOf(Levels.getSelectedItem());
     }
+    
     public String getCourseBox(){
         return AsociatedCourses.getSelectedItem().toString();
     }
+    
     public int getDurationBox(){
             String durationText=DurationBox.getText();
         if (durationText.isEmpty()){
@@ -264,6 +260,7 @@ public class CreateExamPanel extends CreatePanel{
     public String getDominumArea(){
         return DominiumArea.getText();
     }
+    
     public String getInstructionsArea (){
         return InstructionsArea.getText();
     }

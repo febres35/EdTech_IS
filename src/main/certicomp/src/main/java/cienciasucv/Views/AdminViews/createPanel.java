@@ -104,5 +104,6 @@ public class CreatePanel extends JPanel {
         } catch (NumberFormatException e) {
         }
     }
-}
+    }
+    
 }
