@@ -7,8 +7,11 @@ import javax.swing.text.AbstractDocument;
 import cienciasucv.Controllers.*;
 import cienciasucv.Models.*;
 import cienciasucv.Views.SizeType;
+import cienciasucv.Views.Buttons;
+import cienciasucv.Views.LogoFactory;
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -23,9 +26,9 @@ public class CreateExamPanel extends CreatePanel{
     public static JTextArea InstructionsArea;
     public AddDominiumView dominiumWindow;
     public AddInstructionView instrucWindow;
-    private Button botonCrear;
-    private Button addEdit1;
-    private Button addEdit2; 
+    private JButton botonCrear;
+    private JButton addEdit1;
+    private JButton addEdit2; 
 
     public CreateExamPanel(){
         addLogo();
@@ -125,14 +128,14 @@ public class CreateExamPanel extends CreatePanel{
     }
 
     private void addLogo(){
-        Logo labelLogo= new Logo(SizeType.MEDIUM, 25, 20);
+        JLabel labelLogo= LogoFactory.getLogo(SizeType.MEDIUM, 25, 20);
         add(labelLogo);
     }
 
     private void addButtons(){
-       botonCrear=new Button(SizeType.LARGE, "CREAR", 400, 650);
-       addEdit1=new Button(SizeType.SMALL, "Añadir/Editar", 160, 325);
-       addEdit2=new Button(SizeType.SMALL, "Añadir/Editar", 160, 490);
+       botonCrear=Buttons.getButton(SizeType.LARGE, "CREAR", 400, 650);
+       addEdit1=Buttons.getButton(SizeType.SMALL, "Añadir/Editar", 160, 325);
+       addEdit2=Buttons.getButton(SizeType.SMALL, "Añadir/Editar", 160, 490);
        this.add(botonCrear);
        this.add(addEdit1);
        this.add(addEdit2);
@@ -230,6 +233,7 @@ public class CreateExamPanel extends CreatePanel{
     public static void setDuration(String duration){
         DurationBox.setText(duration);
     }
+    
     private boolean camposLlenos (){
 
         if(NameBox.getText().isEmpty()||DurationBox.getText().isEmpty()||Levels.getSelectedIndex()==-1||AsociatedCourses.getSelectedIndex()==-1 || DominiumArea.getText().isEmpty()||
@@ -280,6 +284,7 @@ public class CreateExamPanel extends CreatePanel{
     public void setName(String Name){
         NameBox.setText(Name);
     }
+    
     public void restartAll(){
         setDominumArea("");
         setInstructionsArea("");
