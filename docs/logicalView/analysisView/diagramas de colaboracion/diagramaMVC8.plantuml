@@ -5,6 +5,13 @@ title "Caso de uso: Registrar Curso"
 left to right direction
 
 skinparam Dpi 300
+skinparam EntityBackgroundColor white
+skinparam BoundaryBackgroundColor white
+skinparam ControlBackgroundColor white
+skinparam ActorBackgroundColor white
+
+header Análisis y Colaboración
+footer Equipo 3
 
 actor "Admin" as ad
 boundary "ExamsManagementView" as EMV
