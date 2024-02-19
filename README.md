@@ -36,4 +36,4 @@ CertiComp proyecto de Ingeniería de Software
 ![alt "Diagrama de Secuencia"](https://github.com/febres35/EdTech_IS/blob/main/sequenceDiagram/DesignSequenceDiagram.png)
 
 ### **4.3 Diagrama de Despliegue**
-![alt "Diagrama de Despliegue"](https://github.com/febres35/EdTech_IS/blob/Modelo-Dise%C3%B1o/deployDiagram/diagramaDepliegue.png)
+![alt "Diagrama de Despliegue"](https://github.com/febres35/EdTech_IS/blob/main/deployDiagram/Diagrama%20de%20despliegue.png)
