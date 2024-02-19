@@ -64,7 +64,7 @@ public class ExamsManagementView extends JPanel {
 
         createExam.addActionListener((ActionListener) new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            CreateExamView.getCreateExamView();
+                new CreateExamView();
             }
         });
 
