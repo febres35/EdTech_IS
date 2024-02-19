@@ -19,7 +19,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class CreateExamPanel extends CreatePanel{
+public class CreateExamPanel extends PanelContent{
     public LimitedTextField NameBox;
     public static JTextField DurationBox;
     private JComboBox Levels;
@@ -143,13 +143,13 @@ public class CreateExamPanel extends CreatePanel{
 
     private void addNameBox(JTextField campo){
         addSideText("Nombre:", 100, 140, 80, 30);
-        campo= CreatePanel.addTextBox(160, 145, 220, 22);
+        campo= PanelContent.addTextBox(160, 145, 220, 22);
         this.add(campo);
     }
    
     private void addLevelBox(String[] prueba){
         addSideText("Nivel:", 120, 197, 80, 30);
-        Levels=CreatePanel.addComboBox(prueba, 160,202 , 130, 22);
+        Levels=PanelContent.addComboBox(prueba, 160,202 , 130, 22);
         this.add(Levels);
     }
     

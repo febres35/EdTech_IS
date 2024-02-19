@@ -21,7 +21,7 @@ class AddDominiumView extends JFrame{
         this.add(panelDominio);
     }
 
-    private class DominiumPanel extends CreatePanel{
+    private class DominiumPanel extends PanelContent{
         private JButton Guardar;
         public JTextArea Doms;
 
@@ -32,7 +32,7 @@ class AddDominiumView extends JFrame{
         JLabel titulo=addTitulo(" Dominios", 35  , 75, 80, 20, 16);
         this.add(titulo);
         addButton();
-        Doms = CreatePanel.addTextArea(40, 150, 432,420);
+        Doms = PanelContent.addTextArea(40, 150, 432,420);
         Doms.setEditable(true);
         Rectangle dimensiones=Doms.getBounds();
         JScrollPane dominiums = new JScrollPane(Doms,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);

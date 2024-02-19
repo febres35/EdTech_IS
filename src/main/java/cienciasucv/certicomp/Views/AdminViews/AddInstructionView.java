@@ -21,14 +21,14 @@ public class AddInstructionView extends JFrame{
         this.add(panelInstrucciones);
     } 
 
-    private class InstructionsPanel extends CreatePanel{
+    private class InstructionsPanel extends PanelContent{
         public InstructionsPanel(){
         addLogo(LogoSize.SMALL,15,10);
         this.setLayout(null);
         this.setBackground(Fondo); 
         addTitulo(" Instrucciones", 35  , 75, 102, 20, 16);
         addButtons();
-        Inst = CreatePanel.addTextArea(40, 150, 432,420);
+        Inst = PanelContent.addTextArea(40, 150, 432,420);
         Inst.setEditable(true);
         Rectangle dimensiones=Inst.getBounds();
         JScrollPane Instructions = new JScrollPane(Inst,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);

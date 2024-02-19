@@ -13,8 +13,8 @@ import cienciasucv.certicomp.Views.LogoSize;
 
 import java.awt.*;
 
-public class CreatePanel extends JPanel {
-    CreatePanel(){
+public class PanelContent extends JPanel {
+    PanelContent(){
     }
 
     public static class LimitedTextField extends JTextField {

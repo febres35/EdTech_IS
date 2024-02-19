@@ -1,4 +1,4 @@
-package cienciasucv.certicomp.Controllers;
+/*package cienciasucv.certicomp.Controllers;
 import cienciasucv.certicomp.Models.*;
 import cienciasucv.certicomp.Views.AdminViews.*;
 
@@ -77,3 +77,4 @@ public class CreateExamController {
     }
   
 }
+*/
