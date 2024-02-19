@@ -35,4 +35,11 @@ public class LoginController{
 
     return false;
   }
+
+  public String typeOfUser(String id){
+
+    
+
+    return "Hi";
+  }
 }

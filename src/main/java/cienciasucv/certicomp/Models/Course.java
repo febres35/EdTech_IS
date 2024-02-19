@@ -40,7 +40,7 @@ public class Course {
         this.category = (String) attributes.get("category");
         this.teachers = (String) attributes.get("teachers");
         this.prerequisites = (String) attributes.get("prerequisites");
-        this.description = (String) attributes.get("prerequisites");
+        this.description = (String) attributes.get("description");
         this.examsID = (ArrayList<String>) attributes.get("exams");
         this.attributes = attributes;
     }
@@ -71,6 +71,10 @@ public class Course {
 
     public String getDescription() {
         return description;
+    }
+
+    public ArrayList<String> getExamsID() {
+      return examsID;
     }
 
     public static String[][] getExams(String courseID) {
