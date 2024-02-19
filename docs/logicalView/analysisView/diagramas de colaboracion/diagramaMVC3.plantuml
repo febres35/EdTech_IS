@@ -1,0 +1,31 @@
+@startuml "Diagrama de colaboracion"
+
+title "Caso de uso: Cargar Preguntas"
+
+left to right direction
+
+skinparam Dpi 300
+
+actor "Administrator" as ad
+boundary "AddQuestionsView" as AQV
+boundary "QuestionStatementView" as QSV
+boundary "AddAnswerOptionView" as AAOV
+boundary "ExplanationView" as EV
+control "AddQuestionsController" as CAQC
+entity "Exam" as ex
+entity "Question" as que
+entity "Answer" as ans
+entity "Domain" as dom
+
+
+ad-->AQV
+AQV -Left- QSV
+AQV - EV
+AQV - AAOV
+AQV--CAQC
+CAQC--ex
+CAQC--dom
+CAQC--que
+que-ans
+
+@enduml

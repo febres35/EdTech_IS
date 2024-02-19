@@ -1,0 +1,28 @@
+@startuml "Diagrama de colaboracion"
+
+title "Caso de uso: Crear Examen"
+
+left to right direction
+
+skinparam Dpi 300
+
+actor "Administrator" as ad
+boundary "ExamsManagementView" as EMV
+boundary "CreateExamView" as CEV
+boundary "AddDomainsView" as ADV
+boundary "AddInstructionsView" as AIV
+control "CreateExamController" as CEC
+entity "Domain" as dom
+entity "Course" as cou
+entity "Exam" as ex
+
+
+ad --> EMV : 1: create exam
+EMV - CEV :  ▼2:
+CEV - ADV : ▲5: domain
+CEV - AIV: ▲6: instructions
+CEV--CEC: 4: loadCourses(coursesList) <\n7: collectExamInputData() >
+CEC--dom : > 9: updateDomains(examID, domainsList)
+CEC--cou : > 3: getCoursesList()
+CEC--ex : 8 : createNewExam(examID, name, >\n course, level, duration, instructions) 
+@enduml

@@ -1,0 +1,30 @@
+@startuml "Diagrama de colaboracion"
+
+title "Caso de uso: Presentar Examen"
+
+left to right direction
+
+skinparam Dpi 300
+
+actor "Student" as std
+boundary "ExamsListView" as ELV
+boundary "InstructionsView" as IV
+boundary "TakeExamView" as TEV
+boundary "ResultsView" as RV
+control "TakeExamController" as TEC
+entity "Student" as stde
+entity "Exam" as ex
+entity "Question" as que
+
+
+
+std-->ELV : 1: takeExam(examID)
+ELV-IV : 2: 
+IV--TEC : [if instructionsAccepted == True] \n5: startExam(examID) >
+TEV--TEC : 7: displayQuestions(questionsList) <\n8: evaluateStudentAnswers(answersList) >
+RV--TEC : 10: displayResults(studentID, examID) <
+TEC--stde : 9: registerStudentResults(answersList) >
+TEC--ex : 3: getExamInstructions(examID) >\n6: getExamQuestionsList(examID) >
+ex-que :3: fetchQuestions(examID) : 
+
+@enduml

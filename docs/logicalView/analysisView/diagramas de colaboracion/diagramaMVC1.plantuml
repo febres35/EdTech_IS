@@ -1,0 +1,28 @@
+@startuml "Diagrama de colaboracion"
+
+title "Caso de uso: Crear Examen"
+
+left to right direction
+
+skinparam Dpi 300
+
+actor "Administrator" as ad
+boundary "ExamsManagementView" as EMV
+boundary "CreateExamView" as CEV
+boundary "AddDomainsView" as ADV
+boundary "AddInstructionsView" as AIV
+control "CreateExamController" as CEC
+entity "Domain" as dom
+entity "Course" as cou
+entity "Exam" as ex
+
+
+ad --> EMV
+EMV - CEV
+CEV - ADV
+CEV - AIV
+CEV--CEC
+CEC -- dom
+CEC--cou
+CEC--ex
+@enduml

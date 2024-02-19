@@ -1,0 +1,31 @@
+@startuml "Diagrama de colaboracion"
+
+title "Caso de uso: Cargar Preguntas"
+
+left to right direction
+
+skinparam Dpi 300
+
+actor "Administrator" as ad
+boundary "AddQuestionsView" as AQV
+boundary "QuestionStatementView" as QSV
+boundary "AddAnswerOptionView" as AAOV
+boundary "ExplanationView" as EV
+control "AddQuestionsController" as CAQC
+entity "Exam" as ex
+entity "Question" as que
+entity "Answer" as ans
+entity "Domain" as dom
+
+
+ad-->AQV : 1: addQuestions()
+AQV-Left-QSV : 7: questionStatement <
+AQV-AAOV : 9: answerOptions <
+AQV-EV : 8: explanation <
+AQV--CAQC : 3: loadExams(examList) <\n6: loadDomains(examID) <\n4: getDomains(examID) >\n10: collectQuestionInputData() >
+CAQC--ex : ▲2: getExamsList() 
+CAQC--dom : 5: getDomainsList(examID) >
+CAQC--que :11: addNewQuestion(examID, questionStatement, >\nquestionDomains, explanation, \nanswerOptions, correctAnswer )
+que-ans : 12: registerAnswer( questionID, \nanswerOptions,correctAnswer, explanation)
+
+@enduml
