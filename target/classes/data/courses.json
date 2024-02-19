@@ -62,5 +62,13 @@
     "name": "adaddaaddaaddad",
     "description": "dddddddddddddd",
     "category": "Bases de Datos"
+  },
+  "C008": {
+    "prerequisites": "a",
+    "exams": [],
+    "teachers": "a",
+    "name": "a",
+    "description": "a",
+    "category": "Lenguajes de Programación"
   }
 }

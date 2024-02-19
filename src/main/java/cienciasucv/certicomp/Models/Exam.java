@@ -42,7 +42,7 @@ public class Exam {
 
         Gson gson = new Gson();
         java.lang.reflect.Type type = new TypeToken<Map<String, Exam>>(){}.getType();
-        try (Reader reader = new FileReader("cienciasucv/certicomp/src/main/resources/data/exams.json")) {
+        try (Reader reader = new FileReader("src/main/resources/data/exams.json")) {
             exams = gson.fromJson(reader, type);
         } catch (IOException e) {
             e.printStackTrace();

@@ -30,7 +30,7 @@ public class Question {
 
         Gson gson = new Gson();
         java.lang.reflect.Type type = new TypeToken<Map<String, Exam>>(){}.getType();
-        try (Reader reader = new FileReader("certicomp/src/main/resources/data/questions.json")) {
+        try (Reader reader = new FileReader("src/main/resources/data/questions.json")) {
             questions = gson.fromJson(reader, type);
         } catch (IOException e) {
             e.printStackTrace();

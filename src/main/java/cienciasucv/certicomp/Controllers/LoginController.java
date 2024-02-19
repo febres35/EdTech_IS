@@ -13,7 +13,7 @@ public class LoginController{
   public boolean checkCredentials(String mail, String password) {
 
     try {
-      FileReader fileReader = new FileReader("cienciasucv/certicomp/src/main/resources/data/credentials.json");
+      FileReader fileReader = new FileReader("src/main/resources/data/credentials.json");
       JSONTokener jsonTokener = new JSONTokener(fileReader);
       JSONObject jsonObject = new JSONObject(jsonTokener);
       JSONArray array = jsonObject.getJSONArray("Datos");

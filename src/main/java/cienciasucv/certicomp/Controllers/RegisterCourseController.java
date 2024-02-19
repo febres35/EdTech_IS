@@ -19,7 +19,7 @@ public class RegisterCourseController {
     
     public void collectCourseData(){
         
-        String path = "cienciasucv/certicomp/src/main/resources/data/courses.json";
+        String path = "src/main/resources/data/courses.json";
         String id = course.generateCourseId(path);
         Map<String, Object> courseAttributes = new HashMap<>();
         ArrayList<String> exams = new ArrayList<>();

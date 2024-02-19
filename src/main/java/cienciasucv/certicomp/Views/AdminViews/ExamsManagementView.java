@@ -81,7 +81,7 @@ public class ExamsManagementView extends JPanel {
         type = new TypeToken<Map<String, Course>>(){}.getType();
 
         try {
-            Map<String, Course> courses = gson.fromJson(new FileReader("cienciasucv/certicomp/src/main/resources/data/courses.json"), type);
+            Map<String, Course> courses = gson.fromJson(new FileReader("src/main/resources/data/courses.json"), type);
             DefaultComboBoxModel<String> coursesModel = new DefaultComboBoxModel<>();
             coursesModel.addElement("--- Seleccionar curso ---");
 
