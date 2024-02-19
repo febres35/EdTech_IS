@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "CertiComp",
+      "request": "launch",
+      "mainClass": "cienciasucv.certicomp.CertiComp",
+      "projectName": "certicomp"
+    },
+    {
+      "type": "java",
       "name": "LoginInterface",
       "request": "launch",
       "mainClass": "cienciasucv.Views.LoginInterface",

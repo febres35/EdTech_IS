@@ -76,9 +76,9 @@ public class Course {
     public static String[][] getExams(String courseID) {
         try {
             
-            String coursesContent = new String(Files.readAllBytes(Paths.get("cienciasucv/certicomp/src/main/resources/data/courses.json")));
+            String coursesContent = new String(Files.readAllBytes(Paths.get("src/main/resource/data/courses.json")));
             
-            String examsContent = new String(Files.readAllBytes(Paths.get("cienciasucv/certicomp/src/main/resources/data/exams.json")));
+            String examsContent = new String(Files.readAllBytes(Paths.get("src/main/resource/data/courses.json")));
     
             JSONObject coursesJson = new JSONObject(coursesContent);
             JSONObject examsJson = new JSONObject(examsContent);
@@ -126,7 +126,7 @@ public class Course {
         java.lang.reflect.Type type = new TypeToken<Map<String, Course>>(){}.getType();
         Map<String, String> coursesInfo  = new HashMap<>();
 
-        InputStream inputStream = Course.class.getResourceAsStream("/data/courses.json");
+        InputStream inputStream = Course.class.getResourceAsStream("src/main/resource/data/courses.json");
         Reader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
         Map<String, Course> courses = gson.fromJson(reader, type);
         try {
@@ -149,7 +149,7 @@ public class Course {
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonObject courses = new JsonObject();
-        File file = new File("cienciasucv\\certicomp\\src\\main\\resources\\data\\courses.json");
+        File file = new File("src/main/resource/data/courses.json");
 
         if (file.exists()) {
             try (FileReader reader = new FileReader(file)) {
@@ -160,7 +160,7 @@ public class Course {
         }
         courses.add(course.getID(), gson.toJsonTree(course.getAttributes()));
         
-        try (FileWriter writer = new FileWriter("cienciasucv\\certicomp\\src\\main\\resources\\data\\courses.json")) {
+        try (FileWriter writer = new FileWriter("src/main/resource/data/courses.json")) {
             gson.toJson(courses, writer);
             System.out.println("Curso registrado exitosamente.");
         } catch (IOException e) {
