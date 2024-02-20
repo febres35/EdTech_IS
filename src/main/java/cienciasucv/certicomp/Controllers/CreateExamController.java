@@ -16,9 +16,9 @@ import java.util.Map;
 
 public class CreateExamController {
 
-    private String generateExamId() {
+    private String generateExamId(String path) {
         int nextId = 1;
-        File file = new File("exams.json");
+        File file = new File(path);
         if (file.exists()) {
             try (FileReader reader = new FileReader(file)) {
                 JsonObject exams = new Gson().fromJson(reader, JsonObject.class);
@@ -34,8 +34,9 @@ public class CreateExamController {
     }
 
     public void collectExamData(CreateExamPanel view){
+        String path = "src/main/resources/data/exams.json";
         String name= view.getNameBox();
-        String id = generateExamId();
+        String id = generateExamId(path);
         String instructions= view.getInstructionsArea();
         String duration=String.valueOf(view.getDurationBox());
         ArrayList<String> questions = new ArrayList<>();

@@ -113,7 +113,7 @@ public class Exam {
 public static void createNewExam(Exam exam) {
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
     JsonObject exams = new JsonObject();
-    File file = new File("exams.json");
+    File file = new File("src/main/resources/data/exams.json");
 
     if (file.exists()) {
         try (FileReader reader = new FileReader(file)) {
@@ -125,7 +125,7 @@ public static void createNewExam(Exam exam) {
 
     exams.add(exam.getID(), gson.toJsonTree(exam));
 
-    try (FileWriter writer = new FileWriter("exams.json")) {
+    try (FileWriter writer = new FileWriter("src/main/resources/data/exams.json")) {
         gson.toJson(exams, writer);
         System.out.println("Examen creado exitosamente.");
     } catch (IOException e) {

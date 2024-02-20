@@ -1,7 +1,10 @@
 {
   "E001": {
     "examtitle": "Práctico 1 - Java SE 8 Programmer",
-    "questions": ["Q001", "Q002"],
+    "questions": [
+      "Q001",
+      "Q002"
+    ],
     "duration": 20,
     "instructions": "Fusce dictum tortor dui. Aenean rhoncus euismod massa a mollis. Sed nisl neque, luctus a posuere sed, rutrum quis sem. Aliquam sollicitudin tempor purus, eu pulvinar lorem sodales in. Proin varius nulla nec augue dignissim aliquam. Donec vehicula ex risus. Nullam id ullamcorper ligula. Ut eu mollis nibh, vel viverra lectus. Donec egestas pretium erat nec elementum. Fusce vel auctor metus. Nam ultricies auctor justo, et accumsan lorem sodales eget. Duis placerat sapien non lectus consectetur, eget sodales mi auctor. Morbi posuere convallis diam a congue. Aenean rhoncus euismod massa a mollis. Sed nisl neque, luctus a posuere sed, rutrum quis sem. Aliquam sollicitudin tempor purus, eu pulvinar lorem sodales in. Proin varius nulla nec augue dignissim aliquam. Donec vehicula ex risus. Nullam id ullamcorper ligula. Ut eu mollis nibh, vel viverra lectus. Donec egestas pretium erat nec elementum. Fusce vel auctor metus. Nam ultricies auctor justo, et accumsan lorem sodales eget. Duis placerat sapien non lectus consectetur, eget sodales mi auctor. Morbi posuere convallis diam a congue."
   },
@@ -21,9 +24,10 @@
     "instructions": "Estimado estudiante, a continuación se presentan las instrucciones que deberá seguir para presentar el examen práctico: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mattis, ex eu tempus varius, est tellus dapibus ex, sit amet aliquet neque mauris maximus odio. In quis dictum nulla. Sed libero eros, placerat vitae cursus vel, faucibus ac ex. Proin a odio vel augue faucibus pellentesque et quis dui. In eu efficitur urna. Integer commodo commodo tortor ut porta. Integer efficitur pretium commodo. In porttitor cursus erat, vel posuere arcu pellentesque vel. Aliquam in consequat ante. Vestibulum malesuada rutrum libero. Etiam tincidunt porta faucibus. Donec varius mollis felis at vulputate."
   },
   "E005": {
-    "examtitle": "Práctico 1 - Java SE 8 Programmer",
-    "duration": 15,
-    "instructions": "Estimado estudiante, a continuación se presentan las instrucciones que deberá seguir para presentar el examen práctico: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mattis, ex eu tempus varius, est tellus dapibus ex, sit amet aliquet neque mauris maximus odio. In quis dictum nulla. Sed libero eros, placerat vitae cursus vel, faucibus ac ex. Proin a odio vel augue faucibus pellentesque et quis dui. In eu efficitur urna. Integer commodo commodo tortor ut porta. Integer efficitur pretium commodo. In porttitor cursus erat, vel posuere arcu pellentesque vel. Aliquam in consequat ante. Vestibulum malesuada rutrum libero. Etiam tincidunt porta faucibus. Donec varius mollis felis at vulputate."
+    "id": "E005",
+    "name": "pruebaaa",
+    "duration": "50",
+    "instructions": "aaaaaaaaaaaaaaa"
   },
   "E006": {
     "examtitle": "Práctico 1 - Java  CCCCCCC",
@@ -54,5 +58,11 @@
     "examtitle": "Práctico 11 - Java SE 21 Programmer",
     "duration": 10,
     "instructions": "Estimado estudiante, a continuación se presentan las instrucciones que deberá seguir para presentar el examen práctico: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mattis, ex eu tempus varius, est tellus dapibus ex, sit amet aliquet neque mauris maximus odio. In quis dictum nulla. Sed libero eros, placerat vitae cursus vel, faucibus ac ex. Proin a odio vel augue faucibus pellentesque et quis dui. In eu efficitur urna. Integer commodo commodo tortor ut porta. Integer efficitur pretium commodo. In porttitor cursus erat, vel posuere arcu pellentesque vel. Aliquam in consequat ante. Vestibulum malesuada rutrum libero. Etiam tincidunt porta faucibus. Donec varius mollis felis at vulputate."
+  },
+  "E012": {
+    "id": "E012",
+    "name": "Java SE",
+    "duration": "50",
+    "instructions": "aaaaaaa"
   }
 }
