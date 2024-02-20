@@ -93,13 +93,13 @@ public class Exam {
     }
      
 
-    public static String getInstructions(String examID) {
+   public static String getInstructions(String examID) {
     
-        Gson gson = new Gson();
+    Gson gson = new Gson();
 
-        InputStream inputStream = Exam.class.getResourceAsStream("/data/exams.json");
-        Reader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
-        Map<String, Exam> exams = gson.fromJson(reader, new TypeToken<Map<String, Exam>>(){}.getType());
+    InputStream inputStream = Exam.class.getResourceAsStream("/data/exams.json");
+    Reader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+    Map<String, Exam> exams = gson.fromJson(reader, new TypeToken<Map<String, Exam>>(){}.getType());
 
     Exam exam = exams.get(examID);
     if(exam != null ){
