@@ -10,7 +10,7 @@ import org.json.JSONTokener;
 
 public class LoginController{
 
-  public boolean checkCredentials(String mail, String password) {
+  public String checkCredentials(String mail, String password) {
 
     try {
       FileReader fileReader = new FileReader("src/main/resources/data/credentials.json");
@@ -21,7 +21,7 @@ public class LoginController{
       for (int i = 0; i < array.length(); i++) {
         JSONObject jsonObject2 = array.getJSONObject(i);
         if (jsonObject2.getString("mail").equals(mail) && jsonObject2.getString("password").equals(password)) {
-          return true;
+          return jsonObject2.getString("id");
         }
       }
 
@@ -33,7 +33,7 @@ public class LoginController{
       e.printStackTrace();
     }
 
-    return false;
+    return "404 Not Found";
   }
 
   public String typeOfUser(String id){

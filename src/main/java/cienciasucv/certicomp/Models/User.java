@@ -2,8 +2,15 @@ package cienciasucv.certicomp.Models;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 public class User {
 
@@ -70,7 +77,33 @@ public class User {
         try (FileWriter writer = new FileWriter("users.json")) {
             writer.write(jsonData);
         } catch (IOException e) {
+        }
     }
-}
+
+    public static Map<String, String> getUsersInfo() {
+
+        
+        Gson gson = new Gson();
+        java.lang.reflect.Type type = new TypeToken<Map<String, User>>(){}.getType();
+        Map<String, String> usersInfo  = new HashMap<>();
+
+        InputStream inputStream = Course.class.getResourceAsStream("/data/users.json");
+        Reader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+        Map<String, User> users = gson.fromJson(reader, type);
+        try {
+            reader.close();
+            inputStream.close();
+        } catch (IOException e) {
+            
+            e.printStackTrace();
+        }
+        
+
+        for (Map.Entry<String, User> entry : users.entrySet()) {
+            usersInfo.put(entry.getKey(), entry.getValue().getName());
+        }
+        return usersInfo;
+    }
+
 
 }

@@ -3,10 +3,10 @@ package cienciasucv.certicomp.Views;
 import javax.swing.*;
 
 import cienciasucv.certicomp.Controllers.LoginController;
+import cienciasucv.certicomp.Views.StudentViews.StudentView;
 
 import java.awt.*;
 import java.awt.event.*;
-//import java.io.*;
 
 public class LoginInterface extends javax.swing.JFrame {
 
@@ -46,7 +46,7 @@ public class LoginInterface extends javax.swing.JFrame {
             jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
             jSeparator1.setBackground(Color.DARK_GRAY);
     
-            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/CertiCompMedium.png"))); // NOI18N
+            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/CertiCompMedium.png"))); 
     
             jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); 
             jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -56,7 +56,7 @@ public class LoginInterface extends javax.swing.JFrame {
             jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             jLabel3.setText("Inicio de Sesión");
     
-            jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Ingresa tus credenciales", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 1, 16))); // NOI18N
+            jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Ingresa tus credenciales", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 1, 16))); 
     
             jLabel4.setFont(new java.awt.Font("Arial Black", 1, 18));
             jLabel4.setText("Correo:");
@@ -143,14 +143,18 @@ public class LoginInterface extends javax.swing.JFrame {
     
         
             public void btnIniciarSesionActionPerformed(ActionEvent e) {
+                LoginController controller = new LoginController();
                 String correo = txtCorreo.getText();
                 String contrasenia = String.valueOf(txtContrasenia.getPassword());
-                LoginController controller = new LoginController();
+                String idUser = controller.checkCredentials(correo, contrasenia);
                 
-                if (controller.checkCredentials(correo, contrasenia)) {
+                
+                if (idUser!="404 Not Found") {
                     JOptionPane.showMessageDialog(LoginInterface.this, "Inicio de sesión exitoso");
+                    StudentView studentView = new StudentView("Jhon Smith");   
+                    
                 } else {
-                    JOptionPane.showMessageDialog(LoginInterface.this, "Error: correo o contrasenia incorrectos");
+                    JOptionPane.showMessageDialog(LoginInterface.this, "Error: correo o contraseña incorrectos");
                 }
                 
             }

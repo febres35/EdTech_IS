@@ -70,5 +70,13 @@
     "name": "a",
     "description": "a",
     "category": "Lenguajes de Programación"
+  },
+  "C009": {
+    "prerequisites": "aaaaaaaaa",
+    "exams": [],
+    "teachers": "aaaaaa",
+    "name": "aaa",
+    "description": "aaaaaaaaaaaaaaaaaaa",
+    "category": "Sistemas Operativos"
   }
 }

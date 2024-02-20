@@ -29,7 +29,7 @@ public class ExamListController implements ActionListener{
 
     public Map<String, String> loadCourses(){
 
-         Map<String, String> courses = new HashMap<>();
+        Map<String, String> courses = new HashMap<>();
          courses = Course.getCoursesInfo();
 
         return courses;

@@ -11,11 +11,9 @@ import java.util.HashMap;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-
 public class CourseTest {
 
   private Course courseTest;
-  //private Course newCourseTest;
   private Map<String, Object> attributes;
 
   @Test
@@ -40,31 +38,34 @@ public class CourseTest {
   public void setUp() {
 
     ArrayList<String> exams = new ArrayList<>();
-    exams.add("Midterm");
-    exams.add("Final");
+    exams.add("Network fundamentals");
+    exams.add("IP connectivity");
 
     attributes = new HashMap<>();
-    attributes.put("name", "Mathematics");
-    attributes.put("category", "Core");
+    attributes.put("name", "CCNA Routing and Switching");
+    attributes.put("category", "Entry");
     attributes.put("teachers", "John Doe, Jane Smith");
     attributes.put("prerequisites", "None");
-    attributes.put("description", "Basic course in Mathematics");
+    attributes.put("description", 
+    "The CCNA—which stands for Cisco Certified Network Associate—is an entry-level information technology (IT) certification issued by networking hardware company Cisco. The CCNA is designed to validate your knowledge on fundamental networking concepts often requested in networking roles in IT positions.");
     attributes.put("exams", exams);
-    courseTest = new Course("MATH101", attributes);
+    courseTest = new Course("NET101", attributes);
   }
 
   @Test
   public void testCourseConstructor() {
     assertNotNull(courseTest);
-    assertEquals("MATH101", courseTest.getID());
-    assertEquals("Mathematics", courseTest.getName());
-    assertEquals("Core", courseTest.getCategory());
+    assertEquals("NET101", courseTest.getID());
+    assertEquals("CCNA Routing and Switching", courseTest.getName());
+    assertEquals("Entry", courseTest.getCategory());
     assertEquals("John Doe, Jane Smith", courseTest.getTeachers());
     assertEquals("None", courseTest.getPrerequisites());
-    assertEquals("Basic course in Mathematics", courseTest.getDescription());
+    assertEquals(
+        "The CCNA—which stands for Cisco Certified Network Associate—is an entry-level information technology (IT) certification issued by networking hardware company Cisco. The CCNA is designed to validate your knowledge on fundamental networking concepts often requested in networking roles in IT positions.",
+        courseTest.getDescription());
     assertEquals(2, courseTest.getExamsID().size());
-    assertEquals("Midterm", courseTest.getExamsID().get(0));
-    assertEquals("Final", courseTest.getExamsID().get(1));
+    assertEquals("Network fundamentals", courseTest.getExamsID().get(0));
+    assertEquals("IP connectivity", courseTest.getExamsID().get(1));
     assertEquals(attributes, courseTest.getAttributes());
   }
 

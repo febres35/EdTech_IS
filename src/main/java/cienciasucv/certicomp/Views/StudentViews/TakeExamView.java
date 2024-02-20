@@ -141,10 +141,6 @@ public class TakeExamView {
         Border compound2 = BorderFactory.createCompoundBorder(empty2, lineBorder);
         answersPanel.setBorder(compound2);
 
-        Dimension size = new Dimension(answersPanel.getWidth(), answersPanel.getHeight());
-
-        answersPanel.setMaximumSize(size);
-
         //answersPanel.setBorder(compound);
 
         // JPanel answersFirstQuestion= new JPanel();
@@ -177,7 +173,6 @@ public class TakeExamView {
             questionsPanel.add(question, "Question " + (i+1));
             
             JPanel answers3 = new JPanel(gridLayAnswers);
-            JScrollPane answersScroll = new JScrollPane();
             
 
             for(int j=0; j<totalAnswers; j++){
@@ -187,13 +182,7 @@ public class TakeExamView {
 
             }
 
-            //answersPanel.add(answers3);
-            answersScroll.setViewportView(answers3);
-            
-            answersPanel.add(answersScroll);
-           
-
-            //answersScroll.setViewportView(answers3);
+            answersPanel.add(answers3);
             
         }
             
