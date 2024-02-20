@@ -1,7 +1,6 @@
 package cienciasucv.certicomp.Views.AdminViews;
 import cienciasucv.certicomp.Views.ButtonSize;
 import cienciasucv.certicomp.Views.Buttons;
-import cienciasucv.certicomp.Views.LogoFactory;
 import cienciasucv.certicomp.Views.LogoSize;
 import java.awt.Graphics;
 import java.awt.Rectangle;

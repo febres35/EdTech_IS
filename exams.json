@@ -1,0 +1,21 @@
+{
+  "E001": {
+    "id": "E001",
+    "name": "Prueba",
+    "duration": "45",
+    "instructions": "Prueba"
+  },
+  "E002": {},
+  "E003": {
+    "id": "E003",
+    "name": "PRUEBA",
+    "duration": "121",
+    "instructions": "PRUEBA"
+  },
+  "E004": {
+    "id": "E004",
+    "name": "Prueba",
+    "duration": "121",
+    "instructions": "prueba"
+  }
+}
