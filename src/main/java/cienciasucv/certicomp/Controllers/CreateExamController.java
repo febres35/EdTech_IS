@@ -4,6 +4,7 @@ import cienciasucv.certicomp.Views.AdminViews.*;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import java.io.File;
@@ -13,6 +14,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.swing.JOptionPane;
 
 public class CreateExamController {
 
@@ -33,7 +36,7 @@ public class CreateExamController {
         return "E" + String.format("%03d", nextId);
     }
 
-    public void collectExamData(CreateExamPanel view){
+    public boolean collectExamData(CreateExamPanel view){
         String path = "src/main/resources/data/exams.json";
         String name= view.getNameBox();
         String id = generateExamId(path);
@@ -42,9 +45,33 @@ public class CreateExamController {
         ArrayList<String> questions = new ArrayList<>();
         
         Exam exam = new Exam(name,id,duration,instructions);
+         
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    JsonObject exams = new JsonObject();
+    File file = new File("src/main/resources/data/exams.json");
 
-        Exam.createNewExam(exam);
-
+    if (file.exists()) {
+        try (FileReader reader = new FileReader(file)) {
+            exams = gson.fromJson(reader, JsonObject.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+    boolean examExists = false;
+
+for (Map.Entry<String, JsonElement> entry : exams.entrySet()) {
+    JsonObject jsonExam = entry.getValue().getAsJsonObject();
+    String examName = jsonExam.get("name").getAsString();
+    
+    if (examName.equals(exam.getName())) {
+        JOptionPane.showMessageDialog(null,"YA EXISTE UN EXAMEN CON ESTE NOMBRE");
+        examExists = true;
+        return examExists;
+    }
+}
+        Exam.createNewExam(exam);
+        return false;
+
   
+}
 }

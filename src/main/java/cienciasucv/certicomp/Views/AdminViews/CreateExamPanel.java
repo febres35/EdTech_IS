@@ -66,12 +66,12 @@ public class CreateExamPanel extends PanelContent{
                         JOptionPane.showMessageDialog(null, "LA DURACION DEBE SER MAYOR A 30 MINUTOS");
                     }else{
                     CreateExamController controller = new CreateExamController();//añade esta instruccion aqui
-                    controller.collectExamData(CreateExamPanel.this);
+                   if( controller.collectExamData(CreateExamPanel.this)==true){
+                   }else{
                     //Domain nuevoDomain=new Domain(1,getDominumArea());
-                    JOptionPane.showMessageDialog(null, "EXAMEN CREADO");
                     JFrame frame=(JFrame)SwingUtilities.getWindowAncestor(CreateExamPanel.this);
                     restartAll();
-                    frame.dispose();}
+                    frame.dispose();}}
                 }else{
                 JOptionPane.showMessageDialog(null, "DEBE LLENAR TODOS LOS CAMPOS");
                 }
