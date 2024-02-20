@@ -1,17 +1,13 @@
 package cienciasucv.certicomp.Views.AdminViews;
+import cienciasucv.certicomp.Controllers.CreateExamController;
 import cienciasucv.certicomp.Views.ButtonSize;
 import cienciasucv.certicomp.Views.Buttons;
-import cienciasucv.certicomp.Views.LogoFactory;
 import cienciasucv.certicomp.Views.LogoSize;
-import cienciasucv.certicomp.Controllers.*;
-import cienciasucv.certicomp.Models.*;
-
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.AbstractDocument;
 
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -39,7 +35,7 @@ public class CreateExamPanel extends PanelContent{
         addTitulo(" Introduzca los datos del examen",40,90, 210, 30,14); 
         addButtons();
         NameBox= new LimitedTextField(20);
-        addNameBox(NameBox);
+        addNameBox();
         DurationBox= addTextBox(160, 232, 70, 22);
         addDurationBox(DurationBox);
         String [] Prueba ={"Nivel 1", "Nivel 2", "Nivel 3"};
@@ -64,14 +60,18 @@ public class CreateExamPanel extends PanelContent{
         botonCrear.addActionListener((ActionListener) new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae){
-                if(camposLlenos()){
-                    //CreateExamController controller = new CreateExamController();//añade esta instruccion aqui
-                    //controller.collectExamData(CreateExamPanel.this);
+                if(camposLlenos()==true){
+                    if(Integer.parseInt(DurationBox.getText())<30){
+
+                        JOptionPane.showMessageDialog(null, "LA DURACION DEBE SER MAYOR A 30 MINUTOS");
+                    }else{
+                    CreateExamController controller = new CreateExamController();//añade esta instruccion aqui
+                    controller.collectExamData(CreateExamPanel.this);
                     //Domain nuevoDomain=new Domain(1,getDominumArea());
                     JOptionPane.showMessageDialog(null, "EXAMEN CREADO");
                     JFrame frame=(JFrame)SwingUtilities.getWindowAncestor(CreateExamPanel.this);
                     restartAll();
-                    frame.dispose();
+                    frame.dispose();}
                 }else{
                 JOptionPane.showMessageDialog(null, "DEBE LLENAR TODOS LOS CAMPOS");
                 }
@@ -141,10 +141,11 @@ public class CreateExamPanel extends PanelContent{
        this.add(addEdit2);
     }
 
-    private void addNameBox(JTextField campo){
+    private void addNameBox(){
         addSideText("Nombre:", 100, 140, 80, 30);
-        campo= PanelContent.addTextBox(160, 145, 220, 22);
-        this.add(campo);
+        NameBox= new LimitedTextField(20);
+        NameBox.setBounds(160, 145, 220, 22);
+        this.add(NameBox);
     }
    
     private void addLevelBox(String[] prueba){
@@ -220,26 +221,14 @@ public class CreateExamPanel extends PanelContent{
         super.paintComponent(g);
         g.drawRect(25, 104, 575, 500);
     }
-   
-    public static void setInstructionsArea(String instrucciones){
-        InstructionsArea.setText(instrucciones);
-    }
-    
-    public static void setDominumArea(String dominios){
-        DominiumArea.setText(dominios);
-    }
-
-    public static void setDuration(String duration){
-        DurationBox.setText(duration);
-    }
     
     private boolean camposLlenos (){
 
         if(NameBox.getText().trim().isEmpty()||DurationBox.getText().trim().isEmpty()||Levels.getSelectedIndex()==-1||AsociatedCourses.getSelectedIndex()==-1 ||
         DominiumArea.getText().trim().isEmpty()||InstructionsArea.getText().trim().isEmpty()){
             return false;
-
         }
+        
         return true;
     }
 
@@ -247,12 +236,12 @@ public class CreateExamPanel extends PanelContent{
         return NameBox.getText();
     }
     
-    public String getLevelBox(){  
-        return String.valueOf(Levels.getSelectedItem());
-    }
-    
     public String getCourseBox(){
         return AsociatedCourses.getSelectedItem().toString();
+    }
+
+    public String getLevelBox(){  
+        return String.valueOf(Levels.getSelectedItem());
     }
     
     public int getDurationBox(){
@@ -272,18 +261,30 @@ public class CreateExamPanel extends PanelContent{
         return InstructionsArea.getText();
     }
     
-    public void setLevel(int index){
-        Levels.setSelectedIndex(index);
+    public void setName(String Name){
+        NameBox.setText(Name);
     }
     
     public void setCourse(int index){
         AsociatedCourses.setSelectedIndex(index);
     }
-    
-    public void setName(String Name){
-        NameBox.setText(Name);
+
+    public void setLevel(int index){
+        Levels.setSelectedIndex(index);
+    }
+   
+    public static void setDuration(String duration){
+        DurationBox.setText(duration);
+    }
+
+    public static void setInstructionsArea(String instrucciones){
+        InstructionsArea.setText(instrucciones);
     }
     
+    public static void setDominumArea(String dominios){
+        DominiumArea.setText(dominios);
+    }
+
     public void restartAll(){
         setDominumArea("");
         setInstructionsArea("");
@@ -292,4 +293,6 @@ public class CreateExamPanel extends PanelContent{
         setLevel(0);
         setCourse(0);
     }
+
+
 }

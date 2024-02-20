@@ -5,7 +5,7 @@ import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
-
+import java.awt.Graphics;
 import cienciasucv.certicomp.Views.ButtonSize;
 import cienciasucv.certicomp.Views.Buttons;
 import cienciasucv.certicomp.Views.LogoFactory;
@@ -123,6 +123,4 @@ public class PanelContent extends JPanel {
         labelLogo.setBounds(x, y,(int)labelLogo.getPreferredSize().width,(int)labelLogo.getPreferredSize().height);
         add(labelLogo);
     }
-
-    
 }
