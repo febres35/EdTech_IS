@@ -80,6 +80,7 @@ public class CreateExamController {
         String name= view.getNameBox();
         String id;
         String instructions= view.getInstructionsArea();
+        String level= view.getLevelBox();
         String duration=String.valueOf(view.getDurationBox());
         ArrayList<String> domains= new ArrayList<>();
         ArrayList<String> questions = new ArrayList<>();
@@ -95,6 +96,6 @@ public class CreateExamController {
             break;
         }
         
-        return new Exam(name,id,duration,instructions,domains);
+        return new Exam(name,id,duration,instructions,domains,level);
 }
 }

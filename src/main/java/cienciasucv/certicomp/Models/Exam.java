@@ -28,6 +28,7 @@ public class Exam {
     private String name;
     private String duration; 
     private String instructions;
+    private String level;
     private ArrayList<String> dominios;
     private ArrayList<String> questions;
     public static Map<String, Exam> exams;
@@ -48,12 +49,14 @@ public class Exam {
         this.dominios= domains;
     }
 
-    public Exam(String name,String id, String duration, String instructions,ArrayList<String> domains){
+    public Exam(String name,String id, String duration, String instructions,ArrayList<String> domains,String level){
         this.name= name;
         this.id = id;
         this.duration= duration;
         this.instructions=instructions;
         this.dominios=domains;
+        this.level=level;
+
     }
     
     private static Map<String, Exam> loadExamsFromFile() {

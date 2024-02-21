@@ -12,21 +12,24 @@ import java.util.Map;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-public class User {
+class User {
 
-    private String name;
-    private String lastname;
-    private String nationalID;
-    private String email;
-    private String role;
+    protected String name;
+    protected String lastname;
+    protected String nationalID;
+    protected String email;
+    protected enum role{
+        STUDENT,
+        ADMIN;
+    }
+    protected role role;
 
-    public User(String name, String lastname, String nationalID, String email, String role) {
+    public User(String name, String lastname, String nationalID, String email) {
         
         this.name = name;
         this.lastname = lastname;
         this.nationalID = nationalID;
         this.email = email;
-        this.role = role;
     }
 
     public String getName() {
@@ -45,7 +48,7 @@ public class User {
         return email;
     }
 
-    public String getRole() {
+    public role getRole() {
         return role;
     }
 
@@ -65,8 +68,7 @@ public class User {
         this.email= email;
     }
 
-
-    public void setRole(String role) {
+    public void setRole(role role) {
         this.role = role;
     }
 
@@ -104,6 +106,6 @@ public class User {
         }
         return usersInfo;
     }
-
+    
 
 }

@@ -62,6 +62,12 @@ public class PanelContent extends JPanel {
         lista.setBounds(x, y, w, h);
         return lista;
     }
+
+    public static JComboBox addComboBox(DefaultComboBoxModel<String> Modelo ,int x,int y, int w, int h){
+        JComboBox lista = new JComboBox(Modelo);
+        lista.setBounds(x, y, w, h);
+        return lista;
+    }
   
     public static JTextArea addTextArea(int x, int y, int w, int h){
         JTextArea Area = new JTextArea();
