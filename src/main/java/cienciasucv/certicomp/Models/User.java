@@ -1,5 +1,7 @@
 package cienciasucv.certicomp.Models;
 
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,23 +12,35 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 public class User {
 
+    private String nationalId;
     private String name;
     private String lastname;
-    private String nationalID;
-    private String email;
     private String role;
 
-    public User(String name, String lastname, String nationalID, String email, String role) {
+    public User(Map<String, Object> attributes) {
+
+        if(!attributes.isEmpty()){
+            this.nationalId =  attributes.get("nationalId").toString();
+            this.name = attributes.get("name").toString();
+            this.lastname =  attributes.get("lastname").toString();
+            this.role =  attributes.get("role").toString();
+        }else{
+            this.nationalId =  "";
+            this.name =  "";
+            this.lastname = "";
+            this.role = "";
+        }
         
-        this.name = name;
-        this.lastname = lastname;
-        this.nationalID = nationalID;
-        this.email = email;
-        this.role = role;
+    }
+
+    public User(){
+
     }
 
     public String getName() {
@@ -38,11 +52,7 @@ public class User {
     }
 
     public String getNationalID() {
-        return nationalID;
-    }
-
-    public String getEmail() {
-        return email;
+        return nationalId;
     }
 
     public String getRole() {
@@ -57,14 +67,9 @@ public class User {
         this.lastname = lastname;
     }
 
-    public void setNationalID(String nationalID) {
-        this.nationalID = nationalID;
+    public void setNationalID(String nationalId) {
+        this.nationalId = nationalId;
     }
-
-    public void setEmail(String email) {
-        this.email= email;
-    }
-
 
     public void setRole(String role) {
         this.role = role;
@@ -104,6 +109,49 @@ public class User {
         }
         return usersInfo;
     }
+    
+    public Map<String, Object> searchUserById(String jsonFilePath, String idToCompare) throws IOException {
+   
+        File file = new File(jsonFilePath);    
+        Map<String, JsonElement> userAttributes = new HashMap<>();
+        Map<String, Object> userGot = new HashMap<>();
 
+        if (file.exists()) {
+                
+            try (FileReader reader = new FileReader(file)) {
+                JsonObject users = new Gson().fromJson(reader, JsonObject.class);
+                JsonObject receptor = new JsonObject();
+                for (String userId : users.keySet()) {
+                    
+                    if(userId.equals(idToCompare)){
+                        /* 
+                        HashMap<String, Integer> peopleCopy = new HashMap<String, Integer>();
+                        for (String key : people.keySet()) {
+                            userGot.put(key, users.get(key));
+                        }
+                        */
 
+                        //receptor = users.get(userId).getAsJsonObject();
+
+                        //userAttributes = users.asMap();
+            
+                        userGot.put("name", users.get(userId).getAsJsonObject().get("name").getAsString());
+                        userGot.put("lastname", users.get(userId).getAsJsonObject().get("lastname").getAsString());
+                        userGot.put("nationalId", userId);
+                        userGot.put("role", users.get(userId).getAsJsonObject().get("role").getAsString());
+
+                        System.out.println(userGot.get("name"));
+                    
+                        //User obtainedUser = new User(userGot);
+                        return userGot;
+                    }
+                }         
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            
+        }
+        return null;
+    }
+  
 }

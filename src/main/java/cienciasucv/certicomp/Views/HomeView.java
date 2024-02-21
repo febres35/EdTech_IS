@@ -31,7 +31,7 @@ public class HomeView{
         dateLabel.setFont(new Font("Roboto", Font.BOLD, 25));
         dateLabel.setHorizontalAlignment(JLabel.CENTER);
 
-        JLabel welcomeUser = new JLabel("¡Hola, "+ userName + "!");
+        JLabel welcomeUser = new JLabel(new String("¡Hola, "+ userName + "!"));
         welcomeUser.setFont(new Font("Roboto", Font.BOLD, 35));
         welcomeUser.setHorizontalAlignment(JLabel.CENTER);
 

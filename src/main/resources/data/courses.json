@@ -48,22 +48,6 @@
     "category": "Lenguajes de ProgramaciÃ³n"
   },
   "C006": {
-    "prerequisites": "asaaaaaaaaaaaaaaa",
-    "exams": [],
-    "teachers": "asasassaas",
-    "name": "asasaas",
-    "description": "asssssssssssssssssss",
-    "category": "Lenguajes de Programaciï¿½n"
-  },
-  "C007": {
-    "prerequisites": "dddd",
-    "exams": [],
-    "teachers": "adddadd",
-    "name": "adaddaaddaaddad",
-    "description": "dddddddddddddd",
-    "category": "Bases de Datos"
-  },
-  "C008": {
     "prerequisites": "a",
     "exams": [],
     "teachers": "a",
@@ -71,12 +55,20 @@
     "description": "a",
     "category": "Lenguajes de Programación"
   },
-  "C009": {
-    "prerequisites": "aaaaaaaaa",
+  "C007": {
+    "prerequisites": "s",
     "exams": [],
-    "teachers": "aaaaaa",
-    "name": "aaa",
-    "description": "aaaaaaaaaaaaaaaaaaa",
-    "category": "Sistemas Operativos"
+    "teachers": "s",
+    "name": "s",
+    "description": "s",
+    "category": "Lenguajes de Programación"
+  },
+  "C008": {
+    "prerequisites": "f",
+    "exams": [],
+    "teachers": "f",
+    "name": "f",
+    "description": "f",
+    "category": "Lenguajes de Programación"
   }
 }

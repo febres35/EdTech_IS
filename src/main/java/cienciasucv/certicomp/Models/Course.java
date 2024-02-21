@@ -182,6 +182,11 @@ public class Course {
             try (FileReader reader = new FileReader(file)) {
                 JsonObject courses = new Gson().fromJson(reader, JsonObject.class);
                 for (String courseId : courses.keySet()) {
+                    if(courseId.equals("C005")){
+                        System.out.println(courses.get(courseId).getAsJsonObject().get("category"));
+                        
+                    }
+                     
                     int currentIdNumber = Integer.parseInt(courseId.substring(1));
                     nextId = Math.max(nextId, currentIdNumber + 1);
                 }

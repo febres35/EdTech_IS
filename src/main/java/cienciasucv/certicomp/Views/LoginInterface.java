@@ -3,6 +3,8 @@ package cienciasucv.certicomp.Views;
 import javax.swing.*;
 
 import cienciasucv.certicomp.Controllers.LoginController;
+import cienciasucv.certicomp.Models.User;
+import cienciasucv.certicomp.Views.AdminViews.AdminView;
 import cienciasucv.certicomp.Views.StudentViews.StudentView;
 
 import java.awt.*;
@@ -146,12 +148,18 @@ public class LoginInterface extends javax.swing.JFrame {
                 LoginController controller = new LoginController();
                 String correo = txtCorreo.getText();
                 String contrasenia = String.valueOf(txtContrasenia.getPassword());
-                String idUser = controller.checkCredentials(correo, contrasenia);
+                User userLogged = new User(controller.checkCredentials(correo, contrasenia));
                 
-                
-                if (idUser!="404 Not Found") {
+                if (!userLogged.getNationalID().equals("")) {
+
                     JOptionPane.showMessageDialog(LoginInterface.this, "Inicio de sesión exitoso");
-                    StudentView studentView = new StudentView("Jhon Smith");   
+
+                    if((userLogged.getRole().toLowerCase().equals("student"))||(userLogged.getRole().toLowerCase().equals("estudiante"))){
+                        StudentView studentView = new StudentView(new String(userLogged.getName()+" "+userLogged.getLastname()));
+                    }else if((userLogged.getRole().toLowerCase().equals("admin"))||(userLogged.getRole().toLowerCase().equals("administrador"))){
+                        AdminView adminView = new AdminView(new String(userLogged.getName()+" "+userLogged.getLastname()));
+                    }
+                       
                     
                 } else {
                     JOptionPane.showMessageDialog(LoginInterface.this, "Error: correo o contraseña incorrectos");
