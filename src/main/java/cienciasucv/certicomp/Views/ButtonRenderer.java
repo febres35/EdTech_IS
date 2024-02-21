@@ -11,7 +11,7 @@ import javax.swing.UIManager;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 
-class ButtonRenderer extends JButton implements TableCellRenderer{
+public class ButtonRenderer extends JButton implements TableCellRenderer{
     public ButtonRenderer() {
         setOpaque(true);
         setPreferredSize(new Dimension(100, 20)); 
