@@ -8,7 +8,10 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.swing.JOptionPane;
 
@@ -27,36 +30,36 @@ public class Exam {
     private String instructions;
     private ArrayList<String> dominios;
     private ArrayList<String> questions;
-    private static Map<String, Exam> exams;
+    public static Map<String, Exam> exams;
     private Exam exam;
     private Question question;
     
+    private final static String path = "src/main/resources/data/exams.json";
     
     static {
-
         exams = loadExamsFromFile();
     }
 
-    Exam(String name,String id, String duration, String instructions, ArrayList<String> questions){
+    Exam(String name,String id, String duration, String instructions, ArrayList<String> questions,ArrayList<String> domains){
         this.id = id;
         this.duration = duration;
         this.instructions = instructions;
         this.questions = questions;
+        this.dominios= domains;
     }
 
-    public Exam(String name,String id, String duration, String instructions){
+    public Exam(String name,String id, String duration, String instructions,ArrayList<String> domains){
         this.name= name;
         this.id = id;
         this.duration= duration;
         this.instructions=instructions;
+        this.dominios=domains;
     }
     
-
     private static Map<String, Exam> loadExamsFromFile() {
-
         Gson gson = new Gson();
         java.lang.reflect.Type type = new TypeToken<Map<String, Exam>>(){}.getType();
-        try (Reader reader = new FileReader("src/main/resources/data/exams.json")) {
+        try (Reader reader = new FileReader(path)) {
             exams = gson.fromJson(reader, type);
         } catch (IOException e) {
             e.printStackTrace();
@@ -82,6 +85,10 @@ public class Exam {
         return this.duration;
     }
 
+    public ArrayList<String> getDomainList(){
+        return this.dominios;
+    }
+    
     public String fetchInstructions(){
         return instructions;
     }
@@ -95,28 +102,11 @@ public class Exam {
         return this.questions;
     }
      
-
-   public static String getInstructions(String examID) {
-    
-    Gson gson = new Gson();
-
-    InputStream inputStream = Exam.class.getResourceAsStream("/data/exams.json");
-    Reader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
-    Map<String, Exam> exams = gson.fromJson(reader, new TypeToken<Map<String, Exam>>(){}.getType());
-
-    Exam exam = exams.get(examID);
-    if(exam != null ){
-        System.out.println("Not null!");
-        return exam.fetchInstructions();
-    }else{
-        return null;
-    }
-}
-
-public static void createNewExam(Exam exam) {
+    public static boolean examExists(String name){
+     
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
     JsonObject exams = new JsonObject();
-    File file = new File("src/main/resources/data/exams.json");
+    File file = new File(path);
 
     if (file.exists()) {
         try (FileReader reader = new FileReader(file)) {
@@ -125,15 +115,67 @@ public static void createNewExam(Exam exam) {
             e.printStackTrace();
         }
     }
-    exams.add(exam.getID(), gson.toJsonTree(exam));
+        for (Map.Entry<String, JsonElement> entry : exams.entrySet()) {
+            JsonObject jsonExam = entry.getValue().getAsJsonObject();
+            String examName = jsonExam.get("name").getAsString();
+            
+            if (examName.equals(name)) {
+                JOptionPane.showMessageDialog(null,"YA EXISTE UN EXAMEN CON ESTE NOMBRE");
+                return true;
+            }
+        }
+        return false;
+    }
 
-    try (FileWriter writer = new FileWriter("src/main/resources/data/exams.json")) {
-        gson.toJson(exams, writer);
-        JOptionPane.showMessageDialog(null,"EXAMEN CREADO EXITOSAMENTE");
-    } catch (IOException e) {
-        System.out.println("Error, examen no creado: " + e.getMessage());
+    public static String getInstructions(String examID) {
+    Gson gson = new Gson();
+    InputStream inputStream = Exam.class.getResourceAsStream(path);
+    Reader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+    Map<String, Exam> exams = gson.fromJson(reader, new TypeToken<Map<String, Exam>>(){}.getType());
+
+    Exam exam = exams.get(examID);
+   
+    if(exam != null ){
+        System.out.println("Not null!");
+        return exam.fetchInstructions();
+    }else{
+        return null;
     }
 }
 
+    public static void createNewExam(Exam exam) {
+    Exam.exams.put(exam.getID(), exam);
+    Exam.organizarPorID();
+    saveExamsToJson();
+}
+   
+    public static void saveExamsToJson() {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        try (FileWriter writer = new FileWriter(path)) {
+            gson.toJson(exams, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public void deleteExam(String examToDeleteID) {
+        exams.remove(examToDeleteID);
+        saveExamsToJson();
+    }
+
+    public static void editExam(String originalExamID, Exam editedExam) {
+       exams.put(originalExamID, editedExam);
+       JOptionPane.showMessageDialog(null,"EXAMEN EDITADO EXITOSAMENTE");
+       saveExamsToJson();
+    }
+
+    public void addDomain(String domainID){
+        this.dominios.add(domainID);
+   }
+   
+    public static void organizarPorID(){ 
+    Map<String, Exam> sortedExamMap = new TreeMap<>(Exam.exams);
+    Exam.exams.clear();
+    Exam.exams.putAll(sortedExamMap);
+   }
 }

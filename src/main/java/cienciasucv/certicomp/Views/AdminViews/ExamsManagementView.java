@@ -14,11 +14,12 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import cienciasucv.certicomp.Models.Course;
+import cienciasucv.certicomp.Models.Exam;
 import cienciasucv.certicomp.Views.ButtonSize;
 import cienciasucv.certicomp.Views.Buttons;
 import cienciasucv.certicomp.Views.LogoFactory;
 import cienciasucv.certicomp.Views.LogoSize;
-
+import cienciasucv.certicomp.Views.ButtonRenderer;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,6 +29,7 @@ import java.util.Map;
 
 public class ExamsManagementView extends JPanel {
 
+    static DefaultTableModel examsTableModel;
     private JPanel examsPanel; 
     private java.lang.reflect.Type type;
     private JComboBox<String> comboBox;
@@ -41,9 +43,27 @@ public class ExamsManagementView extends JPanel {
         JLabel selectCourse = new JLabel("Seleccionar Curso: ");
     
         JTable examsTable;
-        DefaultTableModel examsTableModel;
-
-        examsTableModel = new DefaultTableModel(new Object[]{"ID", "Exámenes", "N Preguntas", "Duración", "Fecha Creación", "Acciones" }, 0);
+    
+       examsTableModel = new DefaultTableModel(new Object[]{"ID", "Exámenes", "N Preguntas", "Duración", "Fecha Creación", "Acciones" }, 0);
+        for (final Exam exam : Exam.exams.values()) {
+            ButtonRenderer editButton = new ButtonRenderer();
+            editButton.setText("Editar");
+    editButton.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            new EditExamView(exam);
+        }
+    });
+            Object[] rowData = {
+                exam.getID(),
+                exam.getName(),
+                "x",
+                exam.getDuration(),
+                "x",
+                editButton,
+            };
+            examsTableModel.addRow(rowData);
+        }
         examsTable = new JTable(examsTableModel);
 
         JScrollPane scrollPane = new JScrollPane(examsTable);
@@ -97,8 +117,25 @@ public class ExamsManagementView extends JPanel {
         }
     }
 
-
     public JPanel getExamsPanelContent() {
         return examsPanel;
+    }
+
+    public static void refreshTableData() {
+        examsTableModel.setRowCount(0); // Borra todas las filas existentes en la tabla
+    
+        for (Exam exam : Exam.exams.values()) {
+            Object[] rowData = {
+                exam.getID(),
+                exam.getName(),
+                 "x",
+                exam.getDuration(),
+                "x",
+                "Editar"
+            };
+            examsTableModel.addRow(rowData); // Agrega una nueva fila con los datos del examen
+        }
+    
+        examsTableModel.fireTableDataChanged(); // Notifica a la JTable que se han realizado cambios en el modelo de datos
     }
 }
