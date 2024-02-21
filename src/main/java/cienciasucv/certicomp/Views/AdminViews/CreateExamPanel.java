@@ -1,5 +1,6 @@
 package cienciasucv.certicomp.Views.AdminViews;
 import cienciasucv.certicomp.Controllers.CreateExamController;
+import cienciasucv.certicomp.Models.Exam;
 import cienciasucv.certicomp.Views.ButtonSize;
 import cienciasucv.certicomp.Views.Buttons;
 import cienciasucv.certicomp.Views.LogoSize;
@@ -14,27 +15,33 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Map;
 
 public class CreateExamPanel extends PanelContent{
-    public LimitedTextField NameBox;
+    public static LimitedTextField NameBox;
     public static JTextField DurationBox;
-    private JComboBox Levels;
-    private JComboBox AsociatedCourses;
+    static JComboBox Levels;
+    static JComboBox AsociatedCourses;
     public static JTextArea DominiumArea;
     public static JTextArea InstructionsArea;
     public AddDominiumView dominiumWindow;
     public AddInstructionView instrucWindow;
-    private JButton botonCrear;
+    JButton botonCrear;
     private JButton addEdit1;
     private JButton addEdit2; 
 
     public CreateExamPanel(){
+        for (Map.Entry<String, Exam> entry : Exam.exams.entrySet()) {
+            String key = entry.getKey();
+            Exam exam = entry.getValue();
+            System.out.println("Clave: " + key + ", Valor: " + exam);
+        }
         addLogo(LogoSize.SMALL, 25, 20);
         this.setLayout(null);
         this.setBackground(Fondo); 
         addTitulo(" Introduzca los datos del examen",40,90, 210, 30,14); 
         addButtons();
-        NameBox= new LimitedTextField(20);
+        NameBox= new LimitedTextField(30);
         addNameBox();
         DurationBox= addTextBox(160, 232, 70, 22);
         addDurationBox(DurationBox);
@@ -66,12 +73,15 @@ public class CreateExamPanel extends PanelContent{
                         JOptionPane.showMessageDialog(null, "LA DURACION DEBE SER MAYOR A 30 MINUTOS");
                     }else{
                     CreateExamController controller = new CreateExamController();//añade esta instruccion aqui
-                    controller.collectExamData(CreateExamPanel.this);
-                    //Domain nuevoDomain=new Domain(1,getDominumArea());
-                    JOptionPane.showMessageDialog(null, "EXAMEN CREADO");
+                   if(Exam.examExists(NameBox.getText())){
+                   }else{
+                    Exam newExam= controller.collectExamData(CreateExamPanel.this,CreateExamController.action.CREAR,null);
+                    controller.collectDominiums(CreateExamPanel.this.DominiumArea,newExam);
+                    Exam.createNewExam(newExam);
                     JFrame frame=(JFrame)SwingUtilities.getWindowAncestor(CreateExamPanel.this);
                     restartAll();
-                    frame.dispose();}
+                    ExamsManagementView.refreshTableData();
+                    frame.dispose();}}
                 }else{
                 JOptionPane.showMessageDialog(null, "DEBE LLENAR TODOS LOS CAMPOS");
                 }
@@ -200,7 +210,6 @@ public class CreateExamPanel extends PanelContent{
         this.add(cont);
     }
 
-    
     private void addDominumArea(JTextArea cont){
         cont.setLineWrap(true);
         cont.setWrapStyleWord(true);
@@ -222,7 +231,7 @@ public class CreateExamPanel extends PanelContent{
         g.drawRect(25, 104, 575, 500);
     }
     
-    private boolean camposLlenos (){
+    static boolean camposLlenos (){
 
         if(NameBox.getText().trim().isEmpty()||DurationBox.getText().trim().isEmpty()||Levels.getSelectedIndex()==-1||AsociatedCourses.getSelectedIndex()==-1 ||
         DominiumArea.getText().trim().isEmpty()||InstructionsArea.getText().trim().isEmpty()){
@@ -261,15 +270,15 @@ public class CreateExamPanel extends PanelContent{
         return InstructionsArea.getText();
     }
     
-    public void setName(String Name){
+    public static void setNameBox(String Name){
         NameBox.setText(Name);
     }
     
-    public void setCourse(int index){
+    public static void setCourse(int index){
         AsociatedCourses.setSelectedIndex(index);
     }
 
-    public void setLevel(int index){
+    public static void setLevel(int index){
         Levels.setSelectedIndex(index);
     }
    
@@ -285,10 +294,10 @@ public class CreateExamPanel extends PanelContent{
         DominiumArea.setText(dominios);
     }
 
-    public void restartAll(){
+    public static void restartAll(){
         setDominumArea("");
         setInstructionsArea("");
-        setName("");
+        setNameBox("");
         setDuration("");
         setLevel(0);
         setCourse(0);

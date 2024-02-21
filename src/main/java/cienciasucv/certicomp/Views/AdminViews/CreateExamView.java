@@ -3,7 +3,7 @@ import javax.swing.*;
 
 public class CreateExamView extends JFrame{
     
-    private static CreateExamView instance= null;
+  // private static CreateExamView instance= null;
     protected static CreateExamPanel panel;
     CreateExamView(){
         panel = new CreateExamPanel();
@@ -15,7 +15,7 @@ public class CreateExamView extends JFrame{
         this.add(panel);
     }
 
-    public static CreateExamView getCreateExamView(){
+   /* public static CreateExamView getCreateExamView(){
         if(instance==null){
             instance = new CreateExamView();
         }
@@ -33,5 +33,5 @@ public class CreateExamView extends JFrame{
     public void dispose(){
         panel.restartAll();
         super.dispose();
-    }
+    }*/
 }
