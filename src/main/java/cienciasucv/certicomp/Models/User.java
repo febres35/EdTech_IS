@@ -124,25 +124,12 @@ public class User {
                 for (String userId : users.keySet()) {
                     
                     if(userId.equals(idToCompare)){
-                        /* 
-                        HashMap<String, Integer> peopleCopy = new HashMap<String, Integer>();
-                        for (String key : people.keySet()) {
-                            userGot.put(key, users.get(key));
-                        }
-                        */
-
-                        //receptor = users.get(userId).getAsJsonObject();
-
-                        //userAttributes = users.asMap();
             
                         userGot.put("name", users.get(userId).getAsJsonObject().get("name").getAsString());
                         userGot.put("lastname", users.get(userId).getAsJsonObject().get("lastname").getAsString());
                         userGot.put("nationalId", userId);
                         userGot.put("role", users.get(userId).getAsJsonObject().get("role").getAsString());
-
-                        System.out.println(userGot.get("name"));
                     
-                        //User obtainedUser = new User(userGot);
                         return userGot;
                     }
                 }         
