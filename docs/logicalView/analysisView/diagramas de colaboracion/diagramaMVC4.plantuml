@@ -4,7 +4,7 @@ title "Caso de uso: Cargar Preguntas"
 
 left to right direction
 
-skinparam Dpi 300
+skinparam Dpi 250
 skinparam EntityBackgroundColor white
 skinparam BoundaryBackgroundColor white
 skinparam ControlBackgroundColor white
