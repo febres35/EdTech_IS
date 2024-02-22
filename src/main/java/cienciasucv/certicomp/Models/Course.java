@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,6 +18,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
+import com.itextpdf.text.List;
 
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -42,6 +44,10 @@ public class Course {
         this.prerequisites = (String) attributes.get("prerequisites");
         this.description = (String) attributes.get("description");
         this.examsID = (ArrayList<String>) attributes.get("exams");
+    if (attributes.get("exams")instanceof ArrayList) {
+        this.examsID.addAll((ArrayList<String>) attributes.get("exams"));
+       
+    }
         this.attributes = attributes;
     }
 
@@ -123,6 +129,19 @@ public class Course {
 
     }
 
+    public static Course getCourse(String courseID){
+        try{
+            String coursePath=new String(Files.readAllBytes(Paths.get("src/main/resources/data/courses.json")));
+            JSONObject coursesJson = new JSONObject(coursePath);
+            JSONObject courseJson = coursesJson.getJSONObject(courseID);
+            Course course = new Course(courseID, courseJson.toMap());
+            return course;
+        }catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public static Map<String, String> getCoursesInfo() {
 
         
@@ -147,7 +166,6 @@ public class Course {
         }
         return coursesInfo;
     }
-
 
     public void registerNewCourse(Course course) {
 
@@ -192,5 +210,42 @@ public class Course {
             
         }
         return "C" + String.format("%03d", nextId);
+    }
+
+    public void addExamID(String examID){
+        this.examsID.add(examID);
+    }
+
+    public static void saveCoursesToJson(Map<String, Course> courseMap, String fileName) {
+        try (Writer writer = new FileWriter("src/main/resources/data/courses.json")) {
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            gson.toJson(courseMap, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static Map<String, Course> loadCoursesFromJson() {
+        try (Reader reader = new FileReader("src/main/resources/data/courses.json")) {
+            Gson gson = new Gson();
+            return gson.fromJson(reader, new TypeToken<Map<String, Course>>(){}.getType());
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new HashMap<>();
+        }
+    }
+
+    public static void modifyCourse(Course curso,Exam examen){
+        Map<String,Course> mapa=loadCoursesFromJson();
+        if (mapa.containsKey(curso.getID())) {
+            Course courseToUpdate = mapa.get(curso.getID());
+            // Realizar las modificaciones necesarias en el curso
+            courseToUpdate.addExamID(examen.getID());
+        }
+
+        // Guardar el Map actualizado de cursos de vuelta en el archivo course.json
+        saveCoursesToJson(mapa, "course.json");
+
     }
 }

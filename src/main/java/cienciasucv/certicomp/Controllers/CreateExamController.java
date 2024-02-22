@@ -54,9 +54,9 @@ public class CreateExamController {
         }
     
         if (foundGap) {
-            return "E" + String.format("%03d", nextId);
+            return "D" + String.format("%03d", nextId);
         } else {
-            return "E" + String.format("%03d", sortedKeys.size() + 1);
+            return "D" + String.format("%03d", sortedKeys.size() + 1);
         }
     }       
    

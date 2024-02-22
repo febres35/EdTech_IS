@@ -33,7 +33,7 @@ public class CreateExamPanel extends PanelContent{
     JButton botonCrear;
     private JButton addEdit1;
     private JButton addEdit2; 
-    private java.lang.reflect.Type type;
+    static Map<String,String> coursesInfo;
     
     public CreateExamPanel(){
         for (Map.Entry<String, Exam> entry : Exam.exams.entrySet()) {
@@ -81,7 +81,7 @@ public class CreateExamPanel extends PanelContent{
                    }else{
                     Exam newExam= controller.collectExamData(CreateExamPanel.this,CreateExamController.action.CREAR,null);
                     controller.collectDominiums(CreateExamPanel.this.DominiumArea,newExam);
-                    Exam.createNewExam(newExam);
+                    Exam.createNewExam(newExam,Course.getCourse(CreateExamPanel.getSelectedCourseID()));
                     JFrame frame=(JFrame)SwingUtilities.getWindowAncestor(CreateExamPanel.this);
                     restartAll();
                     ExamsManagementView.refreshTableData();
@@ -169,7 +169,7 @@ public class CreateExamPanel extends PanelContent{
     }
     
     private void addCourseBox(){
-        Map<String,String> coursesInfo= Course.getCoursesInfo();
+        coursesInfo= Course.getCoursesInfo();
         DefaultComboBoxModel<String>comboBoxModel=new DefaultComboBoxModel<>();
         for(String course:coursesInfo.values()){
             comboBoxModel.addElement(course);
@@ -310,6 +310,23 @@ public class CreateExamPanel extends PanelContent{
         setDuration("");
         setLevel(0);
         setCourse(0);
+    }
+   
+    public static String getSelectedCourseID(){
+    String nombreCursoSeleccionado = (String) AsociatedCourses.getSelectedItem();
+    String idCursoSeleccionado = null;
+     for (Map.Entry<String, String> entry : coursesInfo.entrySet()) {
+    if (entry.getValue().equals(nombreCursoSeleccionado)) {
+        idCursoSeleccionado = entry.getKey();
+        break;
+    }
+}
+if (idCursoSeleccionado != null) {
+    return idCursoSeleccionado;
+} else {
+    System.out.println("No se encontró el ID del curso seleccionado");
+    return null;
+}
     }
 
 

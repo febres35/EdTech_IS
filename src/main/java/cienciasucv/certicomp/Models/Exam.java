@@ -64,6 +64,7 @@ public class Exam {
 
     public static Exam getExam(String examId){
 
+
        return exams.get(examId);
     }
 
@@ -131,8 +132,10 @@ public class Exam {
     }
 }
 
-    public static void createNewExam(Exam exam) {
+    public static void createNewExam(Exam exam, Course curso) {
     Exam.exams.put(exam.getID(), exam);
+    curso.addExamID(exam.getID());
+    Course.modifyCourse(curso,exam);
     Exam.organizarPorID();
     saveExamsToJson();
 }
