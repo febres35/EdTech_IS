@@ -31,8 +31,7 @@ public class Exam {
     private ArrayList<String> dominios;
     private ArrayList<String> questions;
     public static Map<String, Exam> exams;
-    private Exam exam;
-    private Question question;
+
     
     private final static String path = "src/main/resources/data/exams.json";
     
@@ -40,7 +39,7 @@ public class Exam {
         exams = loadExamsFromFile();
     }
 
-    Exam(String name,String id, String duration, String instructions,ArrayList<String> domains,String level){
+    public Exam(String name,String id, String duration, String instructions,ArrayList<String> domains,String level){
         this.name= name;
         this.id = id;
         this.duration= duration;
@@ -124,16 +123,9 @@ public class Exam {
     }
 
     public static String getInstructions(String examID) {
-    Gson gson = new Gson();
-    InputStream inputStream = Exam.class.getResourceAsStream(path);
-    Reader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
-    Map<String, Exam> exams = gson.fromJson(reader, new TypeToken<Map<String, Exam>>(){}.getType());
-
-    Exam exam = exams.get(examID);
-   
-    if(exam != null ){
-        System.out.println("Not null!");
-        return exam.fetchInstructions();
+    Exam examen= exams.get(examID);
+    if(examen!=null){
+        return examen.fetchInstructions();
     }else{
         return null;
     }
