@@ -156,8 +156,7 @@ public class LoginInterface extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(LoginInterface.this, "Inicio de sesión exitoso");
 
                     if((userLogged.getRole().toLowerCase().equals("student"))||(userLogged.getRole().toLowerCase().equals("estudiante"))){
-                        PdfCreator certificate = new PdfCreator();
-                        certificate.createCertificate(userLogged.getName(), "Bases de datos");
+                        //PdfCreator.createCertificate(userLogged.getName(), "Bases de datos");
                         StudentView studentView = new StudentView(new String(userLogged.getName()+" "+userLogged.getLastname()));
                     }else if((userLogged.getRole().toLowerCase().equals("admin"))||(userLogged.getRole().toLowerCase().equals("administrador"))){
                         AdminView adminView = new AdminView(new String(userLogged.getName()+" "+userLogged.getLastname()));

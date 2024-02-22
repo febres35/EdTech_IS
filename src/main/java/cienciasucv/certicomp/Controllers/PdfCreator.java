@@ -12,8 +12,6 @@ public class PdfCreator {
 			String outputPath = "certificado_"+courseN+"_"+nameU+".pdf";
 			Document document = new Document(PageSize.A4.rotate(), 50, 50, 50, 50);
 			PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(outputPath));
-			nameU = "Vanesssa Valentina Silvera Gonzalez"; // Esto se quita, solo era para el ejemplo
-			courseN = "Lenguaje de Programación Java: Nivel Básico"; // Esto se quita, solo era para el ejemplo
 			document.open();
 
 			Paragraph title1 = new Paragraph("UNIVERSIDAD CENTRAL DE VENEZUELA",

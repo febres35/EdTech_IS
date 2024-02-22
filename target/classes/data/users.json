@@ -1,12 +1,37 @@
 {
-  "29567199": {
+"29567199": {
   "name": "Ronald",
   "lastname": "Herrera",
-  "role": "ADMIN"
+  "role": "Student"
 },
 "29619836": {
   "name": "Vanessa",
   "lastname": "Silvera",
-  "role": "ADMIN"
+  "role": "estudiante"
+},
+"27879859": {
+  "name": "Jhonny",
+  "lastname": "Zavala",
+  "role": "estudiante"
+},
+"18760484": {
+  "name": "Daniel",
+  "lastname": "Monasterios",
+  "role": "Estudiante"
+},
+"29619410": {
+  "name": "Mario",
+  "lastname": "Gamez",
+  "role": "STUDENT"
+},
+"23657851": {
+  "name": "Leonardo",
+  "lastname": "Febres",
+  "role": "ESTUDIANTE"
+},
+"123": {
+  "name": "Maria Paula",
+  "lastname": "Herrero",
+  "role": "Administrador"
 }
 }
