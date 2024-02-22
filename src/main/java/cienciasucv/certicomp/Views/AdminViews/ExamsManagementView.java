@@ -7,7 +7,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.*;
 import javax.swing.table.DefaultTableModel;
 
 import com.google.gson.Gson;
@@ -44,28 +43,27 @@ public class ExamsManagementView extends JPanel {
     
         JTable examsTable;
     
-       examsTableModel = new DefaultTableModel(new Object[]{"ID", "Exámenes", "N Preguntas", "Duración", "Fecha Creación", "Acciones" }, 0);
+       examsTableModel = new DefaultTableModel(new Object[]{"ID", "Exámenes", "N Preguntas", "Duración", "Fecha Creación" }, 0);
         for (final Exam exam : Exam.exams.values()) {
-            ButtonRenderer editButton = new ButtonRenderer();
-            editButton.setText("Editar");
-    editButton.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            new EditExamView(exam);
-        }
-    });
             Object[] rowData = {
                 exam.getID(),
                 exam.getName(),
-                "x",
+                String.valueOf(exam.fetchQuestions().size()),
                 exam.getDuration(),
-                "x",
-                editButton,
+                exam.getDate(),
             };
             examsTableModel.addRow(rowData);
         }
-        examsTable = new JTable(examsTableModel);
+        examsTable = new JTable(examsTableModel){
+            @Override
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+        };
 
+        examsTable.setDefaultEditor(Object.class, null);
+
+        
         JScrollPane scrollPane = new JScrollPane(examsTable);
 
         examsPanel.add(selectCourse);
@@ -138,4 +136,5 @@ public class ExamsManagementView extends JPanel {
     
         examsTableModel.fireTableDataChanged(); // Notifica a la JTable que se han realizado cambios en el modelo de datos
     }
+    
 }

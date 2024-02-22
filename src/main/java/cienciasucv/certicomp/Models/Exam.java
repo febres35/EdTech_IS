@@ -7,9 +7,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -19,7 +18,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
 public class Exam {
@@ -29,6 +27,7 @@ public class Exam {
     private String duration; 
     private String instructions;
     private String level;
+    private String creationDate;
     private ArrayList<String> dominios;
     private ArrayList<String> questions;
     public static Map<String, Exam> exams;
@@ -41,21 +40,15 @@ public class Exam {
         exams = loadExamsFromFile();
     }
 
-    Exam(String name,String id, String duration, String instructions, ArrayList<String> questions,ArrayList<String> domains){
-        this.id = id;
-        this.duration = duration;
-        this.instructions = instructions;
-        this.questions = questions;
-        this.dominios= domains;
-    }
-
-    public Exam(String name,String id, String duration, String instructions,ArrayList<String> domains,String level){
+    Exam(String name,String id, String duration, String instructions,ArrayList<String> domains,String level){
         this.name= name;
         this.id = id;
         this.duration= duration;
         this.instructions=instructions;
+        this.questions= new ArrayList<String>();
         this.dominios=domains;
         this.level=level;
+        this.creationDate = LocalDate.now().toString();
 
     }
     
@@ -161,7 +154,7 @@ public class Exam {
         }
     }
 
-    public void deleteExam(String examToDeleteID) {
+    public static void deleteExam(String examToDeleteID) {
         exams.remove(examToDeleteID);
         saveExamsToJson();
     }
@@ -180,5 +173,9 @@ public class Exam {
     Map<String, Exam> sortedExamMap = new TreeMap<>(Exam.exams);
     Exam.exams.clear();
     Exam.exams.putAll(sortedExamMap);
+   }
+
+   public String getDate(){
+    return this.creationDate;
    }
 }
