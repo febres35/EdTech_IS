@@ -1,10 +1,11 @@
 package cienciasucv.certicomp.Models;
 
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
+
+import org.json.JSONObject;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -13,40 +14,45 @@ public class Question {
 
     private String id;
     private String text;
-    private ArrayList<String> domains;
+    private ArrayList<String> domainsID;
     private Map<String, String> answerOptions;
-    private ArrayList<String> correctAnswers;
-    private String explanation;
+    private String type;
+    private String answerID;
     private Question question;
+    private ArrayList<String> questionImagesPath;
 
-    private static Map<String, Question> questions;
+    private static Map<String, Question> questionsMap;
 
     static {
-
-        questions = loadQuestionsFromFile();
-    }
-
-    private static Map<String, Question> loadQuestionsFromFile() {
-
-        Gson gson = new Gson();
-        java.lang.reflect.Type type = new TypeToken<Map<String, Exam>>(){}.getType();
-        try (Reader reader = new FileReader("src/main/resources/data/questions.json")) {
-            questions = gson.fromJson(reader, type);
+        try {
+            questionsMap = JsonLoader.loadFromFile(Question.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return questions;
     }
 
     Question(String id, String text, ArrayList<String> domains, 
-    Map<String,String> answers, ArrayList<String> correctAnswers, String explanation){
+    Map<String,String> answers, String answerID, String type){
 
         this.id = id;
         this.text = text;
-        this.domains = domains;
+        this.domainsID = domains;
         this.answerOptions = answers;
-        this.correctAnswers = correctAnswers;
-        this.explanation = explanation;
+        this.answerID = answerID;
+        this.type = type;
+
+    }
+
+    Question(String id, String text, ArrayList<String> questionImagesPath, ArrayList<String> domains, 
+    Map<String,String> answers, String answerID, String type){
+
+        this.id = id;
+        this.text = text;
+        this.questionImagesPath = questionImagesPath;
+        this.domainsID = domains;
+        this.answerOptions = answers;
+        this.answerID = answerID;
+        this.type = type;
 
     }
 
@@ -55,7 +61,7 @@ public class Question {
     }
 
     public static Question getQuestion(String questionID){
-        return questions.get(questionID);
+        return questionsMap.get(questionID);
     }
 
     public String getText(){
@@ -63,7 +69,11 @@ public class Question {
     }
 
     public ArrayList<String> getDomains(){
-        return this.domains;
+        return this.domainsID;
+    }
+
+    public ArrayList<String> getDomains(ArrayList<String> domainsID){
+        return this.domainsID;
     }
 
     public Map<String,String> getAnswerOptions(){
@@ -72,16 +82,35 @@ public class Question {
 
     }
 
-    public ArrayList<String> getCorrectAnswer(){
+    public String toJson() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
 
-        return this.correctAnswers;
         
     }
 
-    public String getExplanation(){
-        return this.explanation;
+    public static Map<String, String> fetchQuestions(ArrayList<String> questionsID) {
+    
+    Map<String, String> fetchedQuestions = new HashMap<>();
+    for (String questionID : questionsID) {
+        Question question = questionsMap.get(questionID);
+        if (question != null) {
+        
+            ArrayList<String> domains = new ArrayList<>();
+            for (String domainID : question.getDomains()) {
+                String domain = Domain.getDescription(domainID); 
+                domains.add(domain);
+            }
 
+            JSONObject questionJson = new JSONObject(question.toJson());
+            questionJson.remove("domainsID");
+            questionJson.put("domains", domains);
+            
+
+            fetchedQuestions.put(questionID, questionJson.toString());
+        }
     }
 
-   
+    return fetchedQuestions;
+}
 }

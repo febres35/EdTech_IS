@@ -25,7 +25,7 @@ public class ExamTimer {
             public void actionPerformed(ActionEvent e) {
                 counter--;
                 minutes = counter / 60;
-                int seconds = counter % 60;
+                seconds = counter % 60;
                 timerLabel.setText(String.format("%02d:%02d", minutes, seconds));
 
                 if (counter == 0) {
@@ -42,4 +42,9 @@ public class ExamTimer {
     public JLabel getTimerLabel(){
         return timerLabel;
     }
+
+    public void stop(){
+        timer.stop();
+    }
+
 }
