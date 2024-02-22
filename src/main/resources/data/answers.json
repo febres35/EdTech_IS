@@ -1,0 +1,26 @@
+{
+    "A001": {
+      "explanation": "La opción correcta es A porque",
+      "correctAnswers": ["A"]
+    },
+    
+    "A002": {
+      "explanation": "La opción correcta es A porque...",
+      "correctAnswers": ["A"]
+    },
+  
+    "A003": {
+      "explanation": "Las opción correcta es...",
+      "correctAnswers": ["A"]
+    },
+  
+    "A004": {
+      "explanation": "Las opciones correctas son...",
+      "correctAnswers": ["A", "C", "E"]
+    },
+
+    "A005": {
+      "explanation": "Which three statements describe the object-oriented features of the Java language? (Choose three.)",
+      "correctOptions": ["B", "C", "F"]
+    }
+  }

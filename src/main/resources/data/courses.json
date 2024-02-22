@@ -1,74 +1,58 @@
 {
   "C001": {
-    "prerequisites": "asasasasas",
-    "exams": [],
-    "teachers": "assaasasas",
-    "name": "ssasasaas",
-    "description": "assaasas",
-    "category": "Sistemas Operativos"
+    "name": "Java SE 8 Programmer",
+    "category": "Lenguajes de Programación",
+    "teachers": "Javier Hernández",
+    "prerequisites": "Ninguno.",
+    "exams": ["E001", "E002", "E003"],
+    "description": "ad"
   },
   "C002": {
-    "prerequisites": "Ninguno",
-    "exams": [
-      "E005",
-      "E006",
-      "E009"
-    ],
-    "teachers": "Leonel Neudillo, José Ramírez",
     "name": "Java Certified Foundations Associate",
-    "description": "Este curso proporciona prepara al aspirante sobre los conocimientos básicos de programación y orientación práctica sobre cómo utilizar Java. Valida sus capacidades y potencial y puede prepararlo para niveles de habilidad y calificaciones más altos.",
-    "category": "Lenguajes de Programación"
+    "category": "Lenguajes de Programación",
+    "teachers": "Leonel Neudillo, José Ramírez",
+    "prerequisites": "Ninguno",
+    "exams": ["E004"],
+    "description": "Este curso proporciona prepara al aspirante sobre los conocimientos básicos de programación y orientación práctica sobre cómo utilizar Java. Valida sus capacidades y potencial y puede prepararlo para niveles de habilidad y calificaciones más altos."
   },
   "C003": {
-    "prerequisites": "Requiere conocimientos del curso Java SE 8 Programmer",
-    "exams": [
-      "E010"
-    ],
-    "teachers": "Jose Ramírez, Alberto Ferrer, Daniel Velazco",
     "name": "Professional Java Programmer (OCPJP)",
-    "description": "No description.",
-    "category": "Lenguajes de Programación"
+    "category": "Lenguajes de Programación",
+    "teachers": "Jose Ramírez, Alberto Ferrer, Daniel Velazco",
+    "prerequisites": "Requiere conocimientos del curso Java SE 8 Programmer",
+    "exams": ["E005"],
+    "description": "No description."
   },
   "C004": {
-    "prerequisites": "Ninguno.",
-    "exams": [
-      "E011"
-    ],
-    "teachers": "Yadira Montes, Leonel Navarro",
     "name": "Java EE 7 Application Developer",
-    "description": "ertere",
-    "category": "Lenguajes de Programación"
+    "category": "Lenguajes de Programación",
+    "teachers": "Yadira Montes, Leonel Navarro",
+    "prerequisites": "Ninguno.",
+    "exams": ["E006", "E002"],
+    "description": "ertere"
   },
   "C005": {
+    "name": "Professional Java Application Developer II",
+    "category": "Lenguajes de Programación",
+    "teachers": "aafasdad",
     "prerequisites": "Ninguno",
     "exams": [],
-    "teachers": "aafasdad",
-    "name": "Professional Java Application Developer II",
-    "description": "asdasd",
-    "category": "Lenguajes de Programación"
+    "description": "asdasd"
   },
   "C006": {
-    "prerequisites": "a",
+    "name": "Cisco Networking",
+    "category": "Lenguajes de Programación",
+    "teachers": "adasd",
+    "prerequisites": "asdas",
     "exams": [],
-    "teachers": "a",
-    "name": "a",
-    "description": "a",
-    "category": "Lenguajes de Programaci�n"
+    "description": "asdasd"
   },
   "C007": {
-    "prerequisites": "s",
+    "prerequisites": "asda",
     "exams": [],
-    "teachers": "s",
-    "name": "s",
-    "description": "s",
-    "category": "Lenguajes de Programaci�n"
-  },
-  "C008": {
-    "prerequisites": "f",
-    "exams": [],
-    "teachers": "f",
-    "name": "f",
-    "description": "f",
-    "category": "Lenguajes de Programaci�n"
+    "teachers": "asdasd",
+    "name": "asdasd",
+    "description": "asda",
+    "category": "Lenguajes de Programación"
   }
 }
