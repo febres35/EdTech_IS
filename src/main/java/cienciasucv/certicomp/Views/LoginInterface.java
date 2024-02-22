@@ -168,17 +168,6 @@ public class LoginInterface extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(LoginInterface.this, "Error: correo o contraseña incorrectos");
                 }
                 
-            }
-              
-                                      
-            public static void main(String args[]) {
-        
-                /* Create and display the form */
-                java.awt.EventQueue.invokeLater(new Runnable() {
-                    public void run() {
-                        new LoginInterface().setVisible(true);
-                    }
-                });
-            }
+            }                                             
         
     }

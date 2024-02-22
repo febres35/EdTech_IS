@@ -70,12 +70,16 @@ public class ExamsManagementView extends JPanel {
         loadCourses();
         examsPanel.add(scrollPane);
 
+        JButton editExamButton = Buttons.getButton("Editar", ButtonSize.SMALL);
+        JButton deleteExamButton = Buttons.getButton("Borrar", ButtonSize.SMALL);
         JButton createExam =  Buttons.getButton("Crear Examen", ButtonSize.SMALL);
         JButton addQuestions =  Buttons.getButton("Cargar Preguntas", ButtonSize.SMALL);
         
         JPanel logoPanel = new JPanel();
         logoPanel.add(LogoFactory.getLogo(LogoSize.MEDIUM));
 
+        examsPanel.add(editExamButton);
+        examsPanel.add(deleteExamButton);
         examsPanel.add(createExam);
         examsPanel.add(addQuestions);
         examsPanel.add(logoPanel);

@@ -40,7 +40,7 @@ public class Exam {
         exams = loadExamsFromFile();
     }
 
-    Exam(String name,String id, String duration, String instructions,ArrayList<String> domains,String level){
+    public Exam(String name,String id, String duration, String instructions,ArrayList<String> domains,String level){
         this.name= name;
         this.id = id;
         this.duration= duration;
