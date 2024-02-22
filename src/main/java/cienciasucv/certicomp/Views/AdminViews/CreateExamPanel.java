@@ -1,5 +1,6 @@
 package cienciasucv.certicomp.Views.AdminViews;
 import cienciasucv.certicomp.Controllers.CreateExamController;
+import cienciasucv.certicomp.Models.Course;
 import cienciasucv.certicomp.Models.Exam;
 import cienciasucv.certicomp.Views.ButtonSize;
 import cienciasucv.certicomp.Views.Buttons;
@@ -9,12 +10,15 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.AbstractDocument;
 
+import com.google.gson.Gson;
+
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.FileReader;
 import java.util.Map;
 
 public class CreateExamPanel extends PanelContent{
@@ -29,7 +33,8 @@ public class CreateExamPanel extends PanelContent{
     JButton botonCrear;
     private JButton addEdit1;
     private JButton addEdit2; 
-
+    private java.lang.reflect.Type type;
+    
     public CreateExamPanel(){
         for (Map.Entry<String, Exam> entry : Exam.exams.entrySet()) {
             String key = entry.getKey();
@@ -47,8 +52,7 @@ public class CreateExamPanel extends PanelContent{
         addDurationBox(DurationBox);
         String [] Prueba ={"Nivel 1", "Nivel 2", "Nivel 3"};
         addLevelBox(Prueba);
-        String [] CursosP={"Java","CISCO","Front-End Web Developer"};
-        addCourseBox(CursosP);
+        addCourseBox();
         DominiumArea =addTextArea(160, 265, 220,50);
         DominiumArea.setEditable(false);
         addDominumArea(DominiumArea);
@@ -164,9 +168,14 @@ public class CreateExamPanel extends PanelContent{
         this.add(Levels);
     }
     
-    private void addCourseBox(String[] lista){
+    private void addCourseBox(){
+        Map<String,String> coursesInfo= Course.getCoursesInfo();
+        DefaultComboBoxModel<String>comboBoxModel=new DefaultComboBoxModel<>();
+        for(String course:coursesInfo.values()){
+            comboBoxModel.addElement(course);
+        }
         addSideText("Curso Asociado:", 54, 168, 120, 30);
-        AsociatedCourses=addComboBox(lista, 160,173 , 220, 22);
+        AsociatedCourses=addComboBox(comboBoxModel, 160,173 , 220, 22);
         this.add(AsociatedCourses);
     }
     
