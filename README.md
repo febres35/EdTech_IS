@@ -67,13 +67,18 @@ CertiComp proyecto de Ingeniería de Software
 ![alt "Diagrama de Clases de Analisis"](https://github.com/febres35/EdTech_IS/blob/main/docs/logicalView/analysisView/diagramaDeClasesDeAnalisis/Diagrama%20de%20clases.png)
 
 # [4. Modelo de Diseño ](#4.-Modelo-de-Diseño)
+### **4.1 Diagrama de clases de diseño**
+
+<br>Caso de uso representativo **Presentar Examen** (_Take Exam_)<br>
+
+![alt "Diagrama de clases de diseño"](https://github.com/febres35/EdTech_IS/blob/main/docs/developmentView/Modelo%20de%20Dise%C3%B1o/diagramaClasesDeDise%C3%B1o/Diagrama%20de%20clases.png)
 
 ### **4.2 Diagrama de Secuencia**
 
 <br>Caso de uso representativo **Presentar Examen** (_Take Exam_)<br>
 
-![alt "Diagrama de Secuencia"](https://github.com/febres35/EdTech_IS/blob/main/sequenceDiagram/DesignSequenceDiagram.png)
+![alt "Diagrama de Secuencia"](https://github.com/febres35/EdTech_IS/blob/main/docs/developmentView/Modelo%20de%20Dise%C3%B1o/sequenceDiagram/DesignSequenceDiagram.png)
 
 ### **4.3 Diagrama de Despliegue**
 
-![alt "Diagrama de Despliegue"](https://github.com/febres35/EdTech_IS/blob/main/deployDiagram/Diagrama%20de%20despliegue.png)
+![alt "Diagrama de Despliegue"](https://github.com/febres35/EdTech_IS/blob/main/docs/developmentView/Modelo%20de%20Dise%C3%B1o/deployDiagram/Diagrama%20de%20despliegue.png)
