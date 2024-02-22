@@ -13,9 +13,10 @@ CertiComp proyecto de Ingeniería de Software
 * Vanessa Silvera
 
 # [1. Modelo de Dominio ](#1-Modelo-de-Dominio)
-* Diagrama de Clases
+### **1.1 Diagrama de Clases**
 ![alt "Modelo de clases"](https://github.com/febres35/EdTech_IS/blob/main/docs/scenariosView/Modelo%20del%20Dominio/Diagrama%20de%20Clases.png)
-* Diagrama de Estados
+
+### **1.2 Diagrama de Estados**
 ![alt "Modelo de Estados"](https://github.com/febres35/EdTech_IS/blob/main/docs/scenariosView/Modelo%20del%20Dominio/Diagrama%20de%20Estado.png) 
 
 # [2. Modelo de Casos de uso ](#2-Diciplina-de-Requisitos)
