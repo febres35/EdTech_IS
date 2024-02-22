@@ -92,7 +92,7 @@ CertiComp proyecto de Ingeniería de Software
 <br>2-. Clone el repositorio, y abra la carpeta **certicomp**<br>
 <br>3-. Diríjase a la carpeta "src" alli seleccione la carpeta main y siga la ruta hasta llegar a otra carpeta llamada **certicomp**<br>
 <br>4-. Una vez allí ejecute el archivo **CertiComp.java** esto deberia iniciar el login de la aplicación<br>
-<br>5-. Con el Login abierto introduzca cualquiera de las credenciales que se hayan en el archivo "credentials.json en la carpeta "data" ubicada en la carpeta **resources**<br>
+<br>5-. Con el Login abierto introduzca cualquiera de las credenciales que se hallan en el archivo "credentials.json en la carpeta "data" ubicada en la carpeta **resources**<br>
 <br>6-. De click en el boton de ingresar y listo usted ya habrá ingresado a la aplicacion **CertiComp**<br>
 
 # [6. Modelo de Pruebas ](#6.-Modelo-de-Diseño)
