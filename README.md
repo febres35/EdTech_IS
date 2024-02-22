@@ -67,6 +67,7 @@ CertiComp proyecto de Ingeniería de Software
 ![alt "Diagrama de Clases de Analisis"](https://github.com/febres35/EdTech_IS/blob/main/docs/logicalView/analysisView/diagramaDeClasesDeAnalisis/Diagrama%20de%20clases.png)
 
 # [4. Modelo de Diseño ](#4.-Modelo-de-Diseño)
+
 ### **4.1 Diagrama de clases de diseño**
 
 <br>Caso de uso representativo **Presentar Examen** (_Take Exam_)<br>
@@ -82,3 +83,14 @@ CertiComp proyecto de Ingeniería de Software
 ### **4.3 Diagrama de Despliegue**
 
 ![alt "Diagrama de Despliegue"](https://github.com/febres35/EdTech_IS/blob/main/docs/developmentView/Modelo%20de%20Dise%C3%B1o/deployDiagram/Diagrama%20de%20despliegue.png)
+
+# [5. Modelo de Implementacion ](#5.-Modelo-de-Diseño)
+
+### **Instrucciones para iniciar certicomp**
+
+<br>1-. Inicialice **Visual Studio Code**<br>
+<br>2-. Clone el repositorio, y abra la carpeta **certicomp**<br>
+<br>3-. Diríjase a la carpeta "src" alli seleccione la carpeta main y siga la ruta hasta llegar a otra carpeta llamada **certicomp**<br>
+<br>4-. Una vez allí ejecute el archivo **CertiComp.java** esto deberia iniciar el login de la aplicación<br>
+<br>5-. Con el Login abierto introduzca cualquiera de las credenciales que se hayan en el archivo "credentials.json en la carpeta "data" ubicada en la carpeta **resources**<br>
+<br>6-. De click en el boton de ingresar y listo usted ya habrá ingresado a la aplicacion **CertiComp**<br>
