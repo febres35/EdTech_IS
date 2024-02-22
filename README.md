@@ -14,7 +14,10 @@ CertiComp proyecto de Ingeniería de Software
 
 # [1. Modelo de Dominio ](#1-Modelo-de-Dominio)
 ### **1.1 Diagrama de Clases**
-![alt "Modelo de clases"](https://github.com/febres35/EdTech_IS/blob/main/docs/scenariosView/Modelo%20del%20Dominio/Diagrama%20de%20Clases.png)
+![alt "Modelo de clases"](<p align="center">
+  <img width="460" height="300" src="https://github.com/febres35/EdTech_IS/blob/main/docs/scenariosView/Modelo%20del%20Dominio/Diagrama%20de%20Clases.png">
+</p>)
+
 
 ### **1.2 Diagrama de Estados**
 ![alt "Modelo de Estados"](https://github.com/febres35/EdTech_IS/blob/main/docs/scenariosView/Modelo%20del%20Dominio/Diagrama%20de%20Estado.png) 
