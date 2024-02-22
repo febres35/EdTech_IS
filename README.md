@@ -18,7 +18,7 @@ CertiComp proyecto de Ingeniería de Software
 * Diagrama de Estados
 ![alt "Modelo de Estados"](https://github.com/febres35/EdTech_IS/blob/main/docs/scenariosView/Modelo%20del%20Dominio/Diagrama%20de%20Estado.png) 
 
-# [2. Diciplina de Requisitos ](#2-Diciplina-de-Requisitos)
+# [2. Modelo de Casos de uso ](#2-Diciplina-de-Requisitos)
 * Modelos de Casos de Uso
 ![alt "Diagrama de Casos de Uso"](https://github.com/febres35/EdTech_IS/blob/main/docs/scenariosView/Requisitos/Casos%20de%20Uso.png)
 ![alt "Relacion de estado Casos de Uso Estudiante"](https://github.com/febres35/EdTech_IS/blob/main/docs/scenariosView/Requisitos/Relaición%20de%20Estados%20de%20Casos%20de%20UsosEstudiante.png)
