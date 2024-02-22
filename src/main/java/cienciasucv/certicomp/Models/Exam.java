@@ -153,10 +153,8 @@ public class Exam {
 
    }
 
-    public static void createNewExam(Exam exam, Course curso) {
+    public static void createNewExam(Exam exam) {
     Exam.exams.put(exam.getID(), exam);
-    curso.addExamID(exam.getID());
-    Course.modifyCourse(curso,exam);
     Exam.organizarPorID();
     saveExamsToJson();
 }

@@ -44,10 +44,6 @@ public class Course {
         this.prerequisites = (String) attributes.get("prerequisites");
         this.description = (String) attributes.get("description");
         this.examsID = (ArrayList<String>) attributes.get("exams");
-    if (attributes.get("exams")instanceof ArrayList) {
-        this.examsID.addAll((ArrayList<String>) attributes.get("exams"));
-       
-    }
         this.attributes = attributes;
     }
 
@@ -212,11 +208,11 @@ public class Course {
         return "C" + String.format("%03d", nextId);
     }
 
-    public void addExamID(String examID){
-        this.examsID.add(examID);
+    public void addExamID(String examID,Course curso){
+        curso.examsID.add(examID);
     }
 
-    public static void saveCoursesToJson(Map<String, Course> courseMap, String fileName) {
+    public static void saveCoursesToJson(Map<String, Course> courseMap) {
         try (Writer writer = new FileWriter("src/main/resources/data/courses.json")) {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             gson.toJson(courseMap, writer);
@@ -241,11 +237,11 @@ public class Course {
         if (mapa.containsKey(curso.getID())) {
             Course courseToUpdate = mapa.get(curso.getID());
             // Realizar las modificaciones necesarias en el curso
-            courseToUpdate.addExamID(examen.getID());
+            courseToUpdate.addExamID(examen.getID(),curso);
         }
 
         // Guardar el Map actualizado de cursos de vuelta en el archivo course.json
-        saveCoursesToJson(mapa, "course.json");
+        saveCoursesToJson(mapa);
 
     }
 }

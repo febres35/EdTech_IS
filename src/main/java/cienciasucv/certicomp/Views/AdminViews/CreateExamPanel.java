@@ -81,7 +81,7 @@ public class CreateExamPanel extends PanelContent{
                    }else{
                     Exam newExam= controller.collectExamData(CreateExamPanel.this,CreateExamController.action.CREAR,null);
                     controller.collectDominiums(CreateExamPanel.this.DominiumArea,newExam);
-                    Exam.createNewExam(newExam,Course.getCourse(CreateExamPanel.getSelectedCourseID()));
+                    Exam.createNewExam(newExam);
                     JFrame frame=(JFrame)SwingUtilities.getWindowAncestor(CreateExamPanel.this);
                     restartAll();
                     ExamsManagementView.refreshTableData();
