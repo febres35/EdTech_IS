@@ -9,6 +9,7 @@ import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -51,6 +52,10 @@ public class Exam {
 
     }
     
+    public Exam() {
+     
+    }
+
     private static Map<String, Exam> loadExamsFromFile() {
         Gson gson = new Gson();
         java.lang.reflect.Type type = new TypeToken<Map<String, Exam>>(){}.getType();
@@ -123,13 +128,29 @@ public class Exam {
     }
 
     public static String getInstructions(String examID) {
-    Exam examen= exams.get(examID);
-    if(examen!=null){
-        return examen.fetchInstructions();
-    }else{
-        return null;
+        Exam examen= exams.get(examID);
+        if(examen!=null){
+            return examen.fetchInstructions();
+        }else{
+            return null;
+        }
     }
-}
+
+    public static Map<String, String> getQuestions(String examID){
+    System.out.println("Testing get Questions in EXAM!");
+    Map<String, String> questionsCollection =  new HashMap<>();
+    Exam exam = getExam(examID);
+    if(exam.questions== null){
+        System.out.println("Yes, questions attribute is null!");
+    } else{
+        System.out.println(exam.questions);
+    }
+    questionsCollection = Question.fetchQuestions(exam.questions);
+    System.out.println("Printing from getQuestions!");
+
+    return questionsCollection;
+
+   }
 
     public static void createNewExam(Exam exam) {
     Exam.exams.put(exam.getID(), exam);

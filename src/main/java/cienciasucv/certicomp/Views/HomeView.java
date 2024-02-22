@@ -8,6 +8,8 @@ import java.awt.Insets;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -41,6 +43,10 @@ public class HomeView{
 
         JPanel homeButtons = new JPanel();
         homeButtons.setLayout(new FlowLayout());
+
+        JButton closeButton = Buttons.getButton("Ayuda", ButtonSize.LARGE);
+
+        //closeButton.addActionListener(e);
         
         homeButtons.add(Buttons.getButton("Ayuda", ButtonSize.LARGE));
         homeButtons.add(Buttons.getButton("Cerrar Sesión", ButtonSize.LARGE));

@@ -18,6 +18,7 @@ import com.google.gson.reflect.TypeToken;
 public class Domain {
     private String id;
     private String name;
+    private String description;
     public static Map<String, Domain> domains;
     public final static String path="src/main/resources/data/domains.json";
   //  private String description;
@@ -40,9 +41,14 @@ public class Domain {
     public String getName(){
         return name;
     }
-  /*/ String getDescription(){
+    public String getDescription(){
         return description;
-    }*/
+    }
+
+    public static String getDescription(String domainID) {
+        Domain domain = domains.get(domainID);
+        return (domain != null) ? domain.getDescription() : null;
+    }
 
     private static Map<String, Domain> loadDomainsFromFile() {
         Gson gson = new Gson();

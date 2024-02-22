@@ -1,48 +1,38 @@
 package cienciasucv.certicomp.Controllers;
-
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import cienciasucv.certicomp.Models.Exam;
-import cienciasucv.certicomp.Views.StudentViews.InstructionsView;
-import cienciasucv.certicomp.Views.StudentViews.TakeExamView;
+
 
 public class TakeExamController {
 
-    private InstructionsView view;
-    private TakeExamView examView;
-    private Exam exam;
+    private Exam exam = new Exam();
 
     public TakeExamController(){
-
-    }
-
-    public void setInstructionsView(InstructionsView view) {
-      this.view = view;
-    }
-
-    public void setExamView(TakeExamView examView) {
-      this.examView = examView;
     }
 
     public String getExamInstructions(String examID){
-        
-      String instructions = Exam.getInstructions(examID);
-      return instructions;
+
+        String instructions = Exam.getInstructions(examID);
+        return instructions;
+    }
+
+    public Map<String, String> getExamQuestions(String examID){
+
+      Map<String, String> questionsCollection = new HashMap<>();
+      questionsCollection = Exam.getQuestions(examID);
+
+      if(questionsCollection.isEmpty()){
+        System.out.println("Questions collection is empty in the controller");
+      }
+
+      return questionsCollection;
+
     }
 
     public String getExamDuration(String examID){
       exam = Exam.getExam(examID);
       return exam.getDuration();
     }
-
-    public ArrayList<String> getExamQuestions(String examID){
-
-      exam = Exam.getExam(examID);
-      return exam.fetchQuestions();
-
-    }
-
-
-    
-    
 }
