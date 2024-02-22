@@ -62,6 +62,10 @@ CertiComp proyecto de Ingeniería de Software
 
 ![alt "Diagramas de analisis y colaboracion"](https://github.com/febres35/EdTech_IS/blob/main/docs/logicalView/analysisView/diagramas%20de%20colaboracion/diagramaMVC8/Diagrama%20de%20colaboracion.png)
 
+### **3.2 Diagrama de Clases de Analisis**
+
+![alt "Diagrama de Clases de Analisis"](https://github.com/febres35/EdTech_IS/blob/main/docs/logicalView/analysisView/diagramaDeClasesDeAnalisis/Diagrama%20de%20clases.png)
+
 # [4. Modelo de Diseño ](#4.-Modelo-de-Diseño)
 
 ### **4.2 Diagrama de Secuencia**
